@@ -1,0 +1,298 @@
+//CSS Vars
+.mx-context-menu {
+  //Backgroud
+  --mx-menu-backgroud: rgba(255, 255, 255, 0.9);
+  --mx-menu-hover-backgroud: rgb(var(--primary-5));
+  --mx-menu-active-backgroud: rgb(var(--primary-6));
+  --mx-menu-open-backgroud: var(--color-fill-2);
+  --mx-menu-open-hover-backgroud: var(--color-fill-2);
+  --mx-menu-divider: var(--color-fill-3);
+
+  //Text
+  --mx-menu-text: var(--color-text-2);
+  --mx-menu-hover-text: #fff;
+  --mx-menu-active-text: #fff;
+  --mx-menu-open-text: #fff;
+  --mx-menu-open-hover-text: #fff;
+
+  --mx-menu-disabled-text: var(--color-text-3);
+
+  //Shadow
+  --mx-menu-shadow-color: rgba(0, 0, 0, 0.1);
+  --mx-menu-backgroud-radius: 8px;
+
+  //Shortcut badge
+  --mx-menu-shortcut-text: var(--color-text-3);
+  --mx-menu-shortcut-text-hover: #fff;
+  --mx-menu-shortcut-text-active: #fff;
+  --mx-menu-shortcut-text-open: #fff;
+
+  --mx-menu-shortcut-text-disabled: var(--color-text-3);
+
+  //Focus border color
+  --mx-menu-focus-color: #0085f1;
+
+  //Icon placeholder width
+  --mx-menu-placeholder-width: 24px;
+}
+
+//Base hosts
+.mx-context-menu {
+  pointer-events: all;
+  display: inline-block;
+  overflow: visible;
+  position: absolute;
+  background-color: var(--mx-menu-backgroud);
+  border-radius: var(--mx-menu-backgroud-radius);
+  padding: 4px 0;
+  box-shadow: 0 4px 10px var(--mx-menu-shadow-color);
+  opacity: 1;
+  transition: opacity 0.15s cubic-bezier(0.4, 0.8, 0.74, 1);
+  backdrop-filter: blur(5px);
+}
+.mx-context-menu-items {
+  position: relative;
+  overflow: visible;
+}
+.mx-context-menu-scroll {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 1px;
+  pointer-events: none;
+}
+
+//Up down button
+.mx-context-menu-updown {
+  pointer-events: all;
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 15px;
+  border-radius: 10px;
+  background-color: var(--mx-menu-backgroud);
+  user-select: none;
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--mx-menu-hover-backgroud);
+  }
+  &:active {
+    background-color: var(--mx-menu-active-backgroud);
+  }
+
+  &.up {
+    top: 0px;
+
+    .mx-right-arrow {
+      transform: translateX(-50%) rotate(270deg);
+    }
+  }
+  &.down {
+    bottom: -1px;
+
+    .mx-right-arrow {
+      transform: translateX(-50%) rotate(90deg);
+    }
+  }
+
+  .mx-right-arrow {
+    display: inline-block;
+    position: absolute;
+    height: 12px;
+    left: 50%;
+    top: 0px;
+    padding: 0;
+    fill: var(--mx-menu-text);
+  }
+}
+
+//Item
+.mx-context-menu-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  user-select: none;
+  overflow: visible;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  color: var(--mx-menu-text);
+  padding: 0 10px;
+  margin: 0 5px;
+  height: 32px;
+  line-height: 32px;
+  border-radius: 4px;
+
+  .mx-right-arrow,
+  .mx-checked-mark {
+    fill: var(--mx-menu-text);
+  }
+  //Mouse hover
+  &:hover {
+    background-color: var(--mx-menu-hover-backgroud);
+    color: var(--mx-menu-hover-text);
+
+    .mx-right-arrow,
+    .mx-checked-mark {
+      fill: var(--mx-menu-hover-text);
+    }
+    .mx-shortcut {
+      color: var(--mx-menu-shortcut-text-hover);
+    }
+  }
+  //Mouse press
+  &:active {
+    background-color: var(--mx-menu-active-backgroud);
+    color: var(--mx-menu-active-text);
+
+    .mx-right-arrow,
+    .mx-checked-mark {
+      fill: var(--mx-menu-active-text);
+    }
+    .mx-shortcut {
+      color: var(--mx-menu-shortcut-text-active);
+    }
+  }
+  //With submenu open state
+  &.open {
+    background-color: var(--mx-menu-open-backgroud);
+    color: var(--mx-menu-open-text);
+
+    &:hover {
+      background-color: var(--mx-menu-open-hover-backgroud);
+      color: var(--mx-menu-open-hover-text);
+    }
+
+    .mx-right-arrow,
+    .mx-checked-mark {
+      fill: var(--mx-menu-open-text);
+    }
+
+    .mx-shortcut {
+      color: var(--mx-menu-shortcut-text-open);
+    }
+  }
+  //Focus by keyboard
+  &.keyboard-focus {
+    background-color: var(--mx-menu-active-backgroud);
+    outline: 2px solid var(--mx-menu-focus-color);
+  }
+  //disabled
+  &.disabled {
+    color: var(--mx-menu-disabled-text);
+
+    cursor: not-allowed;
+
+    &:hover,
+    &:active {
+      background-color: transparent;
+    }
+
+    .mx-right-arrow,
+    .mx-checked-mark {
+      fill: var(--mx-menu-disabled-text);
+    }
+    .mx-shortcut {
+      color: var(--mx-menu-shortcut-text-second);
+    }
+  }
+
+  .mx-item-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+  .mx-icon-placeholder {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: auto;
+    overflow: hidden;
+
+    &.preserve-width {
+      width: var(--mx-menu-placeholder-width);
+    }
+  }
+
+  .icon {
+    display: inline-block;
+    font-size: 16px;
+
+    &.svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+  .label {
+    font-size: 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 16px;
+  }
+}
+.mx-context-menu-item-wrapper {
+  position: relative;
+}
+
+//Sperator
+.mx-context-menu-item-sperator {
+  display: block;
+  padding: 5px 10px;
+  // background-color: var(--mx-menu-backgroud);
+
+  &:after {
+    display: block;
+    content: '';
+    background-color: var(--mx-menu-divider);
+    height: 1px;
+  }
+}
+
+//Right arrow
+.mx-right-arrow {
+  width: 14px;
+  height: 14px;
+}
+//Check mark
+.mx-checked-mark {
+  width: 16px;
+  height: 16px;
+}
+
+//Shortcut
+.mx-shortcut {
+  position: relative;
+  justify-self: flex-end;
+  font-size: 11.5px;
+  padding: 2px 4px;
+
+  color: var(--mx-menu-shortcut-text);
+}
+
+//Dark theme
+//===================================================
+.mx-context-menu.dark {
+  //CSS Vars
+  //Backgroud
+  --mx-menu-backgroud: var(--color-bg-5);
+  --mx-menu-active-backgroud: rgb(var(--primary-4));
+
+  // Shadow
+  --mx-menu-shadow-color: #00000033;
+
+  //Text
+  --mx-menu-hover-text: var(--color-text-1);
+  --mx-menu-active-text: var(--color-text-1);
+  --mx-menu-open-text: var(--color-text-1);
+  --mx-menu-open-hover-text: var(--color-text-1);
+
+  // Shortcut badge
+  --mx-menu-shortcut-text-hover: var(--color-text-1);
+  --mx-menu-shortcut-text-active: var(--color-text-1);
+  --mx-menu-shortcut-text-open: var(--color-text-1);
+}

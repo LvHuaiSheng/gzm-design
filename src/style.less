@@ -1,0 +1,75 @@
+.arco-dropdown-open .arco-icon-down {
+    transform: rotate(180deg);
+}
+
+// 按钮
+.icon-btn {
+    background-color: transparent !important;
+
+    &:not(.arco-btn-disabled) {
+        &:hover {
+            background-color: var(--color-secondary-hover) !important;
+        }
+        &:active {
+            background-color: var(--color-secondary-active) !important;
+        }
+    }
+}
+
+.arco-btn-text.arco-btn-secondary{
+    color: var(--color-text-2) !important;;
+    //background-color: var(--color-secondary);
+}
+.arco-btn-text.arco-btn-secondary:hover{
+    color: var(--color-text-2) !important;
+}
+.arco-icon-check{
+    color:rgb(var(--primary-6));
+}
+.color-text-1{
+    color: var(--color-neutral-10);
+}
+.color-text-2{
+    color: var(--color-text-2);
+}
+.pd-5px{
+    padding: 5px;
+}
+
+// 禁止文字选中
+/* 兼容 Webkit (Chrome, Safari, Opera) 和 Blink (Edge, Chrome) 浏览器 */
+.not-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* 兼容 Firefox 浏览器 */
+.not-select {
+    -moz-user-select: none;
+    user-select: none;
+}
+
+/* 兼容 IE 浏览器 */
+.not-select {
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.truncated {
+    display: inline-block;
+    max-width: 100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+.w18px{
+    width:18px
+}
+.h18px{
+    height:18px
+}
+.text-left{
+  text-align: left !important;
+}

@@ -1,0 +1,45 @@
+@import "./layouts";
+
+.my-horizontal,
+.my-vertical {
+  position: absolute !important;
+  z-index: 99;
+}
+.my-horizontal {
+  left: @rulerHeight;
+  top: 0;
+  width: calc(100% - @rulerHeight) !important;
+  height: @rulerHeight !important;
+}
+.my-vertical {
+  top: @rulerHeight;
+  left: 0px;
+  width: @rulerHeight !important;
+}
+.ruler-divBox{
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  z-index: 102;
+  top: 0;
+  align-items: center;
+  text-align: center;
+  display: none;
+}
+.ruler-show{
+  display: block;
+}
+.ruler-hide{
+  display: none;
+}
+.ruler-pd{
+  .contentBox{
+    padding-top: 30px;
+    padding-left: 30px;
+  }
+  .ruler-divBox{
+    display: grid;
+  }
+}
+

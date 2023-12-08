@@ -1,0 +1,163 @@
+{
+  "list": [
+    {
+      "id": 714,
+      "cover": "https://n-oss.sourcenet.cc/gzm-design/txt-1.png",
+      "title": "潮酷春节文字2",
+      "width": 719,
+      "height": 526,
+      "state": 1,
+      "json": {
+        "tag": "Text",
+        "editable": true,
+        "x": 0,
+        "y": 0,
+        "width": 400,
+        "height": 80,
+        "fill": "rgba(246,207,0,1)",
+        "stroke": "rgba(0,0,0,1)",
+        "strokeWidth": 3,
+        "strokeJoin": "miter",
+        "opacity": 1,
+        "fontFamily": "arial",
+        "fontWeight": "bold",
+        "fontSize": 80,
+        "text": "输入文字",
+        "textAlign": "center",
+        "fontStyle": "normal",
+        "lineHeight": 100,
+        "id": "39b2d1d6-7e23-40d3-9fb8-cd9e96f6244a"
+      }
+    },
+    {
+      "id": 707,
+      "cover": "https://n-oss.sourcenet.cc/gzm-design/txt-2.png",
+      "title": "圣诞节标题文字",
+      "width": 642,
+      "height": 692,
+      "state": 1,
+      "json": {
+        "tag": "Text",
+        "padding": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "fill": [
+          {
+            "type": "solid",
+            "color": "rgba(0,0,0,1)"
+          },
+          {
+            "type": "solid",
+            "color": "rgba(254, 210, 210, 1)"
+          }
+        ],
+        "text": "输入文本",
+        "fontSize": 60,
+        "fontWeight": "normal",
+        "letterSpacing": {
+          "type": "px",
+          "value": 0
+        },
+        "lineHeight": {
+          "type": "percent",
+          "value": 150
+        },
+        "name": "图层1",
+        "x": 0,
+        "y": 0,
+        "draggable": true,
+        "editable": true,
+        "stroke": [
+          {
+            "type": "solid",
+            "color": "rgba(110, 141, 196, 1)"
+          }
+        ]
+      }
+    },
+    {
+      "id": 707,
+      "cover": "https://n-oss.sourcenet.cc/gzm-design/txt-3.png",
+      "title": "圣诞节标题文字",
+      "width": 642,
+      "height": 692,
+      "state": 1,
+      "json": {
+        "tag": "Group",
+        "x": 0,
+        "y": 0,
+        "scaleX": 1,
+        "scaleY": 1,
+        "rotation": 0,
+        "skewX": 0,
+        "skewY": 0,
+        "draggable": true,
+        "editable": true,
+        "hitChildren": false,
+        "children": [
+          {
+            "tag": "Image",
+            "url": "https://res.palxp.cn/static/material/gd-48175277/9be422829dd3748c2d5999955ce48f25.png",
+            "width": 259,
+            "height": 216,
+            "id": 865,
+            "name": "图层1",
+            "x": 0,
+            "y": 0,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotation": 0,
+            "skewX": 0,
+            "skewY": 0,
+            "draggable": true,
+            "editable": true,
+            "fill": {
+              "type": "image",
+              "mode": "strench",
+              "url": "https://res.palxp.cn/static/material/gd-48175277/9be422829dd3748c2d5999955ce48f25.png"
+            }
+          },
+          {
+            "tag": "Text",
+            "padding": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "fill": [
+              {
+                "type": "solid",
+                "color": "rgba(0,0,0,1)"
+              }
+            ],
+            "text": "输入文本",
+            "fontSize": 40,
+            "fontWeight": "normal",
+            "letterSpacing": {
+              "type": "px",
+              "value": 0
+            },
+            "lineHeight": {
+              "type": "percent",
+              "value": 150
+            },
+            "name": "图层2",
+            "x": 51,
+            "y": 85,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotation": 0,
+            "skewX": 0,
+            "skewY": 0,
+            "draggable": true,
+            "editable": true
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,199 @@
+.ui-color-picker {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  user-select: none;
+  overflow: hidden;
+
+  .gradient-controls {
+    padding: 8px 10px;
+  }
+
+  .picker-area-color {
+    display: flex;
+    flex-direction: column;
+
+    .spectrum-map {
+      width: 100%;
+      height: 220px;
+      margin-bottom: 8px;
+      position: relative;
+
+      // &:hover {
+      //   cursor: default;
+      // }
+
+      .spectrum {
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(to right, white 0%, rgba(255, 255, 255, 0) 100%);
+        cursor: crosshair;
+
+        &::after {
+          content: '';
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(to bottom, transparent, #000);
+        }
+      }
+
+      .picker-cursor {
+        cursor: crosshair;
+      }
+    }
+
+    .preview {
+      display: flex;
+      // flex-direction: row;
+      margin-bottom: 8px;
+      padding: 0 10px;
+      align-items: center;
+
+      .preview-area {
+        display: flex;
+        justify-content: center;
+        width: 36px;
+
+        .preview-box {
+          box-sizing: border-box;
+          height: 28px;
+          width: 28px;
+          border-radius: 4px;
+          border: 1px solid #888;
+        }
+      }
+
+      .color-hue-alpha {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        margin-left: 8px;
+
+        .hue {
+          width: 100%;
+          position: relative;
+          border-radius: 10px;
+          margin-bottom: 8px;
+          padding: 0 7px;
+          background-color: red;
+          cursor: crosshair;
+
+          .hue-area {
+            position: relative;
+            height: 14px;
+            background: linear-gradient(to right,
+            #ff0000,
+            #ff8000,
+            #ffff00,
+            #80ff00,
+            #00ff00,
+            #00ff80,
+            #00ffff,
+            #0080ff,
+            #0000ff,
+            #8000ff,
+            #ff00ff,
+            #ff0080,
+            #ff0000);
+          }
+        }
+
+        .alpha {
+          position: relative;
+          width: 100%;
+          overflow: hidden;
+          border-radius: 10px;
+          height: 14px;
+          cursor: crosshair;
+          // background-color: #fff;
+
+          .gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+          }
+
+          .alpha-area {
+            width: 100%;
+            height: 100%;
+            background: url('../../assets/images/alpha-background.svg');
+            background-size: 10px 10px;
+            background-position-y: 4px;
+            border-radius: 10px;
+            padding: 0 7px;
+
+            .alpha-mask {
+              width: 100%;
+              height: 100%;
+              position: relative;
+            }
+          }
+        }
+      }
+    }
+
+    .gradient {
+      width: 100%;
+      height: 14px;
+      position: relative;
+      cursor: crosshair;
+      border-radius: 10px;
+      margin-bottom: 8px;
+      padding: 0 7px;
+      background: url('../../assets/images/alpha-background.svg');
+      background-size: 10px 10px;
+      background-position-y: 4px;
+
+      .gradient-points-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        border-radius: 10px;
+      }
+
+      .gradient-slider-container {
+        height: 100%;
+        width: 100%;
+        position: relative;
+
+        .picker-cursor {
+          border: 4px solid #fff;
+          transform: translate(-50%, -50%);
+          top: 7px;
+
+          &.active {
+            height: 18px;
+            width: 18px;
+          }
+        }
+      }
+    }
+
+    .picker-cursor {
+      position: absolute;
+      height: 14px;
+      width: 14px;
+      border: 2px solid #fff;
+      border-radius: 14px;
+      box-shadow: 0 1px 4px 0 rgba(0, 0, 0, 0.3), inset 0 0 1px 1px rgba(0, 0, 0, 0.1);
+      background: transparent;
+      cursor: ew-resize;
+    }
+  }
+
+  .color-preview-area {
+    // margin-bottom: 8px;
+    padding: 8px 10px;
+  }
+
+  .pattern-box .upload-box {
+    justify-content: center;
+    display: grid;
+    padding: 10px;
+  }
+}
