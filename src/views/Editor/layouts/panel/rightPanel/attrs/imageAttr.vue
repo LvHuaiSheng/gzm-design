@@ -3,50 +3,57 @@ import Panel from './panel.vue'
 import {useActiveObjectModel} from '@/views/Editor/hooks/useActiveObjectModel'
 import {useEditor} from '@/views/Editor/app'
 import SwipeNumber from '@/components/swipeNumber'
+import {isNumber} from "lodash";
+
 const {canvas} = useEditor()
 
-const fill = <object> useActiveObjectModel('fill',null,'default')
+const fill = <object>useActiveObjectModel('fill', null, 'default')
 
 
 const paintModeVal = ref()
 const rotation = ref()
 const scale = ref()
+const opacity = ref()
 
 
-const hasRotation = computed(() =>{
-    return ['cover','fit','repeat'].includes(fill.value.modelValue?.mode)
+const hasRotation = computed(() => {
+    return ['cover', 'fit', 'repeat'].includes(fill.value.modelValue?.mode)
 })
 
 
-const hasScale = computed(() =>{
-    return ['clip','repeat'].includes(fill.value.modelValue?.mode)
+const hasScale = computed(() => {
+    return ['clip', 'repeat'].includes(fill.value.modelValue?.mode)
 })
 
 watchEffect(() => {
     paintModeVal.value = fill.value.modelValue.mode
-    if (hasRotation){
-        rotation.value = fill.value.modelValue.rotation | 0
-    }else {
+    opacity.value = isNumber(fill.value.modelValue.opacity) ? fill.value.modelValue.opacity * 100 : 100
+    if (hasRotation) {
+        rotation.value = isNumber(fill.value.modelValue.rotation) ? fill.value.modelValue.rotation: 0
+    } else {
         rotation.value = 0
     }
-    if (hasScale){
-        scale.value = fill.value.modelValue.scale * 100  | 100
-    }else {
+    if (hasScale) {
+        scale.value = isNumber(fill.value.modelValue.scale) ? fill.value.modelValue.scale : 100
+    } else {
         scale.value = 100
     }
 })
 watchEffect(() => {
     let val = {
-        ...fill.value.modelValue, mode: paintModeVal.value }
-    if (hasRotation){
+        ...fill.value.modelValue,
+        mode: paintModeVal.value,
+        opacity: opacity.value / 100
+    }
+    if (hasRotation) {
         val.rotation = rotation.value
-    }else {
+    } else {
         delete val['rotation']
         rotation.value = 0
     }
-    if (hasScale){
+    if (hasScale) {
         val.scale = scale.value / 100
-    }else {
+    } else {
         delete val['scale']
         scale.value = 100
     }
@@ -65,8 +72,8 @@ const options = reactive([
 
 <template>
     <Panel
-        title="属性"
-        hidden-add
+            title="属性"
+            hidden-add
     >
         <a-row :gutter="[4, 4]">
             <a-col :span="15">
@@ -76,8 +83,19 @@ const options = reactive([
                     </template>
                 </a-select>
             </a-col>
+            <a-col :span="14">
+                <SwipeNumber size="small" v-model="opacity" :min="0" :max="100" :step="1">
+                    <template #label>
+                        <icon-mosaic/>
+                    </template>
+                    <template #suffix>
+                        <div>%</div>
+                    </template>
+                </SwipeNumber>
+            </a-col>
             <a-col :span="14" v-if="hasRotation">
-                <SwipeNumber size="small" v-model="rotation" :step="1" style="padding: 0 6px" label-class="text-left" label-width="66px">
+                <SwipeNumber size="small" v-model="rotation" :step="1" style="padding: 0 6px" label-class="text-left"
+                             label-width="66px">
                     <template #label>
                         <div>旋转角度</div>
                     </template>
@@ -87,7 +105,8 @@ const options = reactive([
                 </SwipeNumber>
             </a-col>
             <a-col :span="14" v-if="hasScale">
-                <SwipeNumber size="small" v-model="scale" :step="1" style="padding: 0 6px" label-class="text-left" label-width="66px">
+                <SwipeNumber size="small" v-model="scale" :step="1" style="padding: 0 6px" label-class="text-left"
+                             label-width="66px">
                     <template #label>
                         <div>缩放比例</div>
                     </template>
