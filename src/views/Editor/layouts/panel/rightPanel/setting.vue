@@ -4,6 +4,7 @@ import {isDefined, useResizeObserver} from "@vueuse/core";
 import BaseAttr from "./attrs/baseAttr.vue";
 import LayerAttr from "./attrs/layerAttr.vue";
 import TextAttr from "./attrs/textAttr.vue";
+import ImageAttr from "./attrs/imageAttr.vue";
 import CanvasAttr from './attrs/canvasAttr.vue'
 import BoxAttr from './attrs/boxAttr.vue'
 import FillAttr from "./attrs/fillAttr.vue";
@@ -57,6 +58,11 @@ const componentList = computed(() => {
             name: 'TextAttr',
             component: TextAttr,
             visual: isDefined(activeObject) && editor.activeObjectIsType('Text'),
+        },
+        {
+            name: 'ImageAttr',
+            component: ImageAttr,
+            visual: isDefined(activeObject) && editor.activeObjectIsType('Image'),
         },
         {
             name: 'FillAttr',

@@ -50,7 +50,7 @@
                             <div style="text-align: right;padding-right: 12px"><icon-mosaic style="margin-right: 2px"/>透明度</div>
                         </template>
                         <template #suffix>
-                            <div class="absolute top-1 right-1">%</div>
+                            <div>%</div>
                         </template>
                     </SwipeNumber>
                 </a-col>

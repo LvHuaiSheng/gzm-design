@@ -6,9 +6,17 @@ import {isArray, isNumber, isObject, isString} from 'lodash'
 import {ILeaf, IUI, IUIInputData, IUnitData} from "@leafer-ui/interface";
 import {typeUtil} from "@/views/Editor/utils/utils";
 
+type ParseType = Function | 'default' | 'preset' | null
+
 export const useActiveObjectModel = <K extends keyof ILeaf, T = ILeaf[K] | undefined>(
     key: string,
     defaultValue?: any,
+    /**
+     * 值的格式转换方法
+     * default、null：不转换直接使用原始值
+     * preset: 使用这里内置好的转换方法
+     */
+    parseFun: ParseType = 'preset',
 ): WritableComputedRef<{
     modelValue: T
     onSwipe: (value: T) => void
@@ -32,57 +40,64 @@ export const useActiveObjectModel = <K extends keyof ILeaf, T = ILeaf[K] | undef
         lockChange = true
         let value
         let orgValue = activeObject.proxyData[key]
-        switch (key) {
-            case 'padding':
-                if ((!isDefined(orgValue) || orgValue === 0) && defaultValue) {
-                    value = defaultValue
-                    activeObject[key] = value
-                } else {
-                    value = orgValue
-                }
-                break
-            case 'fill':
-            case 'stroke':
-                if (isString(orgValue)) {
-                    value = [
-                        {
-                            type: 'solid',
-                            color: orgValue
+        if (parseFun !== 'default'){
+            if (parseFun === 'preset'){
+                switch (key) {
+                    case 'padding':
+                        if ((!isDefined(orgValue) || orgValue === 0) && defaultValue) {
+                            value = defaultValue
+                            activeObject[key] = value
+                        } else {
+                            value = orgValue
                         }
-                    ]
-                } else if (orgValue && orgValue.type) {
-                    value = [
-                        {...orgValue}
-                    ]
-                } else {
-                    value = orgValue
-                }
-                activeObject[key] = value
-                break
-            case 'lineHeight':
-            case 'letterSpacing':
-                if (orgValue) {
-                    if (isObject(orgValue)) {
+                        break
+                    case 'fill':
+                    case 'stroke':
+                        if (isString(orgValue)) {
+                            value = [
+                                {
+                                    type: 'solid',
+                                    color: orgValue
+                                }
+                            ]
+                        } else if (orgValue && orgValue.type) {
+                            value = [
+                                {...orgValue}
+                            ]
+                        } else {
+                            value = orgValue
+                        }
+                        activeObject[key] = value
+                        break
+                    case 'lineHeight':
+                    case 'letterSpacing':
+                        if (orgValue) {
+                            if (isObject(orgValue)) {
+                                value = orgValue
+                            } else {
+                                value = {
+                                    type: 'percent',
+                                    value: orgValue
+                                }
+                            }
+                        } else {
+                            value = {
+                                type: 'px',
+                                value: 0
+                            }
+                        }
+                        activeObject[key] = <IUnitData>value
+                        break
+                    default:
                         value = orgValue
-                    } else {
-                        value = {
-                            type: 'percent',
-                            value: orgValue
-                        }
-                    }
-                } else {
-                    value = {
-                        type: 'px',
-                        value: 0
-                    }
+                        break
                 }
-                activeObject[key] = <IUnitData>value
-                break
-            default:
-                value = orgValue
-                break
+            }else if (typeof  parseFun === 'function'){
+                value = parseFun(orgValue)
+            }
+        }else {
+            value = orgValue
         }
-
         modelValue.value = isNumber(value) ? toFixed(value) : value
         requestAnimationFrame(() => (
             lockChange = false

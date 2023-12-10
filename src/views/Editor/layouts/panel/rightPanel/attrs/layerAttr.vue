@@ -149,7 +149,7 @@ const opacity = useActiveObjectModel('opacity')
                   <icon-mosaic />
               </template>
               <template #suffix>
-                  <div class="absolute top-1 right-1">%</div>
+                  <div>%</div>
               </template>
           </SwipeNumber>
       </a-col>
