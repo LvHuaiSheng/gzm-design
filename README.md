@@ -15,6 +15,8 @@ Leafer Design 是一个免费开源的海报设计器。使用了最新的`vue3`
 - 地址1：<a href="http://gzm-design.guozimi.cn/" target="_blank">gzm-design</a>
 - 备用地址：<a href="http://gzm-design.sourcenet.cc/" target="_blank">gzm-design</a>
 
+![image](https://n-oss.sourcenet.cc/gzm-design/cover.png)
+
 ## 文档
 
 编写中
@@ -30,12 +32,12 @@ Tips: 🕙筹划中 🔲筹备中 🚧进行中 ✅已完成
     - ✅ 层级处理
     - ✅ 图片解析
     - ✅ 剪切蒙版
-      - ✅ 单层蒙版
-      - 🔲 连续多层蒙版
+        - ✅ 单层蒙版
+        - 🔲 连续多层蒙版
     - ✅ 文字解析
-      - ✅ 普通文本
-      - 🚧 富文本
-      - 🚧 效果/特效处理
+        - ✅ 普通文本
+        - 🚧 富文本
+        - 🚧 效果/特效处理
     - 🚧 字体加载
     - 🕙 智能对象
 - ✅ JSON导入
@@ -50,8 +52,8 @@ Tips: 🕙筹划中 🔲筹备中 🚧进行中 ✅已完成
 - ✅ 元素编辑
 - ✅ 预览
 - ✅ 文件下载（JSON / PNG / JPG / WEBP）
-  - ✅ 整个画布导出
-  - 🔲 指定元素导出
+    - ✅ 整个画布导出
+    - 🔲 指定元素导出
 - ✅ 画布缩放、拖动模式
 - ✅ 边框描边（纯色、线性渐变、径向渐变、图片）
 - ✅ 填充（纯色、线性渐变、径向渐变、图片）
@@ -108,12 +110,11 @@ pnpm build
 
 [CHANGELOG](./CHANGELOG.md)
 
-
 ## 捐赠
 
 如果觉得还不错，请作者喝杯咖啡吧 ☺
 
-<img src="https://n-oss.guozimi.cn/sfk.png" width="500">
+![image](https://n-oss.sourcenet.cc/sfk.png)
 
 ## 如何贡献
 
