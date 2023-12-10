@@ -19,6 +19,8 @@ export default defineComponent({
         onMounted(() => {
             const {canvas} = useEditor()
             divRef.value.append(canvas.wrapperEl)
+            // 解决在Firefox浏览器中canvas的display=none导致画布不显示的问题
+            canvas.wrapperEl.style.display = 'block'
             useResizeObserver(divRef, (entries) => {
                 const [entry] = entries
                 const { width, height } = entry.contentRect
