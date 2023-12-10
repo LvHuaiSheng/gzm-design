@@ -33,6 +33,7 @@ type ObjectType =
     | 'Canvas'
     | 'Text'
     | 'Pen'
+    | 'HTMLText'
 
 interface Page {
     children: any

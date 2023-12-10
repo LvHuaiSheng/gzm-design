@@ -12,6 +12,7 @@ import IBoard from '@/assets/images/board.svg?raw'
 import IText from '@/assets/images/text.svg?raw'
 import IImage from '@/assets/images/image.svg?raw'
 import IPenSvg from '@/assets/images/pen.svg?raw'
+import IHtmlTextSvg from '@/assets/images/htmlText.svg?raw'
 import {typeUtil} from "@/views/Editor/utils/utils";
 import {IUI} from "@leafer-ui/interface";
 
@@ -49,6 +50,8 @@ const getSvg = (object) => {
         return IImage
     } else if (canvas.objectIsTypes(object,'Pen')) {
         return IPenSvg
+    } else if (canvas.objectIsTypes(object,'HTMLText')) {
+        return IHtmlTextSvg
     }else{
 
     }

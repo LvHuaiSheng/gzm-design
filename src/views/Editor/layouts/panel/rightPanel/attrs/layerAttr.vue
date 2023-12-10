@@ -132,7 +132,7 @@ const opacity = useActiveObjectModel('opacity')
 <template>
   <Panel title="图层" hidden-add>
     <a-row :gutter="[8, 4]" align="center">
-      <a-col :span="13">
+      <a-col :span="12">
         <a-select
           size="small"
           v-bind="blendMode"
@@ -143,7 +143,7 @@ const opacity = useActiveObjectModel('opacity')
             </template>
         </a-select>
       </a-col>
-      <a-col :span="8">
+      <a-col :span="9">
           <SwipeNumber size="small" v-model="newOpacity" :min="0" :max="100" :step="1">
               <template #label>
                   <icon-mosaic />

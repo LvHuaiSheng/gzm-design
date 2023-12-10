@@ -4,27 +4,26 @@
 import {Layer} from "ag-psd";
 import {toRGBColorStr} from "@/utils/color";
 import {Image} from "leafer-ui";
-import {getCommonFields} from "@/utils/psdUtil";
+import {getCommonOptions,LayerInfo} from "./common";
 
-const imageParser = {
-    parseImage(layer:Layer){
-        let options = {};
-        if (layer.canvas) {
-            const url = layer.canvas.toDataURL("image/png")
-            options = {
-                url: url,
-                width: layer.canvas.width,
-                height: layer.canvas.height,
-            }
-        }
-        const image = new Image({
-            ...getCommonFields(layer),
-            // fill: fill,
-            // isMask:isMask,
-            ...options,
-        })
-        // image.set()
-        return image
+/**
+ * 转换Image元素
+ * @param layer 图层信息
+ * @param options 额外属性
+ */
+export function parseImage(layer: LayerInfo, options = {}) {
+
+    const image = new Image({
+        ...getCommonOptions(layer),
+        ...options,
+    })
+    if (layer.canvas) {
+        const url = layer.canvas.toDataURL("image/png")
+        image.url = url
+        image.width = layer.canvas.width
+        image.height = layer.canvas.height
     }
+    return image
 }
-export default imageParser
+
+export const imageUtil = {}
