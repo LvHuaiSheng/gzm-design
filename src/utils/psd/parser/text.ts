@@ -3,9 +3,8 @@
  */
 import {Layer} from "ag-psd";
 import {toRGBColorStr} from "@/utils/color";
-import {Group, Text, Matrix} from "leafer-ui";
+import {Group, Matrix, Text} from "leafer-ui";
 import {getCommonOptions, LayerInfo} from "./common";
-import {psdText} from "@/utils/psdUtil";
 import {HTMLText} from "@leafer-in/html";
 import {LayerEffectsInfo, ParagraphStyle, TextStyle} from "ag-psd/src/psd";
 
@@ -48,13 +47,13 @@ export function parseText(layer: LayerInfo, options = {}) {
             //     // 直接使用缩放
             //     appendStyles += `transform:matrix(${a},${b},${c},${d},0,0)`
             // }
-            svgContent += `<i style="font-size:${fontSize}px;color: ${psdText.getFill(layer)};">${text}</i>`
+            svgContent += `<i style="font-size:${fontSize}px;color: ${textUtil.getFill(layer)};">${text}</i>`
         }
         const htmlText = new HTMLText({
             ...getCommonOptions(layer),
             text: svgContent,
-            width: psdText.getWidth(layer),
-            height: psdText.getHeight(layer)
+            width: textUtil.getWidth(layer),
+            height: textUtil.getHeight(layer)
         })
         // setTxtParagraphStyle(layer.text.paragraphStyle, htmlText)
         // setTextLayerProp(layer, htmlText)
@@ -65,14 +64,14 @@ export function parseText(layer: LayerInfo, options = {}) {
         let textStr = layer.text.text.replace(/([^\S\n]*)\n/g, '\n');
         const text = new Text({
             ...getCommonOptions(layer),
-            fill: psdText.getFill(layer)
+            fill: textUtil.getFill(layer)
         })
         if (textStr) {
             text.text = textStr
-            text.width = psdText.getWidth(layer)
-            text.height = psdText.getHeight(layer)
-            text.fontFamily = psdText.getFontFamily(layer)
-            text.fontSize = psdText.getFontSize(layer)
+            text.width = textUtil.getWidth(layer)
+            text.height = textUtil.getHeight(layer)
+            text.fontFamily = textUtil.getFontFamily(layer)
+            text.fontSize = textUtil.getFontSize(layer)
         }
         setTextLayerProp(layer, text)
         setTxtStyle(layer.text.style, text)
@@ -185,7 +184,7 @@ const setTxtStyle = (style: TextStyle, text: Text) => {
     text.letterSpacing = {
         type: 'px',
         // value: psdText2.getLetterSpacing(styleData) / 26 // TODO 搞不懂为什么要除26才正常，或许除26后也不是正常的
-        value: psdText.getLetterSpacing(style)
+        value: textUtil.getLetterSpacing(style)
     }
     console.log('letterSpacing=', text.letterSpacing)
     if (style.strikethrough) {

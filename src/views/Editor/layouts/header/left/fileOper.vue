@@ -33,16 +33,25 @@
             </div>
         </template>
     </a-popover>
-    <a-modal v-model:visible="visible" :closable="false" :footer="false">
+    <a-modal v-model:visible="visible" :closable="processInfo.process===1" :mask-closable="processInfo.process===1">
         <template #title>
             <div>{{ processTitle }}</div>
         </template>
         <div>
-            <div style="width: max-content; margin: 0 auto;">
-<!--                <div v-html="LoadingSvg" class="mr2 mt3px"></div>-->
-                <a-spin dot/>
-            </div>
+            <a-result :status="null" :title="processInfo.text">
+                <template #icon>
+                    <div v-html="ImageOrgSvg"></div>
+                </template>
+                <template #extra>
+                    <a-progress size="large" color="rgb(12,92,255)" :percent="processInfo.process"/>
+                </template>
+            </a-result>
         </div>
+        <template #footer>
+            <div>
+                <a-button v-if="processInfo.process===1" type="primary" @click="confirmImported">关闭</a-button>
+            </div>
+        </template>
     </a-modal>
 </template>
 
@@ -58,13 +67,18 @@ import {parseText} from "@/utils/psd/parser/text";
 import {parseImage} from "@/utils/psd/parser/image";
 import {parseGroup} from "@/utils/psd/parser/group";
 import {parseMask} from "@/utils/psd/parser/mask";
-import LoadingSvg from '@/assets/icons/loading.svg?raw'
+import ImageOrgSvg from '@/assets/images/imageOrg.svg?raw'
+
 const {proxy} = getCurrentInstance()
 const {canvas, keybinding} = useEditor()
 
 const showFileOper = ref(false)
 const visible = ref(false)
 const processTitle = ref('正在导入')
+const processInfo = reactive({
+    process: 0,
+    text: '解析中',
+})
 
 const fileOper = (type) => {
     showFileOper.value = false
@@ -114,7 +128,7 @@ const importPsdFile = () => {
         for (const item of Array.from(fileList)) {
             if (checkFileExt(item, ['psd'])) {
                 visible.value = true
-                processTitle.value = '正在解析PSD文件'
+                processTitle.value = '正在解析'
                 console.log('开始执行')
                 const onProcess = (result) => {
 
@@ -122,13 +136,14 @@ const importPsdFile = () => {
                 // PSD文件
                 parsePsdFile(item, onProcess).then(async value => {
                     const {psd, layers} = value
-                    processTitle.value = '正在导入PSD文件：'
+                    processTitle.value = '正在导入'
                     canvas.contentFrame.removeAll()
                     canvas.contentFrame.width = psd.width
                     canvas.contentFrame.height = psd.height
                     console.log('layers=', layers)
                     await parseLayers(layers)
-                    visible.value = false
+                    processTitle.value = '导入完成'
+                    processInfo.text = '已导入'
                     setTimeout(() => {
                         canvas.childrenEffect()
                     }, 200)
@@ -149,6 +164,12 @@ const importPsdFile = () => {
         }
     })
 };
+const confirmImported = () => {
+    visible.value = false
+    processTitle.value = '正在导入'
+    processInfo.text = '解析中'
+    processInfo.process = 0
+}
 const importJsonFile = () => {
     selectFiles({accept: '.json'}).then((files) => {
         visible.value = true
@@ -164,38 +185,66 @@ const importJsonFile = () => {
         };
     });
 }
-
 const parseLayers = (layers, parent: IUI = canvas.contentFrame) => {
-    layers.reverse()
-    let group = []
-    for (let i = 0; i < layers.length; i++) {
-        let layer = layers[i]
-        console.log(layer.name + ':', layer)
-        // 层级：数值越大越靠前，与ps的层级相反
-        let index = layers.length - i
-        layer.zIndex = index
-        if (layer.children) {
-            // 组
-            const parent2 = addGroup(layer, parent)
-            parseLayers(layer.children, parent2)
-            continue
-        }
+    return new Promise((resolve) => {
+        layers.reverse();
+        let group = [];
+        let i = 0;
+        let totalLayers = layers.length; // 总图层数量
+        let processedLayers = 0; // 已解析的图层数量
 
-        if (layer.clipping) {
-            // 剪切蒙版
-            group.push(layer)
-        } else {
-            if (group.length > 0) {
-                group.push(layer)
-                // 打组，创建蒙版数据
-                addMask(index, group, parent)
-                group = []
-            } else {
-                const obj = addObj(layer, parent)
+        const processNextLayer = () => {
+            if (i >= totalLayers) { // 使用 totalLayers 变量代替 layers.length
+                resolve(); // 解析完成后 resolve Promise
+                return;
             }
-        }
-    }
-}
+
+            let layer = layers[i];
+            console.log(layer.name + ':', layer);
+            processInfo.text = `正在导入：${layer.name}`
+
+            // 计算当前进度百分比
+            processedLayers++;
+            let progress = Math.floor(processedLayers / totalLayers * 100);
+
+            // 更新进度条的值
+            processInfo.process = progress / 100;
+
+            // 层级：数值越大越靠前，与ps的层级相反
+            let index = totalLayers - i; // 使用 totalLayers 变量代替 layers.length
+            layer.zIndex = index;
+
+            if (layer.children) {
+                // 组
+                const parent2 = addGroup(layer, parent);
+                parseLayers(layer.children, parent2)
+                    .then(() => {
+                        i++;
+                        setTimeout(processNextLayer, 0); // 将下一层处理放入事件循环的下一个任务中
+                    });
+            } else {
+                if (layer.clipping) {
+                    // 剪切蒙版
+                    group.push(layer);
+                } else {
+                    if (group.length > 0) {
+                        group.push(layer);
+                        // 打组，创建蒙版数据
+                        addMask(index, group, parent);
+                        group = [];
+                    } else {
+                        const obj = addObj(layer, parent);
+                    }
+                }
+
+                i++;
+                setTimeout(processNextLayer, 0); // 将下一层处理放入事件循环的下一个任务中
+            }
+        };
+        totalLayers = layers.length; // 将总图层数量赋值给 totalLayers 变量
+        processNextLayer();
+    });
+};
 
 const addObj = (layer, parent: IUI = canvas.contentFrame) => {
     let obj
