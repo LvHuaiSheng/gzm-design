@@ -250,7 +250,7 @@ watch(letterSpacingVal,(newValue,oldValue)=>{
                     <a-col>
                         <a-select
                                 size="small"
-                                placeholder="文字字体"
+                                placeholder="文本换行规则"
                                 v-bind="textWrap"
                                 :options="textWrapOptions"
                         >

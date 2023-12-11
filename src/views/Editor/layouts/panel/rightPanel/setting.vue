@@ -4,6 +4,7 @@ import {isDefined, useResizeObserver} from "@vueuse/core";
 import BaseAttr from "./attrs/baseAttr.vue";
 import LayerAttr from "./attrs/layerAttr.vue";
 import TextAttr from "./attrs/textAttr.vue";
+import HtmlTextAttr from "./attrs/htmlTextAttr.vue";
 import ImageAttr from "./attrs/imageAttr.vue";
 import CanvasAttr from './attrs/canvasAttr.vue'
 import BoxAttr from './attrs/boxAttr.vue'
@@ -60,6 +61,11 @@ const componentList = computed(() => {
             visual: isDefined(activeObject) && editor.activeObjectIsType('Text'),
         },
         {
+            name: 'HtmlTextAttr',
+            component: HtmlTextAttr,
+            visual: isDefined(activeObject) && editor.activeObjectIsType('HTMLText'),
+        },
+        {
             name: 'ImageAttr',
             component: ImageAttr,
             visual: isDefined(activeObject) && editor.activeObjectIsType('Image'),
@@ -70,7 +76,7 @@ const componentList = computed(() => {
             visual:
                 isDefined(activeObject)
                 &&!typeUtil.isVirtualOrBottom(activeObject)
-                && !editor.activeObjectIsType('Image','Pen')
+                && !editor.activeObjectIsType('Image','Pen','HTMLText')
                 ,
         },
         {
