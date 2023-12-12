@@ -46,7 +46,7 @@ const getSvg = (object) => {
         return IFolder
     } else if (canvas.objectIsTypes(object,'Rect')) {
         return IBoard
-    } else if (canvas.objectIsTypes(object,'Image')) {
+    } else if (canvas.objectIsTypes(object,'Image','Image2')) {
         return IImage
     } else if (canvas.objectIsTypes(object,'Pen')) {
         return IPenSvg

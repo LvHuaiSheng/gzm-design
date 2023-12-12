@@ -100,14 +100,13 @@ const init = reactive({
             reject({ message: '上传失败，图片大小请控制在 2M 以内', remove: true })
             return
         } else {
-            const ph = import.meta.env.VITE_BASE_PATH + ":" + import.meta.env.VITE_SERVER_PORT + "/"
+            const ph = import.meta.env.VITE_UPLOAD_BASE_URL
             let params = new FormData()
             params.append('file', blobInfo.blob())
 
             let config = {
                 headers: {
                     "Content-Type": "multipart/form-data",
-
                 }
             }
 

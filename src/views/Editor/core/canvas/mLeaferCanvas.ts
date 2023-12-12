@@ -21,6 +21,7 @@ type ExtendedOption = {
 }
 
 type ObjectType =
+    // 官方元素tag
     'UI'
     | 'App'
     | 'Leafer'
@@ -34,6 +35,8 @@ type ObjectType =
     | 'Text'
     | 'Pen'
     | 'HTMLText'
+    // 自定义元素tag
+    | 'Image2'
 
 interface Page {
     children: any
