@@ -1,5 +1,5 @@
 import {createDecorator} from '@/views/Editor/core/instantiation/instantiation'
-import {ILeafer, IPointData, IUI, IUIInputData} from "@leafer-ui/interface";
+import {ICanvasContext2D, ILeafer, IPointData, IUI, IUIInputData} from "@leafer-ui/interface";
 import {App, ChildEvent, Frame, Leafer, PropertyEvent, ResizeEvent} from "leafer-ui";
 import '@leafer-in/editor'
 import {IWorkspacesService, WorkspacesService} from "@/views/Editor/core/workspaces/workspacesService";
@@ -82,6 +82,10 @@ export class MLeaferCanvas {
     private _app?: App
     // 内容层
     private _contentLayer?: ILeafer
+
+    // 标尺层
+    public rulerLayer?: ILeafer
+
     // 内容画板
     private _contentFrame: Frame
     // 操作选项
@@ -121,8 +125,9 @@ export class MLeaferCanvas {
         //     type:'image',
         //     url:'https://www.toptal.com/designers/subtlepatterns/uploads/white_carbon.png'
         // }
-
+        const rulerLayer = app.addLeafer();
         this._contentLayer = contentLayer
+        this.rulerLayer = rulerLayer
         this._app = app
         this.pageId = this.workspacesService.getCurrentId()
         this.initWorkspace()
