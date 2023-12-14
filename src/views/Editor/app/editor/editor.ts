@@ -19,6 +19,7 @@ import {Zoom} from "@/views/Editor/app/editor/zoom";
 import {Ruler} from "@/views/Editor/app/editor/ruler";
 import {ToolBar} from "@/views/Editor/app/editor/toolBar";
 import {IUndoRedoService, UndoRedoService} from '@/views/Editor/app/editor/undoRedo/undoRedoService'
+import {GuideLines} from "@/views/Editor/app/editor/guideLines";
 
 export class EditorMain extends BaseApp {
     public service!: IInstantiationService
@@ -45,6 +46,7 @@ export class EditorMain extends BaseApp {
                 this.service.createInstance(Ruler),
                 this.service.createInstance(Layer),
                 this.service.createInstance(ToolBar),
+                this.service.createInstance(GuideLines),
                 this.service.createInstance(Zoom),
                 (this.contextMenu = this.service.createInstance(ContextMenu)),
             ]

@@ -22,6 +22,9 @@ export function getParentLayer(layer:IUI){
  * 类型工具
  */
 export const typeUtil = {
+    isActiveSelection:(thing:any)=>{
+        return thing && thing.children && thing.children.length>0
+    },
     /**
      * 是否是最底层应用层
      * @param layer
@@ -59,6 +62,15 @@ export const typeUtil = {
     isCollection: (thing?: unknown): thing is Group => {
         // @ts-ignore
         return thing && Array.isArray((thing as Group).children) && thing.tag !=='Pen'
+    },
+
+    /**
+     * 判断是否为原生组（非虚拟组）
+     * @param thing
+     * @returns NativeGroup | Group | Board
+     */
+    isNativeGroup: (thing?: any): thing is Group => {
+        return thing.tag === 'Group' && !typeUtil.isVirtualElement(thing)
     },
     /**
      * 是否渐变
