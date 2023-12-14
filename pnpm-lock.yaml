@@ -17,9 +17,6 @@ dependencies:
   '@leafer-ui/interface':
     specifier: ^1.0.0-rc.8
     version: 1.0.0-rc.8
-  '@scena/guides':
-    specifier: ^0.29.2
-    version: 0.29.2
   '@tinymce/tinymce-vue':
     specifier: ^5.1.1
     version: 5.1.1(vue@3.3.10)
@@ -41,6 +38,9 @@ dependencies:
   leafer-ui:
     specifier: 1.0.0-rc.8
     version: 1.0.0-rc.8
+  leafer-x-ruler:
+    specifier: ^1.0.0
+    version: 1.0.0
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
@@ -187,14 +187,6 @@ packages:
       '@babel/helper-string-parser': 7.23.4
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
-
-  /@daybrush/utils@1.13.0:
-    resolution: {integrity: sha512-ALK12C6SQNNHw1enXK+UO8bdyQ+jaWNQ1Af7Z3FNxeAwjYhQT7do+TRE4RASAJ3ObaS2+TJ7TXR3oz2Gzbw0PQ==}
-    dev: false
-
-  /@egjs/list-differ@1.0.1:
-    resolution: {integrity: sha512-OTFTDQcWS+1ZREOdCWuk5hCBgYO4OsD30lXcOCyVOAjXMhgL5rBRDnt/otb6Nz8CzU0L/igdcaQBDLWc4t9gvg==}
-    dev: false
 
   /@esbuild/android-arm64@0.18.20:
     resolution: {integrity: sha512-Nz4rJcchGDtENV0eMKUNa6L12zz2zBDXuhj/Vjh18zGqB44Bi7MBMSXjgunJgjRhCmKOjnPuZp4Mb6OKqtMHLQ==}
@@ -843,52 +835,6 @@ packages:
       estree-walker: 2.0.2
       picomatch: 2.3.1
     dev: true
-
-  /@scena/dragscroll@1.4.0:
-    resolution: {integrity: sha512-3O8daaZD9VXA9CP3dra6xcgt/qrm0mg0xJCwiX6druCteQ9FFsXffkF8PrqxY4Z4VJ58fFKEa0RlKqbsi/XnRA==}
-    dependencies:
-      '@daybrush/utils': 1.13.0
-      '@scena/event-emitter': 1.0.5
-    dev: false
-
-  /@scena/event-emitter@1.0.5:
-    resolution: {integrity: sha512-AzY4OTb0+7ynefmWFQ6hxDdk0CySAq/D4efljfhtRHCOP7MBF9zUfhKG3TJiroVjASqVgkRJFdenS8ArZo6Olg==}
-    dependencies:
-      '@daybrush/utils': 1.13.0
-    dev: false
-
-  /@scena/guides@0.29.2:
-    resolution: {integrity: sha512-gnXiB/Ji3ix/mGCgJiWz4k6U9OjEwcpdKUvmh3pYLXuL2x6DouCPAJ/PwnrYgaSMURhSyNkzp4WJdHqbAdYDXw==}
-    dependencies:
-      '@scena/event-emitter': 1.0.5
-      croact: 1.0.4
-      croact-guides: 0.26.2
-    dev: false
-
-  /@scena/matrix@1.1.1:
-    resolution: {integrity: sha512-JVKBhN0tm2Srl+Yt+Ywqu0oLgLcdemDQlD1OxmN9jaCTwaFPZ7tY8n6dhVgMEaR9qcR7r+kAlMXnSfNyYdE+Vg==}
-    dependencies:
-      '@daybrush/utils': 1.13.0
-    dev: false
-
-  /@scena/react-guides@0.28.2:
-    resolution: {integrity: sha512-3TylBDU32BPk/SARQdZ2dkwW0NbQA7D21XUMMdGm/RXxuMNg39oHrxQ/XjlkFOvRFDgc7gPDsDgi1Am8wRuu1Q==}
-    dependencies:
-      '@daybrush/utils': 1.13.0
-      '@scena/dragscroll': 1.4.0
-      '@scena/react-ruler': 0.19.0
-      css-to-mat: 1.1.1
-      framework-utils: 1.1.0
-      gesto: 1.19.4
-      react-css-styled: 1.1.9
-    dev: false
-
-  /@scena/react-ruler@0.19.0:
-    resolution: {integrity: sha512-2OEOjLMOptDxdSuEqID2JAljQuYoeoV09MnLjiBeyzJxoUcVjzyBCPwkMbHRKj2Z3WrwztJAFBF+y6yNNM5Lcw==}
-    dependencies:
-      '@daybrush/utils': 1.13.0
-      framework-utils: 1.1.0
-    dev: false
 
   /@tinymce/tinymce-vue@5.1.1(vue@3.3.10):
     resolution: {integrity: sha512-iO57HOWesFOhsaqjA5Ea6sDvQBmJJH3/dq00Uvg7metlct2kLF+ctRgoDsetLt6gmeZ7COPftr814/XzqnJ/dg==}
@@ -1606,41 +1552,6 @@ packages:
       vary: 1.1.2
     dev: true
 
-  /croact-css-styled@1.1.9:
-    resolution: {integrity: sha512-G7yvRiVJ3Eoj0ov2h2xR4312hpOzATay2dGS9clK8yJQothjH1sBXIyvOeRP5wBKD9mPcKcoUXPCPsl0tQog4w==}
-    dependencies:
-      '@daybrush/utils': 1.13.0
-      css-styled: 1.0.8
-      framework-utils: 1.1.0
-    dev: false
-
-  /croact-guides@0.26.2:
-    resolution: {integrity: sha512-Q2oRK8jo70mLC93Drce+dEozqgJdVjpbC6b0OxXVbvaXaZnamNH6UHeileuATcXLRbsgY49XfI/2H0mY82vwJQ==}
-    dependencies:
-      '@daybrush/utils': 1.13.0
-      '@scena/dragscroll': 1.4.0
-      '@scena/react-guides': 0.28.2
-      croact-css-styled: 1.1.9
-      croact-ruler: 0.18.0
-      css-to-mat: 1.1.1
-      framework-utils: 1.1.0
-      gesto: 1.19.4
-      react-css-styled: 1.1.9
-    dev: false
-
-  /croact-ruler@0.18.0:
-    resolution: {integrity: sha512-FZtYH1n3Mpv7VX24y26lAMOVqem+/qRG4a7nBy9pwDeh9Q8UycOQqAdmWxNC1CNh1Pw1k4K28/gRQOyo4r1Zag==}
-    dependencies:
-      '@scena/react-ruler': 0.19.0
-    dev: false
-
-  /croact@1.0.4:
-    resolution: {integrity: sha512-9GhvyzTY/IVUrMQ2iz/mzgZ8+NcjczmIo/t4FkC1CU0CEcau6v6VsEih4jkTa4ZmRgYTF0qXEZLObCzdDFplpw==}
-    dependencies:
-      '@daybrush/utils': 1.13.0
-      '@egjs/list-differ': 1.0.1
-    dev: false
-
   /cross-spawn@7.0.3:
     resolution: {integrity: sha512-iRDPJKUPVEND7dHPO8rkbOnPpyDygcDFtWjpeWNCgy8WP2rXcxXL8TskReQl6OrB2G7+UJrags1q15Fudc7G6w==}
     engines: {node: '>= 8'}
@@ -1659,19 +1570,6 @@ packages:
       domutils: 2.8.0
       nth-check: 2.1.1
     dev: true
-
-  /css-styled@1.0.8:
-    resolution: {integrity: sha512-tCpP7kLRI8dI95rCh3Syl7I+v7PP+2JYOzWkl0bUEoSbJM+u8ITbutjlQVf0NC2/g4ULROJPi16sfwDIO8/84g==}
-    dependencies:
-      '@daybrush/utils': 1.13.0
-    dev: false
-
-  /css-to-mat@1.1.1:
-    resolution: {integrity: sha512-kvpxFYZb27jRd2vium35G7q5XZ2WJ9rWjDUMNT36M3Hc41qCrLXFM5iEKMGXcrPsKfXEN+8l/riB4QzwwwiEyQ==}
-    dependencies:
-      '@daybrush/utils': 1.13.0
-      '@scena/matrix': 1.1.1
-    dev: false
 
   /css-tree@1.1.3:
     resolution: {integrity: sha512-tRpdppF7TRazZrjJ6v3stzv93qxRcSsFmW6cX0Zm2NVKpxE1WV1HblnghVv9TreireHkqI/VDEsfolRF1p6y7Q==}
@@ -2047,10 +1945,6 @@ packages:
       map-cache: 0.2.2
     dev: true
 
-  /framework-utils@1.1.0:
-    resolution: {integrity: sha512-KAfqli5PwpFJ8o3psRNs8svpMGyCSAe8nmGcjQ0zZBWN2H6dZDnq+ABp3N3hdUmFeMrLtjOCTXD4yplUJIWceg==}
-    dev: false
-
   /fs-extra@10.1.0:
     resolution: {integrity: sha512-oRXApq54ETRj4eMiFzGnHWGy+zo5raudjuxN0b8H7s/RU2oW0Wvsx9O0ACRN/kRq9E8Vu/ReskGB5o3ji+FzHQ==}
     engines: {node: '>=12'}
@@ -2071,13 +1965,6 @@ packages:
   /function-bind@1.1.2:
     resolution: {integrity: sha512-7XHNxH7qX9xG5mIwxkhumTox/MIRNcOgDrxWsMt2pAr23WHp6MrRlN7FBSFpCpr+oVO0F744iUgR82nJMfG2SA==}
     dev: true
-
-  /gesto@1.19.4:
-    resolution: {integrity: sha512-hfr/0dWwh0Bnbb88s3QVJd1ZRJeOWcgHPPwmiH6NnafDYvhTsxg+SLYu+q/oPNh9JS3V+nlr6fNs8kvPAtcRDQ==}
-    dependencies:
-      '@daybrush/utils': 1.13.0
-      '@scena/event-emitter': 1.0.5
-    dev: false
 
   /get-stream@6.0.1:
     resolution: {integrity: sha512-ts6Wi+2j3jQjqi70w5AlN8DFnkSwC+MqmxEzdEALB2qXZYV3X/b1CTfgPLGJNMeAWxdPfU8FO1ms3NUfaHCPYg==}
@@ -2402,6 +2289,14 @@ packages:
       '@leafer-ui/interface': 1.0.0-rc.8
       '@leafer-ui/web': 1.0.0-rc.8
       leafer-in: 1.0.0-rc.8
+    dev: false
+
+  /leafer-x-ruler@1.0.0:
+    resolution: {integrity: sha512-JmHCCBsEhkE+68OMDhhI0y8pTKhQiYpEW4D1IzSofYDdfKmup6gDMjbbjywFKy+te4BrpG0ili4lUzBQK7CSOw==, tarball: https://registry.npmjs.org/leafer-x-ruler/-/leafer-x-ruler-1.0.0.tgz}
+    dependencies:
+      '@leafer-in/editor': 1.0.0-rc.8
+      '@leafer-ui/core': 1.0.0-rc.8
+      '@leafer-ui/interface': 1.0.0-rc.8
     dev: false
 
   /less@4.2.0:
@@ -2924,13 +2819,6 @@ packages:
   /queue-microtask@1.2.3:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: true
-
-  /react-css-styled@1.1.9:
-    resolution: {integrity: sha512-M7fJZ3IWFaIHcZEkoFOnkjdiUFmwd8d+gTh2bpqMOcnxy/0Gsykw4dsL4QBiKsxcGow6tETUa4NAUcmJF+/nfw==}
-    dependencies:
-      css-styled: 1.0.8
-      framework-utils: 1.1.0
-    dev: false
 
   /readable-stream@3.6.2:
     resolution: {integrity: sha512-9u/sniCrY3D5WdsERHzHE4G2YCXqoG5FTHUiCC4SIbr6XcLZBY05ya9EKjYek9O5xOAwjGq+1JdGBAS7Q9ScoA==}

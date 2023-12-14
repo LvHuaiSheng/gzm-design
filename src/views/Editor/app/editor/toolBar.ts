@@ -168,5 +168,20 @@ export class ToolBar extends Disposable {
                 }
             },
         })
+        this.keybinding.bind('shift+r', () => {
+            this.canvas.ruler.enabled = !this.canvas.ruler.enabled
+            this.rulerEffect()
+        })
+    }
+
+    /**
+     * 执行调度器 更新ruler值
+     */
+    private rulerEffect() {
+        if (this.canvas.ref.enabledRuler.effect.scheduler) {
+            this.canvas.ref.enabledRuler.effect.scheduler()
+        } else {
+            this.canvas.ref.enabledRuler.effect.run()
+        }
     }
 }
