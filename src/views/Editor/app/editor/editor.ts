@@ -15,8 +15,6 @@ import {useEditor} from '@/views/Editor/app'
 import {runWhenIdle} from '@/views/Editor/utils/async'
 import {IMLeaferCanvas, MLeaferCanvas} from "@/views/Editor/core/canvas/mLeaferCanvas";
 import {Zoom} from "@/views/Editor/app/editor/zoom";
-// import {Ruler} from "@/views/Editor/app/editor/ruler2";
-import {Ruler} from "@/views/Editor/app/editor/ruler";
 import {ToolBar} from "@/views/Editor/app/editor/toolBar";
 import {IUndoRedoService, UndoRedoService} from '@/views/Editor/app/editor/undoRedo/undoRedoService'
 
@@ -41,8 +39,6 @@ export class EditorMain extends BaseApp {
                 }
             })
             const instances = [
-                // TODO 标尺使用mm单位
-                this.service.createInstance(Ruler),
                 this.service.createInstance(Layer),
                 this.service.createInstance(ToolBar),
                 this.service.createInstance(Zoom),

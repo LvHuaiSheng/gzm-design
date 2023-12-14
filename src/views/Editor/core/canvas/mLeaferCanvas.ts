@@ -2,6 +2,7 @@ import {createDecorator} from '@/views/Editor/core/instantiation/instantiation'
 import {ICanvasContext2D, ILeafer, IPointData, IUI, IUIInputData} from "@leafer-ui/interface";
 import {App, ChildEvent, Frame, Leafer, PropertyEvent, ResizeEvent} from "leafer-ui";
 import '@leafer-in/editor'
+import {Ruler} from 'leafer-x-ruler'
 import {IWorkspacesService, WorkspacesService} from "@/views/Editor/core/workspaces/workspacesService";
 import {EventbusService, IEventbusService} from "@/views/Editor/core/eventbus/eventbusService";
 import {typeUtil} from "@/views/Editor/utils/utils";
@@ -83,8 +84,8 @@ export class MLeaferCanvas {
     // 内容层
     private _contentLayer?: ILeafer
 
-    // 标尺层
-    public rulerLayer?: ILeafer
+    // 标尺
+    public ruler: Ruler
 
     // 内容画板
     private _contentFrame: Frame
@@ -100,12 +101,11 @@ export class MLeaferCanvas {
     public readonly ref = {
         zoom: ref(toFixed(this.getZoom(), 2)),
         _children: computed(() => this.contentFrame.children),
+        // 是否启用辅助线
+        enabledRuler: computed(() => this.ruler.enabled),
     }
 
     public backgroundColor?: string
-
-    // 是否启用辅助线
-    public enabledRuler: boolean = true
 
     constructor(
         @IWorkspacesService private readonly workspacesService: WorkspacesService,
@@ -117,7 +117,7 @@ export class MLeaferCanvas {
             editor: {},
         })
         this.wrapperEl = app.canvas.view
-
+        this.ruler = new Ruler(app)
         const contentLayer = app.tree
         contentLayer.fill = 'transparent'
         // TODO 2023-11-10 等待修复Leafer的fill的功能后放开下面注释启用背景填充
@@ -125,9 +125,7 @@ export class MLeaferCanvas {
         //     type:'image',
         //     url:'https://www.toptal.com/designers/subtlepatterns/uploads/white_carbon.png'
         // }
-        const rulerLayer = app.addLeafer();
         this._contentLayer = contentLayer
-        this.rulerLayer = rulerLayer
         this._app = app
         this.pageId = this.workspacesService.getCurrentId()
         this.initWorkspace()
@@ -145,6 +143,7 @@ export class MLeaferCanvas {
                 this.discardActiveObject()
             }
         })
+
     }
 
     // 工作区 | 页面管理
@@ -480,6 +479,7 @@ export class MLeaferCanvas {
             this.ref._children.effect.run()
         }
     }
+
 
     public setZoom(scale: number | undefined) {
         // TODO 处理初次切换页面时页面展示的缩放值不匹配的问题

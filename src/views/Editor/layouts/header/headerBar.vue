@@ -16,7 +16,7 @@
                 <a-space size="medium">
                     <a-tooltip effect="dark" content="标尺" mini>
                         <a-button class="icon-btn pd-5px"  @click="changeLineGuides">
-                            <icon-paste :size="18" :class="canvas.enabledRuler?'arco-icon-check':''"/>
+                            <icon-paste :size="18" :class="canvas.ref.enabledRuler.value?'arco-icon-check':''"/>
                         </a-button>
                     </a-tooltip>
                 </a-space>
@@ -61,7 +61,6 @@ const {canvas,keybinding} = useEditor()
 const changeLineGuides = ()=> {
     keybinding.trigger("shift+r")
 }
-
 
 </script>
 <style lang="less">
