@@ -107,8 +107,8 @@ export const useActiveObjectModel = <K extends keyof ILeaf, T = ILeaf[K] | undef
 
     const setObjectValue = (obj: any, newValue: any) => {
         console.log(`set ${key}: ${JSON.stringify(newValue)}`)
-        if (obj.proxyData[key] !== newValue) {
-            obj.proxyData[key] = newValue
+        if (obj[key] !== newValue) {
+            obj[key] = newValue
             modelValue.value = isNumber(newValue) ? toFixed(newValue) : newValue
             // activeObject.updateLayout()
         }
