@@ -17,7 +17,8 @@ import {IMLeaferCanvas, MLeaferCanvas} from "@/views/Editor/core/canvas/mLeaferC
 import {Zoom} from "@/views/Editor/app/editor/zoom";
 import {ToolBar} from "@/views/Editor/app/editor/toolBar";
 import {IUndoRedoService, UndoRedoService} from '@/views/Editor/app/editor/undoRedo/undoRedoService'
-import {GuideLines} from "@/views/Editor/app/editor/guideLines";
+// import {GuideLines} from "@/views/Editor/app/editor/guideLines";
+import {GuideLines} from "@/views/Editor/app/editor/guideLines2";
 
 export class EditorMain extends BaseApp {
     public service!: IInstantiationService

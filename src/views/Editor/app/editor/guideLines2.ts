@@ -1,9 +1,15 @@
-import { MLeaferCanvas, IMLeaferCanvas } from '@/views/Editor/core/canvas/mLeaferCanvas'
+import {MLeaferCanvas, IMLeaferCanvas} from '@/views/Editor/core/canvas/mLeaferCanvas'
 
-import { Disposable } from '@/views/Editor/utils/lifecycle'
+import {Disposable} from '@/views/Editor/utils/lifecycle'
 import {DragEvent, MoveEvent, RenderEvent, App, Group, Point} from "leafer-ui";
 import {IUI} from "@leafer-ui/interface";
 import {typeUtil} from "@/views/Editor/utils/utils";
+import {Bounds} from "@leafer-ui/core";
+
+export interface XY {
+    x: number;
+    y: number;
+}
 
 type VerticalLineCoords = {
     x: number
@@ -22,11 +28,11 @@ type IgnoreObjTypes<T = keyof any> = {
     value: any
 }[]
 
-type ACoordsAppendCenter ={
-    tr:any
-    tl:any
-    br:any
-    bl:any
+type ACoordsAppendCenter = {
+    tr: any
+    tl: any
+    br: any
+    bl: any
     c: any
 }
 
@@ -59,16 +65,23 @@ export class GuideLines extends Disposable {
             }
         }
 
-        this.canvas.app.on(RenderEvent.BEFORE,(arg:RenderEvent) => {
+        this.canvas.app.on(RenderEvent.BEFORE, (arg: RenderEvent) => {
             this.clearGuideline()
         })
-        this.canvas.app.on(RenderEvent.AFTER,(arg:RenderEvent) => {
+        this.canvas.app.on(RenderEvent.AFTER, (arg: RenderEvent) => {
             this.drawGuideLines(arg)
         })
-        this.canvas.app.on(DragEvent.DRAG,(arg:DragEvent) => {
-            this.objectMoving(arg)
+        this.canvas.app.on(DragEvent.DRAG, (arg: DragEvent) => {
+            console.log('arg=', arg)
+            console.log('this.canvas.app.editor=',)
+            if (this.canvas.app.editor.single){
+                this.objectMoving({target: this.canvas.app.editor.element})
+            }else {
+                this.objectMoving({target: {innerId:-1,tag:'Group',children:this.canvas.app.editor.list}})
+            }
+
         })
-        this.canvas.app.on(MoveEvent.UP,(arg:MoveEvent) => {
+        this.canvas.app.on(DragEvent.DRAG, (arg: DragEvent) => {
             mouseUp()
         })
 
@@ -87,11 +100,13 @@ export class GuideLines extends Disposable {
      * 当对象被移动时，处理对象的移动事件
      * @param target 移动对象
      */
-    private objectMoving({ target }) {
+    private objectMoving({target}) {
+        console.log('target=', target)
         // 清除线条元数据
         this.clearLinesMeta()
         // 获取当前变换信息
         const transform = this.canvasLeafer.worldTransform
+        console.log('transform=', transform)
         if (!transform) return
         // 设置当前活动对象为目标对象
         this.activeObj = target
@@ -99,7 +114,7 @@ export class GuideLines extends Disposable {
         // 获取当前激活的所有对象
         const activeObjects = this.canvas.getActiveObjects()
         // const activeObjects = this.canvas.children
-        console.log('activeObjects=',activeObjects)
+        console.log('activeObjects=', activeObjects)
         // 定义一个 canvas 对象数组用于存放 canvas 上的所有操作元素
         const canvasObjects: any[] = []
 
@@ -108,19 +123,19 @@ export class GuideLines extends Disposable {
          * @param group 待遍历的 group 对象
          */
         const add = (
-            group:any
+            group: any
         ) => {
             // 获取 group 内符合条件的所有元素
-            const objects = group.children.filter((obj:IUI) => {
+            const objects = group.children.filter((obj: IUI) => {
                 // 根据 ignoreObjTypes、pickObjTypes、activeObjects 等过滤条件，筛选出符合要求的元素
                 if (this.ignoreObjTypes.length) {
                     return !this.ignoreObjTypes.some(
-                        (item) => obj.tag === item.value
+                        (item) => obj.innerId === item.value
                     )
                 }
                 if (this.pickObjTypes.length) {
                     return this.pickObjTypes.some(
-                        (item) => obj.tag === item.value
+                        (item) => obj.innerId === item.value
                     )
                 }
                 // debugger
@@ -136,44 +151,47 @@ export class GuideLines extends Disposable {
                 //     return false
                 // }
                 // 元素为组，把组内元素加入，同时排除组本身
-                if (typeUtil.isCollection(obj)) {
+                if (typeUtil.isCollection(obj) && target.parent && obj !== target.parent) {
                     add(obj)
                     return false
                 }
                 return true
             })
-            console.log('objects=',objects)
+            console.log('objects=', objects)
             // 将筛选出的元素加入 canvasObjects 数组
             canvasObjects.push(...objects)
         }
 
         // 如果目标对象是激活选区，逐一获取选区中每个元素和其父对象的所有子元素，并将它们加入 canvasObjects 数组
-        // if (util.isActiveSelection(target)) {
-        //   const needAddParent = new Set<any>()
-        //   target.forEachObject((obj) => {
-        //     const parent = obj.getParent()
-        //     needAddParent.add(parent)
-        //   })
-        //   needAddParent.forEach((parent) => {
-        //     if (typeUtil.isNativeGroup(parent)) {
-        //       canvasObjects.push(parent)
-        //     }
-        //     add(parent)
-        //   })
-        // } else {
-        // 如果目标对象不是激活选区，则获取目标对象的父对象，并将其加入 canvasObjects 数组
-        const parent = target.parent
-        // if (util.isNativeGroup(parent)) {
-        canvasObjects.push(parent)
-        // }
-        // 继续递归获取父对象的所有子元素，并将它们加入 canvasObjects 数组
-        add(parent)
-        // }
+        if (typeUtil.isVirtualElement(target)) {
+            const needAddParent = new Set<any>()
+            target.children.forEach((obj:IUI)=>{
+                const parent = obj.parent
+                needAddParent.add(parent)
+            })
+            // target.forEachObject((obj) => {
+            //     const parent = obj.parent
+            //     needAddParent.add(parent)
+            // })
+            needAddParent.forEach((parent) => {
+                // if (typeUtil.isNativeGroup(parent)) {
+                    canvasObjects.push(parent)
+                // }
+                add(parent)
+            })
+        } else {
+            // 如果目标对象不是激活选区，则获取目标对象的父对象，并将其加入 canvasObjects 数组
+            const parent = target.parent
+            if (!typeUtil.isBottomCanvas(parent)) {
+                canvasObjects.push(parent)
+            }
+            // 继续递归获取父对象的所有子元素，并将它们加入 canvasObjects 数组
+            add(parent)
+        }
 
         // 对 canvasObjects 数组中的所有元素进行递归处理，获取它们所有的子元素，并加入 canvasObjects 数组
         this.traversAllObjects(target, canvasObjects)
     }
-
 
 
     /**
@@ -192,31 +210,68 @@ export class GuideLines extends Disposable {
      */
     private getObjDraggingObjCoords(obj: IUI): ACoordsAppendCenter {
         // // 获取活动对象的坐标信息
-        // const coords = this.getCoords(activeObject);
-        //
+        // const coords = this.getCoords(obj);
+        // console.log('coords=',coords)
         // // 计算中心点位移
-        // const centerPoint = this.calcCenterPointByACoords(coords).subtract(
-        //     // activeObject.getCenterPoint(),
-        //     activeObject.getInnerPoint(activeObject.boxBounds),
-        // );
+        // const centerPoint = this.subtractCoords(this.calcCenterPointByACoords(coords),obj.getInnerPoint(obj.boxBounds))
+        // // const centerPoint = this.calcCenterPointByACoords(coords).subtract(
+        // //     // activeObject.getCenterPoint(),
+        // //     obj.getInnerPoint(obj.boxBounds),
+        // // );
         //
         // // 根据中心点位移对坐标进行调整，得到新的坐标信息
-        // const newCoords = Object.keys(coords).map((key) => coords[key].subtract(centerPoint));
+        // // const newCoords = Object.keys(coords).map((key) => coords[key].subtract(centerPoint));
+        // const newCoords = Object.keys(coords).map((key) => this.subtractCoords(coords[key],centerPoint));
 
-        // activeObject.localTransform
-        // 构建包含新坐标信息的对象并返回
-        let tl = obj.getWorldPoint({x: obj.boxBounds.x, y:obj.boxBounds.y});
-        let tr = obj.getWorldPoint({x: obj.boxBounds.x + obj.boxBounds.width, y:obj.boxBounds.y});
-        let br = obj.getWorldPoint({x: obj.boxBounds.x + obj.boxBounds.width, y:obj.boxBounds.y + obj.boxBounds.height});
-        let bl = obj.getWorldPoint({x: obj.boxBounds.x, y:obj.boxBounds.y+ obj.boxBounds.height });
-
+        // // activeObject.localTransform
+        // // 构建包含新坐标信息的对象并返回
+        // let tl = obj.getWorldPoint({x: obj.boxBounds.x, y:obj.boxBounds.y});
+        // let tr = obj.getWorldPoint({x: obj.boxBounds.x + obj.boxBounds.width, y:obj.boxBounds.y});
+        // let br = obj.getWorldPoint({x: obj.boxBounds.x + obj.boxBounds.width, y:obj.boxBounds.y + obj.boxBounds.height});
+        // let bl = obj.getWorldPoint({x: obj.boxBounds.x, y:obj.boxBounds.y+ obj.boxBounds.height });
+        const boundsData = {x: obj.x, y: obj.y, width: obj.width, height: obj.height}
+        const bounds = new Bounds(boundsData)
+        const [tl, tr, br, bl] = bounds.getPoints()
+        var center = this.getCenterXY(obj.x, obj.y, obj.width, obj.height);
         return {
-            tl,tr,br,bl,
+            tl, tr, br, bl,
             // c: activeObject.getCenterPoint(),
-            c:  tl,
+            c: center,
         };
+        // return newCoords
     }
 
+    /**
+     * 获取中心点坐标
+     * @param left
+     * @param top
+     * @param width
+     * @param height
+     * @param originX
+     * @param originY
+     * @private
+     */
+    private getCenterXY(left: number, top: number, width: number, height: number, originX?: string, originY?: string) {
+        originX = originX || 'left';
+        originY = originY || 'top';
+
+        var centerX = left,
+            centerY = top;
+
+        if (originX === 'center') {
+            centerX += width / 2;
+        } else if (originX === 'right') {
+            centerX += width;
+        }
+
+        if (originY === 'center') {
+            centerY += height / 2;
+        } else if (originY === 'bottom') {
+            centerY += height;
+        }
+
+        return {x: centerX, y: centerY};
+    }
 
     /**
      * 根据物体的坐标计算物体的最大宽度和高度
@@ -225,7 +280,7 @@ export class GuideLines extends Disposable {
      */
     private getObjMaxWidthHeightByCoords(coords: ACoordsAppendCenter) {
         // 从坐标对象中获取需要用到的点的坐标
-        const { c, tl, tr } = coords;
+        const {c, tl, tr} = coords;
         // 计算物体的高度，取中心点到上左角点的垂直距离和中心点到上右角点的垂直距离的较大值，乘以2
         const objHeight = Math.max(Math.abs(c.y - tl.y), Math.abs(c.y - tr.y)) * 2;
 
@@ -233,9 +288,8 @@ export class GuideLines extends Disposable {
         const objWidth = Math.max(Math.abs(c.x - tl.x), Math.abs(c.x - tr.x)) * 2;
 
         // 返回物体的最大宽度和高度
-        return { objHeight, objWidth };
+        return {objHeight, objWidth};
     }
-
 
 
     /**
@@ -285,18 +339,27 @@ export class GuideLines extends Disposable {
     private getCoords(obj: IUI) {
         // 使用 obj.getCoords(true) 获取物体四个角点的坐标，存储到数组中
         // const [tl, tr, br, bl] = obj.getCoords(true);
-        // const center = {x:obj.x,y:obj.y}
-        let tl = obj.getWorldPoint({x: obj.boxBounds.x, y:obj.boxBounds.y});
-        let tr = obj.getWorldPoint({x: obj.boxBounds.x + obj.boxBounds.width, y:obj.boxBounds.y});
-        let br = obj.getWorldPoint({x: obj.boxBounds.x + obj.boxBounds.width, y:obj.boxBounds.y + obj.boxBounds.height});
-        let bl = obj.getWorldPoint({x: obj.boxBounds.x, y:obj.boxBounds.y+ obj.boxBounds.height });
-
-        // 返回包含物体四个角点坐标的对象
+        // const center = obj.getWorldPoint({x: obj.x, y:obj.y})
+        // let tl = obj.getWorldPoint({x: obj.boxBounds.x, y:obj.boxBounds.y});
+        // let tr = obj.getWorldPoint({x: obj.boxBounds.x + obj.boxBounds.width, y:obj.boxBounds.y});
+        // let br = obj.getWorldPoint({x: obj.boxBounds.x + obj.boxBounds.width, y:obj.boxBounds.y + obj.boxBounds.height});
+        // let bl = obj.getWorldPoint({x: obj.boxBounds.x, y:obj.boxBounds.y+ obj.boxBounds.height });
+        //
+        // // 返回包含物体四个角点坐标的对象
+        // return {
+        //     tl,
+        //     tr,
+        //     br,
+        //     bl,
+        //     c:center
+        // };
+        const boundsData = {x: obj.x, y: obj.y, width: obj.width, height: obj.height}
+        const bounds = new Bounds(boundsData)
+        const [tl, tr, br, bl] = bounds.getPoints()
+        var center = this.getCenterXY(obj.x, obj.y, obj.width, obj.height);
         return {
-            tl,
-            tr,
-            br,
-            bl,
+            tl, tr, br, bl,
+            c: center,
         };
     }
 
@@ -306,11 +369,28 @@ export class GuideLines extends Disposable {
      * @param coords 包含物体四个角点坐标的对象
      * @returns 物体实际位置上的中心点坐标
      */
-    private calcCenterPointByACoords(coords: any): Point {
+    private calcCenterPointByACoords(coords: any) {
         // 计算左上角点和右下角点的坐标平均值作为物体实际位置上的中心点坐标
-        return new Point((coords.tl.x + coords.br.x) / 2, (coords.tl.y + coords.br.y) / 2);
+        // new Point((coords.tl.x + coords.br.x) / 2, (coords.tl.y + coords.br.y) / 2)
+        const boundsData = {
+            x: (coords.tl.x + coords.br.x) / 2,
+            y: (coords.tl.y + coords.br.y) / 2,
+            width: coords.width,
+            height: coords.height
+        }
+        const bounds = new Bounds(boundsData)
+        const [tl, tr, br, bl] = bounds.getPoints()
+        var center = this.getCenterXY(tl.x, tl.y, coords.width, coords.height);
+        return {
+            tl, tr, br, bl,
+            c: center,
+        };
+
     }
 
+    private subtractCoords(point: Point, that: XY): Point {
+        return new Point(point.x - that.x, point.y - that.y);
+    }
 
     /**
      * 遍历所有物体，并进行相应操作
@@ -326,7 +406,7 @@ export class GuideLines extends Disposable {
         // 用于存储垂直方向上的吸附点的集合
         const snapYPoints: Set<number> = new Set();
 
-        for (let i = canvasObjects.length; i--; ) {
+        for (let i = canvasObjects.length; i--;) {
             // 获取物体的坐标和中心点坐标
             const objCoords = {
                 ...this.getCoords(canvasObjects[i]),
@@ -335,13 +415,14 @@ export class GuideLines extends Disposable {
             } as ACoordsAppendCenter;
 
             // 获取物体在移动距离上的最大宽度和高度
-            const { objHeight, objWidth } = this.getObjMaxWidthHeightByCoords(objCoords);
+            const {objHeight, objWidth} = this.getObjMaxWidthHeightByCoords(objCoords);
 
             // 遍历活动物体在拖动位置上的坐标对象的属性
             Keys(objCoordsByMovingDistance).forEach((activeObjPoint) => {
                 // 判断是否需要省略水平方向的坐标
+                console.log('canvasObjects[i]=', canvasObjects[i])
                 const newCoords =
-                    canvasObjects[i].angle !== 0 ? this.omitCoords(objCoords, 'horizontal') : objCoords;
+                    canvasObjects[i].rotation !== 0 ? this.omitCoords(objCoords, 'horizontal') : objCoords;
 
                 function calcHorizontalLineCoords(
                     objPoint: keyof ACoordsAppendCenter,
@@ -357,7 +438,7 @@ export class GuideLines extends Disposable {
                         x1 = Math.min(objCoords[objPoint].x, activeObjCoords[activeObjPoint].x);
                         x2 = Math.max(objCoords[objPoint].x, activeObjCoords[activeObjPoint].x);
                     }
-                    return { x1, x2 };
+                    return {x1, x2};
                 }
 
                 // 遍历物体的坐标对象的属性
@@ -372,13 +453,13 @@ export class GuideLines extends Disposable {
 
                         // 获取活动物体的坐标和中心点坐标
                         const aCoords = this.getCoords(activeObject);
-                        const { x1, x2 } = calcHorizontalLineCoords(objPoint, {
+                        const {x1, x2} = calcHorizontalLineCoords(objPoint, {
                             ...aCoords,
                             c: this.calcCenterPointByACoords(aCoords),
                         } as ACoordsAppendCenter);
 
                         // 将水平线添加到数组中
-                        this.horizontalLines.push({ y, x1, x2 });
+                        this.horizontalLines.push({y, x1, x2});
                     }
                 });
             });
@@ -387,7 +468,7 @@ export class GuideLines extends Disposable {
             Keys(objCoordsByMovingDistance).forEach((activeObjPoint) => {
                 // 判断是否需要省略垂直方向的坐标
                 const newCoords =
-                    canvasObjects[i].angle !== 0 ? this.omitCoords(objCoords, 'vertical') : objCoords;
+                    canvasObjects[i].rotation !== 0 ? this.omitCoords(objCoords, 'vertical') : objCoords;
 
                 function calcVerticalLineCoords(
                     objPoint: keyof ACoordsAppendCenter,
@@ -403,7 +484,7 @@ export class GuideLines extends Disposable {
                         y1 = Math.min(objCoords[objPoint].y, activeObjCoords[activeObjPoint].y);
                         y2 = Math.max(objCoords[objPoint].y, activeObjCoords[activeObjPoint].y);
                     }
-                    return { y1, y2 };
+                    return {y1, y2};
                 }
 
                 // 遍历物体的坐标对象的属性
@@ -418,13 +499,13 @@ export class GuideLines extends Disposable {
 
                         // 获取活动物体的坐标和中心点坐标
                         const aCoords = this.getCoords(activeObject);
-                        const { y1, y2 } = calcVerticalLineCoords(objPoint, {
+                        const {y1, y2} = calcVerticalLineCoords(objPoint, {
                             ...aCoords,
                             c: this.calcCenterPointByACoords(aCoords),
                         } as ACoordsAppendCenter);
 
                         // 将垂直线添加到数组中
-                        this.verticalLines.push({ x, y1, y2 });
+                        this.verticalLines.push({x, y1, y2});
                     }
                 });
             });
@@ -560,7 +641,6 @@ export class GuideLines extends Disposable {
     }
 
 
-
     /**
      * 用于绘制垂直线的私有方法
      * @param coords 垂直线位置和起点、终点y坐标信息的对象
@@ -611,11 +691,11 @@ export class GuideLines extends Disposable {
         const movingCoords = this.getObjDraggingObjCoords(this.activeObj)
 
         // 遍历垂直线数组，绘制垂直线
-        for (let i = this.verticalLines.length; i--; ) {
+        for (let i = this.verticalLines.length; i--;) {
             this.drawVerticalLine(this.verticalLines[i], movingCoords)
         }
         // 遍历水平线数组，绘制水平线
-        for (let i = this.horizontalLines.length; i--; ) {
+        for (let i = this.horizontalLines.length; i--;) {
             this.drawHorizontalLine(this.horizontalLines[i], movingCoords)
         }
 
