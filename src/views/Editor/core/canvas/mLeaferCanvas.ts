@@ -382,6 +382,13 @@ export class MLeaferCanvas {
         this.selectObject(_child)
         this.childrenEffect()
     }
+    /**
+     * 添加元素
+     */
+    public addMany(..._children: IUI[]) {
+        this.contentFrame.addMany(..._children)
+        this.childrenEffect()
+    }
 
     /**
      * 重新加载json数据（一般用于切换页面）
