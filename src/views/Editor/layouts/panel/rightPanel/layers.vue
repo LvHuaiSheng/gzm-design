@@ -432,6 +432,7 @@ const onInputChange = (value: string, e: Event) => {
             :virtualListProps="{
           height: treeHeight,
           fixedSize: true,
+          buffer: 30
         }"
             @drop="onDrop"
             @select="onSelect"
