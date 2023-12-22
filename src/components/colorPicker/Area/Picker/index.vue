@@ -57,6 +57,7 @@ onMounted(() => {
   if (isDefined(pickerAreaRef)) {
     state.width = pickerAreaRef.value.clientWidth
     state.height = pickerAreaRef.value.clientHeight
+    rect = pickerAreaRef.value?.getBoundingClientRect()
   }
 })
 
@@ -86,7 +87,6 @@ const spectrumClick = (obj: any) => {
 const { posEnd } = usePointerSwipe(pickerAreaRef, {
   threshold: 0,
   onSwipeStart() {
-    rect = pickerAreaRef.value?.getBoundingClientRect()
     props.updateColor(getColor(), "onStartChange")
   },
   onSwipe() {
