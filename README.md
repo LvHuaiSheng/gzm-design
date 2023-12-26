@@ -81,6 +81,7 @@ Tips: 🕙筹划中 🔲筹备中 🚧进行中 ✅已完成
 - 🕙 二维码工具
 - 🕙 AI抠图
 - 🕙 AI图生图、自动补全
+- ✅ 标尺线npm包封装
 
 ## 安装使用
 
@@ -126,8 +127,8 @@ pnpm build
 
 ## 微信交流群
 
-<img src="https://n-oss.sourcenet.cc/gzm-design/wx-group1.png" width="150px">
-<img src="https://n-oss.sourcenet.cc/未命名码(2).png" width="150px">
+<img src="https://n-oss.sourcenet.cc/gzm-design/wx-group2.png" width="150px">
+<img src="https://n-oss.sourcenet.cc/wxhy.png" width="150px">
 
 ## 如何贡献
 
