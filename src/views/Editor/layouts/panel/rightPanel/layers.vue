@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Tree, {DropEvent, DropPosition, TreeInstance, TreeNodeData, TreeNodeKey,} from '@/components/tree'
-import {RenderEvent} from 'leafer-ui'
+import {EditorEvent} from "@leafer-in/editor";
 import {useEditor} from '@/views/Editor/app'
 import {Fn, isDefined, useMagicKeys, useResizeObserver} from '@vueuse/core'
 import type {SplitInstance} from '@arco-design/web-vue'
@@ -15,6 +15,7 @@ import IPenSvg from '@/assets/images/pen.svg?raw'
 import IHtmlTextSvg from '@/assets/images/htmlText.svg?raw'
 import {typeUtil} from "@/views/Editor/utils/utils";
 import {IUI} from "@leafer-ui/interface";
+import {watch} from "vue";
 
 interface ITreeNodeData extends TreeNodeData {
     isCollection: boolean
@@ -303,25 +304,26 @@ const updateSelectedkeys = async () => {
         // 等待展开
         await nextTick()
     }
-
-    const containerRect = treeRef.value?.virtualListRef.containerRef.getBoundingClientRect()
-    const nodeRect = document
-        .querySelector(`.arco-tree-node[data-key='${selectedkeys.value[0]}']`)
-        ?.getBoundingClientRect()
-    // TODO 数据太多时经常白屏不展示、无法混动？
-    // 判断是否在可视区域外
-    if (
-        !nodeRect ||
-        containerRect.top - nodeRect.top > nodeRect.height ||
-        nodeRect.top - containerRect.top > treeHeight.value
-    ) {
-        treeRef.value?.scrollIntoView({
-            key: selectedkeys.value[0],
-            align: 'auto',
-        })
+    if (treeRef.value && treeRef.value.virtualListRef){
+        const containerRect = treeRef.value?.virtualListRef.containerRef.getBoundingClientRect()
+        const nodeRect = document
+            .querySelector(`.arco-tree-node[data-key='${selectedkeys.value[0]}']`)
+            ?.getBoundingClientRect()
+        // TODO 数据太多时经常白屏不展示、无法混动？
+        // 判断是否在可视区域外
+        if (
+            !nodeRect ||
+            containerRect.top - nodeRect.top > nodeRect.height ||
+            nodeRect.top - containerRect.top > treeHeight.value
+        ) {
+            treeRef.value?.scrollIntoView({
+                key: selectedkeys.value[0],
+                align: 'auto',
+            })
+        }
     }
 }
-canvas.app.on(RenderEvent.AFTER,arg => {
+canvas.app.editor.on(EditorEvent.SELECT,(arg)=>{
     updateSelectedkeys()
 })
 

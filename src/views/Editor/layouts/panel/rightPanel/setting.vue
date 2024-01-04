@@ -5,7 +5,6 @@ import BaseAttr from "./attrs/baseAttr.vue";
 import LayerAttr from "./attrs/layerAttr.vue";
 import TextAttr from "./attrs/textAttr.vue";
 import HtmlTextAttr from "./attrs/htmlTextAttr.vue";
-import ImageAttr from "./attrs/imageAttr.vue";
 import CanvasAttr from './attrs/canvasAttr.vue'
 import BoxAttr from './attrs/boxAttr.vue'
 import FillAttr from "./attrs/fillAttr.vue";
@@ -64,11 +63,6 @@ const componentList = computed(() => {
             name: 'HtmlTextAttr',
             component: HtmlTextAttr,
             visual: isDefined(activeObject) && editor.activeObjectIsType('HTMLText'),
-        },
-        {
-            name: 'ImageAttr',
-            component: ImageAttr,
-            visual: isDefined(activeObject) && editor.activeObjectIsType('Image'),
         },
         {
             name: 'FillAttr',

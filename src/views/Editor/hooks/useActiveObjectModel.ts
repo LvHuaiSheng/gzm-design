@@ -40,16 +40,18 @@ export const useActiveObjectModel = <K extends keyof ILeaf, T = ILeaf[K] | undef
         lockChange = true
         let value
         let orgValue = activeObject.proxyData[key]
+        if ((!isDefined(orgValue) || orgValue === 0) && defaultValue) {
+            orgValue = defaultValue
+        } else {
+            value = orgValue
+        }
+
         if (parseFun !== 'default'){
             if (parseFun === 'preset'){
                 switch (key) {
                     case 'padding':
-                        if ((!isDefined(orgValue) || orgValue === 0) && defaultValue) {
-                            value = defaultValue
-                            activeObject[key] = value
-                        } else {
-                            value = orgValue
-                        }
+                        value = orgValue
+                        activeObject[key] = value
                         break
                     case 'fill':
                     case 'stroke':
@@ -93,7 +95,8 @@ export const useActiveObjectModel = <K extends keyof ILeaf, T = ILeaf[K] | undef
                         break
                 }
             }else if (typeof  parseFun === 'function'){
-                value = parseFun(orgValue)
+                value = parseFun(orgValue,activeObject)
+                activeObject[key] = value
             }
         }else {
             value = orgValue

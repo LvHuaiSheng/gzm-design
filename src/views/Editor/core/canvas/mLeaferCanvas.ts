@@ -412,8 +412,8 @@ export class MLeaferCanvas {
         if (json) {
             this.contentFrame.set(json)
             this.discardActiveObject()
-            this.childrenEffect()
             useAppStore().activeTool = 'select'
+            this.childrenEffect()
         }
     }
 
@@ -480,11 +480,7 @@ export class MLeaferCanvas {
      * 执行调度器 更新_children值
      */
     public childrenEffect() {
-        if (this.ref._children.effect.scheduler) {
-            this.ref._children.effect.scheduler()
-        } else {
-            this.ref._children.effect.run()
-        }
+        triggerRef(this.ref._children)
     }
 
 

@@ -9,16 +9,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@leafer-in/editor": "^1.0.0-rc.8",
-    "@leafer-in/html": "^1.0.0-rc.8",
-    "@leafer-ui/core": "^1.0.0-rc.8",
-    "@leafer-ui/interface": "^1.0.0-rc.8",
+    "@leafer-in/editor": "^1.0.0-rc.9",
+    "@leafer-in/html": "^1.0.0-rc.9",
+    "@leafer-ui/core": "^1.0.0-rc.9",
+    "@leafer-ui/interface": "^1.0.0-rc.9",
     "@tinymce/tinymce-vue": "^5.1.1",
     "@unocss/reset": "^0.57.7",
-    "@vueuse/core": "^10.7.0",
+    "@vueuse/core": "^10.7.1",
     "ag-psd": "^17.0.6",
-    "axios": "^1.6.2",
-    "convert-units": "^3.0.0-beta.5",
+    "axios": "^1.6.3",
+    "convert-units": "3.0.0-beta.5",
     "leafer-ui": "1.0.0-rc.8",
     "leafer-x-ruler": "^1.0.0",
     "lodash": "^4.17.21",
@@ -28,18 +28,18 @@
     "tinycolor2": "^1.6.0",
     "tinymce": "^6.8.2",
     "uuid": "^9.0.1",
-    "vue": "^3.3.10",
+    "vue": "^3.4.3",
     "vue-router": "^4.2.5"
   },
   "devDependencies": {
-    "@arco-design/web-vue": "^2.53.3",
+    "@arco-design/web-vue": "^2.54.1",
     "@types/lodash": "^4.14.202",
     "@types/mockjs": "^1.0.10",
     "@types/mousetrap": "^1.6.15",
-    "@types/node": "^20.10.4",
+    "@types/node": "^20.10.6",
     "@types/tinycolor2": "^1.4.6",
     "@types/uuid": "^9.0.7",
-    "@vitejs/plugin-vue": "^4.5.2",
+    "@vitejs/plugin-vue": "^4.6.2",
     "less": "^4.2.0",
     "mockjs": "^1.1.0",
     "typescript": "^5.3.3",
@@ -48,6 +48,6 @@
     "unplugin-vue-components": "^0.25.2",
     "vite": "^4.5.1",
     "vite-plugin-svg-icons": "^2.0.1",
-    "vue-tsc": "^1.8.25"
+    "vue-tsc": "^1.8.27"
   }
 }
