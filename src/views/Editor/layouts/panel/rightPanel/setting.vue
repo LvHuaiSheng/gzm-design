@@ -9,7 +9,9 @@ import CanvasAttr from './attrs/canvasAttr.vue'
 import BoxAttr from './attrs/boxAttr.vue'
 import FillAttr from "./attrs/fillAttr.vue";
 import StrokeAttr from "./attrs/strokeAttr.vue";
-import VirtualElementAttr from "./attrs/VirtualElementAttr.vue";
+import VirtualElementAttr from "./attrs/virtualElementAttr.vue";
+import QrcodeAttr from "./attrs/qrcodeAttr.vue";
+import BarcodeAttr from "./attrs/barcodeAttr.vue";
 import {appInstance, useEditor} from "@/views/Editor/app";
 import {typeUtil} from "@/views/Editor/utils/utils";
 
@@ -70,7 +72,7 @@ const componentList = computed(() => {
             visual:
                 isDefined(activeObject)
                 &&!typeUtil.isVirtualOrBottom(activeObject)
-                && !editor.activeObjectIsType('Image','Pen','HTMLText')
+                && !editor.activeObjectIsType('Image','Pen','HTMLText','QrCode','BarCode')
                 ,
         },
         {
@@ -80,6 +82,22 @@ const componentList = computed(() => {
                 isDefined(activeObject)
                 &&!typeUtil.isVirtualOrBottom(activeObject)
                 && !editor.activeObjectIsType('Pen')
+        },
+        {
+            name: 'QrcodeAttr',
+            component: QrcodeAttr,
+            visual:
+                isDefined(activeObject)
+                &&!typeUtil.isVirtualOrBottom(activeObject)
+                && editor.activeObjectIsType('QrCode')
+        },
+        {
+            name: 'BarcodeAttr',
+            component: BarcodeAttr,
+            visual:
+                isDefined(activeObject)
+                &&!typeUtil.isVirtualOrBottom(activeObject)
+                && editor.activeObjectIsType('BarCode')
         },
         // {
         //     name: 'StrokeAttr',

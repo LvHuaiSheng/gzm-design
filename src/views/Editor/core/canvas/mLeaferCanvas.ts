@@ -1,6 +1,6 @@
 import {createDecorator} from '@/views/Editor/core/instantiation/instantiation'
 import {ICanvasContext2D, ILeafer, IPointData, IUI, IUIInputData} from "@leafer-ui/interface";
-import {App, ChildEvent, Frame, Leafer, PropertyEvent, ResizeEvent} from "leafer-ui";
+import {App, ChildEvent, Frame, Leafer, PropertyEvent, ResizeEvent, surfaceType} from "leafer-ui";
 import '@leafer-in/editor'
 import {Ruler} from 'leafer-x-ruler'
 import {IWorkspacesService, WorkspacesService} from "@/views/Editor/core/workspaces/workspacesService";
@@ -9,6 +9,13 @@ import {typeUtil} from "@/views/Editor/utils/utils";
 import {useAppStore} from "@/store";
 import {EditTool} from "app";
 import {toFixed} from "@/utils/math";
+
+import QrCode from "@/views/Editor/core/shapes/QrCode";
+// TODO 2024-1-16 目前leafer-ui提供的装饰器在自定义类内部中和vue环境下使用存在问题，暂时先这样解决自定义字段值的获取和导出问题
+QrCode.addAttr('text', '文字', surfaceType)
+QrCode.addAttr('size', '100', surfaceType)
+// TODO 补全二维码和条形码的更多字段
+
 // 重写 proxyData，全局只需引入一次
 import './proxyData'
 import {EditorEvent} from "@leafer-in/editor";
@@ -38,6 +45,8 @@ type ObjectType =
     | 'HTMLText'
     // 自定义元素tag
     | 'Image2'
+    | 'QrCode'
+    | 'BarCode'
 
 interface Page {
     children: any
@@ -296,6 +305,11 @@ export class MLeaferCanvas {
         if (!object) {
             object = this.contentFrame
         }
+        if (this.objectIsTypes(object,'QrCode')){
+            this.app.editor.config.lockRatio = true
+        }else {
+            this.app.editor.config.lockRatio = false
+        }
         // setTimeout(()=>{
         this.activeObject.value = object
         // },200)
@@ -431,12 +445,6 @@ export class MLeaferCanvas {
     }
 
     public getActiveObjects(): IUI[] {
-        // TODO 返回选中的多个元素（暂未实现多选功能）
-        // if (this.activeObject.value){
-        //     return [this.activeObject.value]
-        // }else {
-        //     return []
-        // }
         return this.app.editor.list
     }
 
@@ -445,11 +453,6 @@ export class MLeaferCanvas {
     }
 
     public zoomToInnerPoint(zoom: number) {
-        console.log('zoom=', zoom)
-        // const center = {x: this.contentLayer.x, y: this.contentLayer.y}
-        // // LeafHelper.zoomOfWorld(this.contentLayer, center, zoom)
-        // const innerPoint = this.contentLayer.getInnerPoint(center)
-        // this.contentLayer.scaleOf(innerPoint, zoom / this.contentLayer.scaleX)
         this.ref.zoom.value = zoom
 
         this.contentLayer?.interaction?.zoom({
