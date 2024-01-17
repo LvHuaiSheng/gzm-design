@@ -1,14 +1,14 @@
-import {registerUI, Rect, dataProcessor, UIData, PropertyEvent, surfaceType,UI} from "leafer-ui";
+import {boundsType, dataProcessor, Rect, registerUI, UIData} from "leafer-ui";
 import {IUIData, IUIInputData} from "@leafer-ui/interface";
 
-import {QRCodeSegment, QRCodeToDataURLOptions, toCanvas, toDataURL, toString} from 'qrcode';
+import QRCode, {QRCodeSegment, QRCodeToDataURLOptions} from 'qrcode';
 
 // 定义数据
 
 // 输入数据接口
 interface ICustomInputData extends IUIInputData {
-    text?: string
-    size?: number
+    text: string
+    size: number
     options?: QRCodeToDataURLOptions
     logo?: string
     logoSize?: number
@@ -23,22 +23,7 @@ interface ICustomData extends IUIData {
 /*
  https://github.com/soldair/node-qrcode#qr-code-options
  */
-// class CustomData extends UIData implements ICustomData {
-//     protected text: string
-//     protected size: number
-//     protected options?: QRCodeToDataURLOptions
-//     protected logo?: string
-//     protected logoSize?: number
-//     protected logoPadding?: number
-//     protected setText(value:string){
-//         this.text = value
-//     }
-//     protected setSize(value:number){
-//         this.size = value
-//         this.setWidth(value);
-//         this.setHeight(value);
-//     }
-// }
+
 class CustomData extends UIData implements ICustomData {
     protected _text: string
     protected _size: number
@@ -47,12 +32,13 @@ class CustomData extends UIData implements ICustomData {
     protected _logoSize?: number
     protected _logoPadding?: number
 
-    protected setSize(value:number){
+    protected setSize(value: number) {
         this._size = value
         this.__leaf.width = value
         this.__leaf.height = value;
     }
 }
+
 /**
  * 二维码
  */
@@ -68,19 +54,29 @@ class QrCode extends Rect {
     declare public __: ICustomData
 
     // 元素数据，负责元素的数据处理
-    @surfaceType("文字")
-    public text: string |QRCodeSegment[]
-    @surfaceType("100")
-    public size: number
+    @boundsType("文字")
+    declare public text: string | QRCodeSegment[]
 
-    @surfaceType()
-    public options?: QRCodeToDataURLOptions
-    @surfaceType()
-    public logo?: string
-    @surfaceType()
-    public logoSize?: number
-    @surfaceType()
-    public logoPadding?: number
+    @boundsType(100)
+    declare public size: number
+
+    @boundsType({
+        errorCorrectionLevel: "H",
+        margin: 4,
+        scale: 4,
+        color: {
+            dark: '#000000ff',
+            light: '#ffffffff',
+        },
+    })
+    declare public options?: QRCodeToDataURLOptions
+    @boundsType()
+    declare public logo?: string
+    @boundsType()
+    declare public logoSize?: number
+    @boundsType()
+    declare public logoPadding?: number
+
 
     public get __tag() {
         return 'QrCode'
@@ -88,50 +84,46 @@ class QrCode extends Rect {
 
     constructor(data: ICustomInputData) {
         super(data)
-        watch(this.options,(value, oldValue, onCleanup) => {
-            this.renderQr()
-        },{
-            deep:true
-        })
     }
 
-    // public __onUpdateSize(){
-    //     // 锁定修改
-    //     if (!this.lockChange && this.oldSize !== this.width){
-    //         this.lockChange = true
-    //         this.renderQr()
-    //     }
-    //     requestAnimationFrame(() => (
-    //         this.lockChange = false
-    //     ))
-    //     super.__onUpdateSize()
-    //     this.oldSize = this.width
-    // }
-    renderQr() {
-        // console.log('this.proxyData=',this.proxyData.text)
-        // console.log('this.text=',this.text)
-        toDataURL(this.text, {...this.options,width:this.width}).then(value => {
-            this.url = value
-        })
+    public __onUpdateSize() {
+        // 锁定修改
+        if (!this.lockChange) {
+            this.lockChange = true
+            this.renderQr()
+        }
+        requestAnimationFrame(() => (
+            this.lockChange = false
+        ))
+        super.__onUpdateSize()
     }
-    //
-    // set text(text: string) {
-    //     this.__.text = text
-    //     this.renderQr()
-    // }
+
+    renderQr() {
+        try {
+            // @ts-ignore
+            QRCode.toString(this.text, {...this.options, width: this.width}, (err, value) => {
+                if (err) throw err
+                const blob = new Blob([value], {type: "image/svg+xml"});
+                const url = URL.createObjectURL(blob);
+                this.url = url
+            })
+        } catch (e: any) {
+            if (e.message.indexOf('nvalid hex color') > -1) {
+                // TODO 非标准的hex颜色格式
+            } else {
+                console.error(e)
+            }
+        }
+    }
 
     get url(): string {
         return this._url;
     }
 
     set url(value: string) {
-        this.fill = {type: 'image', url: value, opacity: 1}
+        this.fill = {type: 'image', url: value, opacity: 1, format: 'svg'}
         this._url = value;
     }
-    // __draw(){
-    //     console.log('111111')
-    //     // this.renderQr()
-    // }
 }
 
 export default QrCode

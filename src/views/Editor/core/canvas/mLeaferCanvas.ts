@@ -10,12 +10,6 @@ import {useAppStore} from "@/store";
 import {EditTool} from "app";
 import {toFixed} from "@/utils/math";
 
-import QrCode from "@/views/Editor/core/shapes/QrCode";
-// TODO 2024-1-16 目前leafer-ui提供的装饰器在自定义类内部中和vue环境下使用存在问题，暂时先这样解决自定义字段值的获取和导出问题
-QrCode.addAttr('text', '文字', surfaceType)
-QrCode.addAttr('size', '100', surfaceType)
-// TODO 补全二维码和条形码的更多字段
-
 // 重写 proxyData，全局只需引入一次
 import './proxyData'
 import {EditorEvent} from "@leafer-in/editor";

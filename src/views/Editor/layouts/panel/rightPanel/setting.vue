@@ -67,6 +67,22 @@ const componentList = computed(() => {
             visual: isDefined(activeObject) && editor.activeObjectIsType('HTMLText'),
         },
         {
+            name: 'QrcodeAttr',
+            component: QrcodeAttr,
+            visual:
+                isDefined(activeObject)
+                &&!typeUtil.isVirtualOrBottom(activeObject)
+                && editor.activeObjectIsType('QrCode')
+        },
+        {
+            name: 'BarcodeAttr',
+            component: BarcodeAttr,
+            visual:
+                isDefined(activeObject)
+                &&!typeUtil.isVirtualOrBottom(activeObject)
+                && editor.activeObjectIsType('BarCode')
+        },
+        {
             name: 'FillAttr',
             component: FillAttr,
             visual:
@@ -82,22 +98,6 @@ const componentList = computed(() => {
                 isDefined(activeObject)
                 &&!typeUtil.isVirtualOrBottom(activeObject)
                 && !editor.activeObjectIsType('Pen')
-        },
-        {
-            name: 'QrcodeAttr',
-            component: QrcodeAttr,
-            visual:
-                isDefined(activeObject)
-                &&!typeUtil.isVirtualOrBottom(activeObject)
-                && editor.activeObjectIsType('QrCode')
-        },
-        {
-            name: 'BarcodeAttr',
-            component: BarcodeAttr,
-            visual:
-                isDefined(activeObject)
-                &&!typeUtil.isVirtualOrBottom(activeObject)
-                && editor.activeObjectIsType('BarCode')
         },
         // {
         //     name: 'StrokeAttr',

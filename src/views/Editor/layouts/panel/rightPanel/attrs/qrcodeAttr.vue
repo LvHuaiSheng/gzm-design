@@ -2,33 +2,13 @@
 import Panel from './panel.vue'
 import {useActiveObjectModel} from '@/views/Editor/hooks/useActiveObjectModel'
 import type {SelectProps} from '@arco-design/web-vue/es/select'
-import {popupMaxHeight} from '@/utils/arco'
 import {useEditor} from '@/views/Editor/app'
-import TipContentKey from "@/components/tooltip/tipContentKey.vue";
 import SwipeNumber from "@/components/swipeNumber/swipeNumber.vue";
 
-const fontFamily = useActiveObjectModel<'fontFamily', SelectProps['modelValue']>('fontFamily')
-const fontSize = useActiveObjectModel<'fontSize', SelectProps['modelValue']>('fontSize') // 字号
-const textWrap = useActiveObjectModel<'textWrap', SelectProps['modelValue']>('textWrap') // 文本换行规则
-const lineHeight = useActiveObjectModel('lineHeight') // 行号
-const letterSpacing = useActiveObjectModel('letterSpacing') // 字距
-const textAlign = useActiveObjectModel('textAlign')
-const verticalAlign = useActiveObjectModel('verticalAlign')
-const italic = useActiveObjectModel('italic') // 文字是否倾斜
-const textDecoration = useActiveObjectModel('textDecoration')
-const textOverflow = useActiveObjectModel('textOverflow')
 
 const textValue = useActiveObjectModel('text')
 const options = useActiveObjectModel('options')
 
-const padding = useActiveObjectModel('padding', [0, 0, 0, 0])
-// 文字粗细
-const fontWeight = useActiveObjectModel<
-    'fontWeight',
-    SelectProps['modelValue']
->('fontWeight')
-
-const textStyle = ref()
 
 const {canvas} = useEditor()
 
@@ -41,16 +21,32 @@ watchEffect(() => {
     textValue.value.onChange(newTextVal.value)
 })
 watchEffect(() => {
-    console.log('options',options)
     errorCorrectionLevel.value = options.value.modelValue?.errorCorrectionLevel
 })
 watchEffect(() => {
-    options.value.onChange({...options,errorCorrectionLevel:errorCorrectionLevel.value})
+    options.value.onChange({...options.value.modelValue, errorCorrectionLevel: errorCorrectionLevel.value})
 })
 
+const darkColor = ref()
+const lightColor = ref()
+watchEffect(() => {
+    if (options.value.modelValue?.color.dark) {
+        darkColor.value = <any>options.value.modelValue.color.dark
+    } else {
+        darkColor.value = ''
+    }
+    if (options.value.modelValue?.color.light) {
+        lightColor.value = <any>options.value.modelValue.color.light
+    } else {
+        lightColor.value = ''
+    }
+})
+watchEffect(() => {
+    options.value.onChange({...options.value.modelValue, color: {light:lightColor.value,dark:darkColor.value}})
+})
 const errorCorrectionLevelOptions = reactive([
     {
-        value: 'H',
+        value: 'L',
         label: '7%',
     },
     {
@@ -66,6 +62,7 @@ const errorCorrectionLevelOptions = reactive([
         label: '30%',
     },
 ])
+
 </script>
 
 <template>
@@ -77,31 +74,57 @@ const errorCorrectionLevelOptions = reactive([
                             v-model="newTextVal"
                             placeholder="请输入一些内容"
                             :auto-size="{
-                            minRows:4,
+                            minRows:3,
                           }"/>
                 </a-col>
             </a-row>
         </Panel>
-        <Panel title="二维码边距" hidden-add>
-            <a-row :gutter="[4, 4]" align="center">
-                <a-col :span="12">
-                    <a-select
-                            size="small"
-                            v-bind="errorCorrectionLevel"
-                            :options="errorCorrectionLevelOptions"
-                    >
-                        <template #prefix>
-                            容错率
-                        </template>
-                    </a-select>
-                </a-col>
-<!--                <a-col :span="10">-->
-<!--                    <SwipeNumber size="small" :min="0" label="边距" v-bind="margin" />-->
-<!--                </a-col>-->
-<!--                <a-col :span="10">-->
-<!--                    <SwipeNumber size="small" :min="0" label="缩放率" v-bind="scale" />-->
-<!--                </a-col>-->
-            </a-row>
+        <Panel title="二维码设置" hidden-add>
+
+            <a-space direction="vertical" size="mini">
+                <a-row :wrap="false" :gutter="[4, 4]" align="center">
+                    <a-col flex="none">
+                        <a-select
+                                size="small"
+                                v-model="errorCorrectionLevel"
+                                :options="errorCorrectionLevelOptions"
+                        >
+                            <template #prefix>
+                                容错率
+                            </template>
+                        </a-select>
+                    </a-col>
+                </a-row>
+                <a-row :gutter="[4, 4]" align="center">
+                    <a-col :span="15">
+                        <SwipeNumber size="small" v-model="options.modelValue.margin" :step="1" style="padding: 0 6px" label-class="text-left" label-width="45px">
+                            <template #label>
+                                <div>码边距</div>
+                            </template>
+                        </SwipeNumber>
+                    </a-col>
+                    <a-col :span="20">
+                        <a-input
+                                size="mini"
+                                v-model="darkColor"
+                        >
+                            <template #prefix>
+                                码颜色(hex)
+                            </template>
+                        </a-input>
+                    </a-col>
+                    <a-col :span="20">
+                        <a-input
+                                size="mini"
+                                v-model="lightColor"
+                        >
+                            <template #prefix>
+                                码背景色(hex)
+                            </template>
+                        </a-input>
+                    </a-col>
+                </a-row>
+            </a-space>
         </Panel>
     </div>
 </template>

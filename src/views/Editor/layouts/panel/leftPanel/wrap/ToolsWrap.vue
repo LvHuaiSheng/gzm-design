@@ -30,7 +30,7 @@ const addQrcode = async () => {
         editable: true,
         x:0,
         y:0,
-        // text: 'http://guozimi.cn',
+        text: 'http://guozimi.cn',
         size:100,
     })
     editor.add(code)
@@ -41,8 +41,10 @@ const addBarcode = async () => {
         editable: true,
         x:0,
         y:0,
+        height:100,
+        width:200,
         text: '123456789012',
-        size:100,
+        codeHeight:100,
     })
     editor.add(code)
 }

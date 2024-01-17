@@ -22,7 +22,7 @@
 </script>
 
 <template>
-  <div class="p2">
+  <div class="p2 attr-panel">
     <div
       class="h28px font-bold text-xs flex justify-between items-center"
       :class="[!disableAdd && !hiddenAdd ? 'hover-add' : '',disableAdd ?'disable-add':'mb2px']"
