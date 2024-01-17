@@ -23,6 +23,7 @@
               <text-list-wrap v-show="+activeWidgetClassify === 2" :active="+activeWidgetClassify === 2" />
               <image-list-wrap v-show="+activeWidgetClassify === 3" :active="+activeWidgetClassify === 3" />
               <background-wrap v-show="+activeWidgetClassify === 4" :active="+activeWidgetClassify === 4" />
+              <tools-wrap v-show="+activeWidgetClassify === 5" :active="+activeWidgetClassify === 5" />
           </div>
           <div v-show="active" class="s-side-wrap">
               <a-tooltip effect="dark" content="收起侧边栏" placement="right">
@@ -38,6 +39,7 @@ import TextListWrap from "./wrap/TextListWrap.vue";
 import ImageListWrap from "./wrap/ImageListWrap.vue";
 import BackgroundWrap from "./wrap/BackgroundWrap.vue";
 import GraphListWrap from "./wrap/GraphListWrap.vue";
+import ToolsWrap from "./wrap/ToolsWrap.vue";
 import Help from "@/views/Editor/layouts/panel/leftPanel/help.vue";
 
 const widgetClassifyList =  [

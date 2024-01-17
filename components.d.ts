@@ -94,6 +94,7 @@ declare module 'vue' {
     IconMosaic: typeof import('@arco-design/web-vue/es/icon')['IconMosaic']
     IconPaste: typeof import('@arco-design/web-vue/es/icon')['IconPaste']
     IconPlus: typeof import('@arco-design/web-vue/es/icon')['IconPlus']
+    IconQrcode: typeof import('@arco-design/web-vue/es/icon')['IconQrcode']
     IconQuestionCircle: typeof import('@arco-design/web-vue/es/icon')['IconQuestionCircle']
     IconRedo: typeof import('@arco-design/web-vue/es/icon')['IconRedo']
     IconSave: typeof import('@arco-design/web-vue/es/icon')['IconSave']

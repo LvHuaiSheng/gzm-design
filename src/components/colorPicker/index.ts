@@ -32,7 +32,7 @@ const openDialog = (
 
   let points: ColorPoint[]
   let type: ColorType = 'color'
-  const colorArr = <[]>(object && attr ? object.proxyData[attr] : initialColor)
+  const colorArr = <[]>(object && attr ? object.proxyData[attr] : [initialColor])
   const colorValue:any = colorArr[index]
   // 渐变
   if (colorValue.type === 'linear' || colorValue.type === 'radial') {

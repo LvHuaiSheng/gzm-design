@@ -23,6 +23,9 @@ UI.prototype.setProxyAttr = function (name: string, newValue: unknown): void {
 
 UI.prototype.getProxyAttr = function (name: string): any {
     const value = (this.__proxyData as any)[name]
+    // if (this.__proxyData.tag === 'QrCode') {
+    //     console.log(`name=${name}:value=${value}`)
+    // }
     return value === undefined ? this.__.__get(name) : value
 }
 
