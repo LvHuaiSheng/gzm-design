@@ -1,7 +1,7 @@
 import {IMLeaferCanvas, MLeaferCanvas} from '@/views/Editor/core/canvas/mLeaferCanvas'
 
 import {Disposable} from '@/views/Editor/utils/lifecycle'
-import {DragEvent, Point, RenderEvent} from "leafer-ui";
+import {DragEvent, Point, RenderEvent,PointerEvent} from "leafer-ui";
 import {typeUtil} from "@/views/Editor/utils/utils";
 import {Bounds} from "@leafer-ui/core";
 import {ILeafer, IUI} from "@leafer-ui/interface";
@@ -96,7 +96,8 @@ export class GuideLines extends Disposable {
             }
 
         })
-        this.canvas.app.tree.on(DragEvent.DRAG, (arg: DragEvent) => {
+
+        this.canvas.app.editor.on(PointerEvent.UP, (arg: DragEvent) => {
             mouseUp()
         })
     }
@@ -114,12 +115,12 @@ export class GuideLines extends Disposable {
         const canvasObjects: IUI[] = [] // 创建一个存储画布对象的数组
         const add = (group: IUI) => { // 定义一个 add 方法，用于添加对象到 canvasObjects 数组中
             const objects = group.children.filter((obj:IUI) => {
-                // if (this.ignoreObjTypes.length) { // 如果 ignoreObjTypes 数组不为空
-                //     return !this.ignoreObjTypes.some((item) => obj.get(item.key) === item.value) // 筛选掉属性匹配 ignoreObjTypes 中的项
-                // }
-                // if (this.pickObjTypes.length) { // 如果 pickObjTypes 数组不为空
-                //     return this.pickObjTypes.some((item) => obj.get(item.key) === item.value) // 筛选出属性匹配 pickObjTypes 中的项
-                // }
+                if (this.ignoreObjTypes.length) { // 如果 ignoreObjTypes 数组不为空
+                    return !this.ignoreObjTypes.some((item) => obj.innerId === item.value) // 筛选掉属性匹配 ignoreObjTypes 中的项
+                }
+                if (this.pickObjTypes.length) { // 如果 pickObjTypes 数组不为空
+                    return this.pickObjTypes.some((item) => obj.innerId === item.value) // 筛选出属性匹配 pickObjTypes 中的项
+                }
                 if (
                     // 排除自己和激活选区内的元素
                     activeObjects.includes(obj)
@@ -143,7 +144,7 @@ export class GuideLines extends Disposable {
 
         if (typeUtil.isActiveSelection(target)) { // 如果目标对象是激活选区
             const needAddParent = new Set<IUI>() // 创建一个存储需要添加的父级对象的 Set
-            target.forEachObject((obj) => { // 遍历激活选区内的每个对象
+            target.children.forEach(obj => { // 遍历激活选区内的每个对象
                 const parent = obj.parent // 获取对象的父级对象
                 needAddParent.add(parent) // 将父级对象添加到 needAddParent Set 中
             })
@@ -521,7 +522,7 @@ export class GuideLines extends Disposable {
     private clearGuideline() {
         if (!this.dirty) return
         this.dirty = false
-        // this.canvasLeafer.destroy()
+        this.canvasLeafer.canvas.clear()
         // this.canvas.clearContext(this.canvas.getTopContext())
     }
 
