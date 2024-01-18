@@ -40,16 +40,18 @@ export const useActiveObjectModel = <K extends keyof ILeaf, T = ILeaf[K] | undef
         lockChange = true
         let value
         let orgValue = activeObject.proxyData[key]
+        if ((!isDefined(orgValue) || orgValue === 0) && defaultValue) {
+            orgValue = defaultValue
+        } else {
+            value = orgValue
+        }
+
         if (parseFun !== 'default'){
             if (parseFun === 'preset'){
                 switch (key) {
                     case 'padding':
-                        if ((!isDefined(orgValue) || orgValue === 0) && defaultValue) {
-                            value = defaultValue
-                            activeObject[key] = value
-                        } else {
-                            value = orgValue
-                        }
+                        value = orgValue
+                        activeObject[key] = value
                         break
                     case 'fill':
                     case 'stroke':
@@ -93,7 +95,8 @@ export const useActiveObjectModel = <K extends keyof ILeaf, T = ILeaf[K] | undef
                         break
                 }
             }else if (typeof  parseFun === 'function'){
-                value = parseFun(orgValue)
+                value = parseFun(orgValue,activeObject)
+                activeObject[key] = value
             }
         }else {
             value = orgValue
@@ -107,8 +110,8 @@ export const useActiveObjectModel = <K extends keyof ILeaf, T = ILeaf[K] | undef
 
     const setObjectValue = (obj: any, newValue: any) => {
         console.log(`set ${key}: ${JSON.stringify(newValue)}`)
-        if (obj.proxyData[key] !== newValue) {
-            obj.proxyData[key] = newValue
+        if (obj[key] !== newValue) {
+            obj[key] = newValue
             modelValue.value = isNumber(newValue) ? toFixed(newValue) : newValue
             // activeObject.updateLayout()
         }

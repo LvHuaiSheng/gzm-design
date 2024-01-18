@@ -17,6 +17,7 @@ import {IMLeaferCanvas, MLeaferCanvas} from "@/views/Editor/core/canvas/mLeaferC
 import {Zoom} from "@/views/Editor/app/editor/zoom";
 import {ToolBar} from "@/views/Editor/app/editor/toolBar";
 import {IUndoRedoService, UndoRedoService} from '@/views/Editor/app/editor/undoRedo/undoRedoService'
+import { Clipboard } from '@/views/Editor/app/editor/clipboard'
 // import {GuideLines} from "@/views/Editor/app/editor/guideLines";
 import {GuideLines} from "@/views/Editor/app/editor/guideLines2";
 
@@ -46,6 +47,7 @@ export class EditorMain extends BaseApp {
                 this.service.createInstance(GuideLines),
                 this.service.createInstance(Zoom),
                 (this.contextMenu = this.service.createInstance(ContextMenu)),
+                this.service.createInstance(Clipboard),
             ]
             instances.forEach((instance) => {
                 this._register(instance)

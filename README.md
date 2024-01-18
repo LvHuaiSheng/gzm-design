@@ -1,9 +1,13 @@
 <div align="center"> 
 <h2>Leafer Design</h2>
-<a href="./LICENSE"><img allt="MIT License" src="https://badgen.net/badge/license/MIT/blue"/></a>
-<a href="https://arco.design/vue" target="_blank"><img allt="MIT License" src="https://badgen.net/badge/arco-design/^2.53.3/green"/></a>
-<a href="https://vuejs.org" target="_blank"><img allt="MIT License" src="https://badgen.net/badge/vue/^3.3.9/green"/></a>
-<a href="https://vitejs.dev" target="_blank"><img allt="MIT License" src="https://badgen.net/badge/vite/^4.5.0/green"/></a>
+
+[![MIT License](https://img.shields.io/badge/license-MIT-brightgreen)](./LICENSE)
+[![Arco Design](https://img.shields.io/badge/arco--design-^2.53.3-brightgreen)](https://arco.design/vue)
+[![Vue](https://img.shields.io/badge/vue-^3.3.10-brightgreen)](https://vuejs.org)
+[![Vite](https://img.shields.io/badge/vite-^4.5.1-brightgreen)](https://vitejs.dev)
+
+[![GitHub Repo stars](https://img.shields.io/github/stars/LvHuaiSheng/gzm-design?logo=github)](https://github.com/LvHuaiSheng/gzm-design)
+[![Gitee Repo stars](https://gitee.com/sourcenet/gzm-design/badge/star.svg?theme=dark)](https://gitee.com/sourcenet/gzm-design)
 </div>
 
 ## 简介
@@ -36,7 +40,7 @@ Tips: 🕙筹划中 🔲筹备中 🚧进行中 ✅已完成
         - 🔲 连续多层蒙版
     - ✅ 文字解析
         - ✅ 普通文本
-        - 🚧 富文本
+        - ✅ 富文本
         - 🚧 效果/特效处理
     - 🚧 字体加载
     - 🕙 智能对象
@@ -63,7 +67,8 @@ Tips: 🕙筹划中 🔲筹备中 🚧进行中 ✅已完成
 - ✅ 多元素打组、拆分组
 - ✅ 画布尺寸修改、多背景填充
 - ✅ 元素超出组裁剪/显示
-- 🚧 跨组拖拽（拖入、拖出）
+- ✅ 富文本支持
+- 🔲 跨组拖拽（拖入、拖出）
 - 🔲 遮罩功能
 - 🔲 组内蒙版
 - 🔲 组内擦除功能
@@ -74,15 +79,21 @@ Tips: 🕙筹划中 🔲筹备中 🚧进行中 ✅已完成
 - 🕙 SDK封装
 - 🚧 PSD导入插件化封装
 - 🕙 针对标尺线、元素的自动吸附功能
-- 🕙 二维码工具
+- ✅ 二维码工具
+- ✅ 条形码码工具
 - 🕙 AI抠图
 - 🕙 AI图生图、自动补全
+- ✅ 标尺线npm包封装
 
 ## 安装使用
 
 - 获取项目代码
 
 ```bash
+# GitHub
+git clone https://github.com/LvHuaiSheng/gzm-design.git
+
+# Gitee
 git clone https://gitee.com/sourcenet/gzm-design.git
 ```
 
@@ -114,7 +125,12 @@ pnpm build
 
 如果觉得还不错，请作者喝杯咖啡吧 ☺
 
-![image](https://n-oss.sourcenet.cc/sfk.png)
+<img src="https://n-oss.sourcenet.cc/sfk.png" width="450px">
+
+## 微信交流群
+
+<img src="https://n-oss.sourcenet.cc/gzm-design/wx-group2.png" width="150px">
+<img src="https://n-oss.sourcenet.cc/wxhy.png" width="150px">
 
 ## 如何贡献
 

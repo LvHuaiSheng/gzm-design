@@ -43,6 +43,7 @@ import CompListWrap from "@/views/Editor/layouts/panel/leftPanel/wrap/CompListWr
 import {LazyImg} from "@/components/vue-waterfall-plugin-next";
 import {queryTextMaterialList} from "@/api/editor/materials";
 import usePageMixin from "@/views/Editor/layouts/panel/leftPanel/wrap/mixins/pageMixin";
+import {HTMLText} from "@leafer-in/html";
 
 const {editor} = useEditor()
 const NAME = 'text-list-wrap'
@@ -77,11 +78,20 @@ const basicTextList = ref([
     //     draggable: true
     // },
     {
-        title: '+ 添加文字',
+        title: '+ 添加普通文字',
         json:{
             tag:'Text',
             text: '输入文本',
             fontSize: 40,
+            fontWeight: 'normal',
+        }
+    },
+    {
+        title: '+ 添加富文本',
+        json:{
+            tag:'HTMLText',
+            name:'富文本',
+            text: `<i style="font-size: 40px">输入文本</i>`,
             fontWeight: 'normal',
         }
     },
@@ -113,6 +123,14 @@ const handleClick = (item: any) => {
                     color:'rgba(0,0,0,1)',
                 },
             ],
+            ...item.json,
+        })
+    }else if (editor.objectIsTypes(item.json,'HTMLText')){
+        text = new HTMLText({
+            name:getDefaultName(editor.contentFrame),
+            editable: true,
+            x:0,
+            y:0,
             ...item.json,
         })
     }else{
@@ -170,7 +188,7 @@ const dragStart = (e: Element, item: any) => {
             // color: @color-black;
             padding: 10px 0;
             text-align: center;
-
+            margin-bottom: 5px;
             &:hover {
                 // background-color: rgba(0, 0, 0, 0.07);
                 // border-bottom: 1px solid @color0;
