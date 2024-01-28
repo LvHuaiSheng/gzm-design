@@ -1,6 +1,7 @@
 import Mock from 'mockjs';
 
 import './editor';
+import './font';
 import './upload';
 
 

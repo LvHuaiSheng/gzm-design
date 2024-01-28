@@ -6,21 +6,10 @@ import {popupMaxHeight} from '@/utils/arco'
 import {useEditor} from '@/views/Editor/app'
 import TipContentKey from "@/components/tooltip/tipContentKey.vue";
 import SwipeNumber from "@/components/swipeNumber/swipeNumber.vue";
+import {useFontStore} from "@/store";
+import FontFaceObserver from 'fontfaceobserver'
+import {Message} from "@arco-design/web-vue";
 
-const fontOptions = reactive([
-    {
-        value: 'arial',
-        label: 'Arial',
-    },
-    {
-        value: 'Times New Roman',
-        label: 'Times New Roman',
-    },
-    {
-        value: 'Microsoft Yahei',
-        label: '微软雅黑',
-    },
-])
 
 const weightOptions = reactive([
     {
@@ -107,7 +96,7 @@ const fontWeight = useActiveObjectModel<
 const textStyle = ref()
 
 const {canvas} = useEditor()
-
+const {fontList,skipLoadFonts} = storeToRefs(useFontStore())
 const textOverflowType = ref('show')
 const textOverflowVal = ref('')
 watchEffect(() => {
@@ -147,7 +136,7 @@ const paddingLeft = ref()
 const lineHeightVal = ref()
 const letterSpacingVal = ref()
 watchEffect(() => {
-    if (padding.value.modelValue){
+    if (padding.value.modelValue) {
         paddingTop.value = padding.value.modelValue[0]
         paddingRight.value = padding.value.modelValue[1]
         paddingBottom.value = padding.value.modelValue[2]
@@ -164,24 +153,49 @@ watchEffect(() => {
     letterSpacingVal.value = letterSpacing.value.modelValue.value
 })
 
-watch([paddingTop,paddingRight,paddingBottom,paddingLeft],(newValue,oldValue)=>{
+watch([paddingTop, paddingRight, paddingBottom, paddingLeft], (newValue, oldValue) => {
     padding.value.onChange([paddingTop.value, paddingRight.value, paddingBottom.value, paddingLeft.value,])
 })
 
 
-watch(lineHeightVal,(newValue,oldValue)=>{
+watch(lineHeightVal, (newValue, oldValue) => {
     lineHeight.value.onChange({
-        type:lineHeight.value.modelValue.type,
-        value:Number(newValue)
+        type: lineHeight.value.modelValue.type,
+        value: Number(newValue)
     })
 })
-watch(letterSpacingVal,(newValue,oldValue)=>{
+watch(letterSpacingVal, (newValue, oldValue) => {
     letterSpacing.value.onChange({
-        type:lineHeight.value.modelValue.type,
-        value:Number(newValue)
+        type: lineHeight.value.modelValue.type,
+        value: Number(newValue)
     })
 })
-
+const changeFontFamily = (record) => {
+    const fontFamilyName = record
+    if (skipLoadFonts.value.includes(fontFamilyName)){
+        return;
+    }else {
+        // 字体加载
+        const loading =  Message.loading({
+            content:`正在加载字体 【${fontFamilyName}】`,
+            duration:0
+        })
+        const font = new FontFaceObserver(fontFamilyName);
+        font
+            .load(null, 150000)
+            .then(() => {
+                loading.close()
+                canvas.activeObject.value?.forceUpdate()
+            })
+            .catch((err) => {
+                console.log(err);
+                loading.close()
+                Message.error({
+                    content: `加载字体【${fontFamilyName}】失败 ${err}`
+                })
+            });
+    }
+}
 </script>
 
 <template>
@@ -205,11 +219,24 @@ watch(letterSpacingVal,(newValue,oldValue)=>{
                         <a-select
                                 size="small"
                                 placeholder="文字字体"
-                                v-bind="{ ...fontFamily, ...popupMaxHeight() }"
-                                :options="fontOptions"
+                                v-bind="{ ...fontFamily,...popupMaxHeight(20)}"
+                                :options="fontList"
+                                @change="changeFontFamily"
+                                allow-search
+                                :field-names="{
+                                    label: 'name',
+                                    value: 'name',
+                                }"
                         >
                             <template #prefix>
                                 字体
+                            </template>
+                            <template #option="{ data }">
+                                <div class="font-preview-cls" v-if="data.preview"
+                                     :style="{backgroundImage:`url(${data.preview})`}"></div>
+                                <div class="font-preview-cls" v-else>
+                                    <span>{{ (typeof data === 'object' ? data.name : data) }}</span>
+                                </div>
                             </template>
                         </a-select>
                     </a-col>
@@ -227,21 +254,24 @@ watch(letterSpacingVal,(newValue,oldValue)=>{
                         </a-select>
                     </a-col>
                     <a-col :span="12">
-                        <SwipeNumber size="small" v-bind="fontSize" :step="1" style="padding: 0 6px" label-class="text-left" label-width="36px">
+                        <SwipeNumber size="small" v-bind="fontSize" :step="1" style="padding: 0 6px"
+                                     label-class="text-left" label-width="36px">
                             <template #label>
                                 <div>大小</div>
                             </template>
                         </SwipeNumber>
                     </a-col>
                     <a-col :span="12">
-                        <SwipeNumber size="small" v-model="lineHeightVal" :step="1" style="padding: 0 6px" label-class="text-left" label-width="36px">
+                        <SwipeNumber size="small" v-model="lineHeightVal" :step="1" style="padding: 0 6px"
+                                     label-class="text-left" label-width="36px">
                             <template #label>
                                 <div>行距</div>
                             </template>
                         </SwipeNumber>
                     </a-col>
                     <a-col :span="12">
-                        <SwipeNumber size="small" v-model="letterSpacingVal" :step="1" style="padding: 0 6px" label-class="text-left" label-width="36px">
+                        <SwipeNumber size="small" v-model="letterSpacingVal" :step="1" style="padding: 0 6px"
+                                     label-class="text-left" label-width="36px">
                             <template #label>
                                 <div>字距</div>
                             </template>
@@ -280,7 +310,7 @@ watch(letterSpacingVal,(newValue,oldValue)=>{
                                     <icon-stop/>
                                 </a-radio>
                                 <template #content>
-                                    <TipContentKey content="无划线" />
+                                    <TipContentKey content="无划线"/>
                                 </template>
                             </a-tooltip>
                             <a-tooltip mini position="bottom">
@@ -288,7 +318,7 @@ watch(letterSpacingVal,(newValue,oldValue)=>{
                                     <icon-underline/>
                                 </a-radio>
                                 <template #content>
-                                    <TipContentKey content="下划线" />
+                                    <TipContentKey content="下划线"/>
                                 </template>
                             </a-tooltip>
                             <a-tooltip mini position="bottom">
@@ -429,4 +459,18 @@ watch(letterSpacingVal,(newValue,oldValue)=>{
     </div>
 </template>
 
-<style scoped lang="less"></style>
+<style scoped lang="less">
+.font-preview-cls {
+  //background-color: #000;
+  background-size: cover;
+  background-position: center center;
+  height: 40px;
+  width: 200px;
+  color: #fff;
+  //font-size: 27px;
+  text-align: center;
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+}
+
+</style>

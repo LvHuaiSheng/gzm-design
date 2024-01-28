@@ -6,7 +6,8 @@ import {Ruler} from 'leafer-x-ruler'
 import {IWorkspacesService, WorkspacesService} from "@/views/Editor/core/workspaces/workspacesService";
 import {EventbusService, IEventbusService} from "@/views/Editor/core/eventbus/eventbusService";
 import {typeUtil} from "@/views/Editor/utils/utils";
-import {useAppStore} from "@/store";
+import {addCustomFonts} from "@/utils/fonts/utils";
+import {useAppStore, useFontStore} from "@/store";
 import {EditTool} from "app";
 import {toFixed} from "@/utils/math";
 
@@ -23,7 +24,7 @@ type ExtendedOption = {
 }
 
 type ObjectType =
-    // 官方元素tag
+// 官方元素tag
     'UI'
     | 'App'
     | 'Leafer'
@@ -134,6 +135,9 @@ export class MLeaferCanvas {
         this.initWorkspace()
         this.initPageEditor()
         this.initWatch()
+        useFontStore().initFonts().then(value => {
+            addCustomFonts(value)
+        })
     }
 
     private initWatch() {
@@ -243,10 +247,10 @@ export class MLeaferCanvas {
         let initFrameWH = true
         // resize事件
         this.contentLayer.on(ResizeEvent.RESIZE, (e2: ResizeEvent) => {
-            if (initFrameWH){
+            if (initFrameWH) {
                 // 第一次初始化画布时设置画布宽高为可视区域大小
-                this.contentFrame.width  = e2.width
-                this.contentFrame.height  = e2.height
+                this.contentFrame.width = e2.width
+                this.contentFrame.height = e2.height
             }
             this.eventbus.emit('layoutResizeEvent', e2)
             initFrameWH = false
@@ -299,9 +303,9 @@ export class MLeaferCanvas {
         if (!object) {
             object = this.contentFrame
         }
-        if (this.objectIsTypes(object,'QrCode')){
+        if (this.objectIsTypes(object, 'QrCode')) {
             this.app.editor.config.lockRatio = true
-        }else {
+        } else {
             this.app.editor.config.lockRatio = false
         }
         // setTimeout(()=>{
@@ -390,6 +394,7 @@ export class MLeaferCanvas {
         this.selectObject(_child)
         this.childrenEffect()
     }
+
     /**
      * 添加元素
      */
