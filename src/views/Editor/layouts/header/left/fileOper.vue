@@ -137,7 +137,7 @@ const importPsdFile = () => {
                 parsePsdFile(item, onProcess).then(async value => {
                     const {psd, layers} = value
                     processTitle.value = '正在导入'
-                    canvas.contentFrame.removeAll()
+                    canvas.contentFrame.clear()
                     canvas.contentFrame.width = psd.width
                     canvas.contentFrame.height = psd.height
                     console.log('layers=', layers)

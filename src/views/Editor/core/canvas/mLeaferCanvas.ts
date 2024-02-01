@@ -175,7 +175,7 @@ export class MLeaferCanvas {
             // 切换前保存当前工作区
             this.setPageJSON(oldId, this.contentFrame.toJSON())
             // page.scale = this.contentLayer.scale
-            this.contentFrame.removeAll(false)
+            this.contentFrame.clear()
         })
         this.eventbus.on('workspaceChangeAfter', ({newId}) => {
             // 切换后恢复当前工作区
@@ -419,7 +419,7 @@ export class MLeaferCanvas {
      */
     public importJsonToCurrentPage(json: any, clearHistory?: boolean) {
         if (clearHistory) {
-            this.contentFrame.removeAll()
+            this.contentFrame.clear()
         }
         console.log('json', json)
         if (json) {
@@ -437,7 +437,7 @@ export class MLeaferCanvas {
      */
     public importPages(pages: any, clearHistory?: boolean) {
         if (clearHistory) {
-            this.contentFrame.removeAll()
+            this.contentFrame.clear()
         }
         console.log('pages', pages)
         // TODO 多页面数据导入
