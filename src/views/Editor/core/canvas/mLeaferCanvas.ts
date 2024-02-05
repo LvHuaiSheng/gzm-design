@@ -106,7 +106,7 @@ export class MLeaferCanvas {
         zoom: ref(toFixed(this.getZoom(), 2)),
         _children: computed(() => this.contentFrame.children),
         // 是否启用辅助线
-        enabledRuler: computed(() => this.ruler.enabled),
+        enabledRuler: ref(true),
     }
 
     public backgroundColor?: string
@@ -121,7 +121,11 @@ export class MLeaferCanvas {
             editor: {},
         })
         this.wrapperEl = app.canvas.view
-        this.ruler = new Ruler(app)
+        this.ruler = new Ruler(app,{
+            enabled: this.ref.enabledRuler.value,
+            theme:'light',
+        })
+
         const contentLayer = app.tree
         contentLayer.fill = 'transparent'
         // TODO 2023-11-10 等待修复Leafer的fill的功能后放开下面注释启用背景填充
