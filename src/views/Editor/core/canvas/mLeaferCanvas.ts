@@ -226,7 +226,7 @@ export class MLeaferCanvas {
 
         this.app.editor.on(EditorEvent.SELECT, (arg: EditorEvent) => {
             this.setActiveObjectValue(arg.editor.element)
-
+            // this.ruler.forceRender()
         })
         // 子元素添加事件
         this.contentLayer.on(ChildEvent.ADD, (arg: ChildEvent) => {

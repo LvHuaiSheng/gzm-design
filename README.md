@@ -165,10 +165,17 @@ Request。
 
 ## 致谢
 
+特别感谢以下项目和贡献者：
+
 - <a href="https://github.com/liumingye/fabric" target="_blank">liumingye/fabric</a> 一款基于fabirc的高性能编辑器。
 - <a href="https://github.com/palxiao/poster-design" target="_blank">poster-design</a> 一款基于dom的在线海报图片设计器。
 - <a href="https://github.com/nihaojob/vue-fabric-editor" target="_blank">vue-fabric-editor</a> 一款基于fabric.js和Vue的图片编辑器。
 - <a href="https://github.com/wordshub/free-font" target="_blank">free-font</a> 可商用免费字体收录汇总
+
+
+<a href="https://github.com/LvHuaiSheng/gzm-design/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=LvHuaiSheng/gzm-design" />
+</a>
 
 ## 开源协议
 
