@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@leafer-in/arrow": "1.0.0-rc.17",
     "@leafer-in/editor": "1.0.0-rc.17",
     "@leafer-in/html": "1.0.0-rc.17",
     "@leafer-ui/core": "1.0.0-rc.17",

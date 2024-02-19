@@ -27,11 +27,18 @@ export function queryImageMaterialList(params:PageParams) {
 }
 
 /**
- * 素材
+ * 素材分类
  * @param params
  */
-export function queryGraphImageList(params:PageParams) {
-  return axios.get('/api/graph/imageList',{data:params});
+export function queryGraphCategory(params?:PageParams) {
+  return axios.get('/api/graph/category',{data:params});
+}
+/**
+ * 素材分类列表
+ * @param params
+ */
+export function queryGraphList(params:PageParams) {
+  return axios.get('/api/graph/list',{data:params});
 }
 
 /**
@@ -42,3 +49,18 @@ export function queryBgImgMaterialList(params:PageParams) {
   return axios.get('/api/background/imageList',{data:params});
 }
 
+
+/**
+ * 元素分类
+ * @param params
+ */
+export function queryElementCategory(params?:PageParams) {
+    return axios.get('/api/element/category',{data:params});
+}
+/**
+ * 元素分类列表
+ * @param params
+ */
+export function queryElementList(params:PageParams) {
+    return axios.get('/api/element/list',{data:params});
+}

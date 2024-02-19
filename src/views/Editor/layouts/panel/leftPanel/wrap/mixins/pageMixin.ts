@@ -13,12 +13,14 @@ export default function usePageMixin() {
         dataList?: any,
         pageSize?: number,
         pageNum?: number,
-        noMore?: boolean
+        noMore?: boolean,
+        query:object,
     }>({
         dataList: [],
         pageSize: 10,
         pageNum: 1,
-        noMore:false
+        noMore:false,
+        query:{},
     });
 
     // 返回包含需要共享的数据、计算属性和方法的对象

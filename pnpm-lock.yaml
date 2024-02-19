@@ -5,6 +5,9 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@leafer-in/arrow':
+    specifier: 1.0.0-rc.17
+    version: 1.0.0-rc.17
   '@leafer-in/editor':
     specifier: 1.0.0-rc.17
     version: 1.0.0-rc.17
@@ -447,6 +450,12 @@ packages:
       '@jridgewell/resolve-uri': 3.1.2
       '@jridgewell/sourcemap-codec': 1.4.15
     dev: true
+
+  /@leafer-in/arrow@1.0.0-rc.17:
+    resolution: {integrity: sha512-aNpQMxNZOBaFz4IgDe0onNMBJr1/8umDvWj/UpPhS7/xH2IrmphhyZkayCx9Hkp6TZMRVShwfbmQKQrmoQ+ahg==}
+    dependencies:
+      '@leafer-ui/draw': 1.0.0-rc.17
+    dev: false
 
   /@leafer-in/editor@1.0.0-rc.17:
     resolution: {integrity: sha512-8wAbEdnItWJ3a+JXBP+yyWbHUj5kl3DSae23TL4knveS1lyeorQRfVbFMDfVDlZhm9VNWJTVJmWxzYQpu7vPdg==}

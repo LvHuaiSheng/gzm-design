@@ -16,22 +16,29 @@
                 {{ item.title }}
             </div>
         </div>
-        <div class="other-text-wrap">
-            <comp-list-wrap @fetchData="fetchData"
-                            :config="config"
-                            :data="page.dataList" :noMore="page.noMore" max-height="calc(100vh - 115px)">
-                <template #item="{ item, url, index }">
-                    <a-card hoverable @click="handleClick(item)" class="cursor-pointer drop-shadow" :body-style="{ padding: '0px' }">
-                        <div class="">
-                            <LazyImg :url="url" class="img" />
-                        </div>
-                        <!--                      <div class="p5px">-->
-                        <!--                          <span class="name truncated">{{ item.name }}</span>-->
-                        <!--                      </div>-->
-                    </a-card>
-                </template>
-            </comp-list-wrap>
-        </div>
+        <comp-list2-wrap :data="page.dataList" :no-more="page.noMore"
+                            :option="{coverKey:'cover'}"
+                             @fetch-data="fetchData"
+                             @item-click="handleClick"
+        >
+        </comp-list2-wrap>
+<!--        <div class="other-text-wrap">-->
+<!--            -->
+<!--            <comp-list-wrap @fetchData="fetchData"-->
+<!--                            :config="config"-->
+<!--                            :data="page.dataList" :noMore="page.noMore" max-height="calc(100vh - 115px)">-->
+<!--                <template #item="{ item, url, index }">-->
+<!--                    <a-card hoverable @click="handleClick(item)" class="cursor-pointer drop-shadow" :body-style="{ padding: '0px' }">-->
+<!--                        <div class="">-->
+<!--                            <LazyImg :url="url" class="img" />-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;                      <div class="p5px">&ndash;&gt;-->
+<!--                        &lt;!&ndash;                          <span class="name truncated">{{ item.name }}</span>&ndash;&gt;-->
+<!--                        &lt;!&ndash;                      </div>&ndash;&gt;-->
+<!--                    </a-card>-->
+<!--                </template>-->
+<!--            </comp-list-wrap>-->
+<!--        </div>-->
     </div>
 </template>
 
@@ -39,11 +46,12 @@
 import {Group, Text} from "leafer-ui";
 import {useEditor} from "@/views/Editor/app";
 import {getDefaultName} from "@/views/Editor/utils/utils";
-import CompListWrap from "@/views/Editor/layouts/panel/leftPanel/wrap/CompListWrap.vue";
+import CompList2Wrap from "@/views/Editor/layouts/panel/leftPanel/wrap/CompList2Wrap.vue";
 import {LazyImg} from "@/components/vue-waterfall-plugin-next";
 import {queryTextMaterialList} from "@/api/editor/materials";
 import usePageMixin from "@/views/Editor/layouts/panel/leftPanel/wrap/mixins/pageMixin";
 import {HTMLText} from "@leafer-in/html";
+import CompCateListWrap from "@/views/Editor/layouts/panel/leftPanel/wrap/CompCateListWrap.vue";
 
 const {editor} = useEditor()
 const NAME = 'text-list-wrap'

@@ -5,6 +5,7 @@ import graphData from '@/assets/data/graphData.json'
 import imageData from '@/assets/data/imageData.json'
 import textData from '@/assets/data/textData.json'
 import bgImgData from '@/assets/data/bgImgData.json'
+import elementData from '@/assets/data/elementData.json'
 import {MockParams} from "@/types/mock";
 
 /**
@@ -32,16 +33,34 @@ setupMock({
         });
 
 
-        Mock.mock(new RegExp('/api/graph/imageList'), (params:MockParams) => {
-            const { pageNum, pageSize } = JSON.parse(params.body);
-            var newDataList = graphData.list.slice((pageNum - 1) * pageSize, pageNum * pageSize)
-            return successResponseWrap({records:newDataList,total:graphData.list.length});
+        Mock.mock(new RegExp('/api/graph/category'), (params:MockParams) => {
+            return successResponseWrap({records:graphData.cate,total:graphData.cate.length});
+        });
+        Mock.mock(new RegExp('/api/graph/list'), (params:MockParams) => {
+            const { pageNum, pageSize, query } = JSON.parse(params.body);
+            const list = graphData.list.filter(v=>{
+                return v.category == query.categoryId
+            })
+            var newDataList = list.slice((pageNum - 1) * pageSize, pageNum * pageSize)
+            return successResponseWrap({records:newDataList,total:list.length});
         });
 
         Mock.mock(new RegExp('/api/background/imageList'), (params:MockParams) => {
             const { pageNum, pageSize } = JSON.parse(params.body);
             var newDataList = bgImgData.list.slice((pageNum - 1) * pageSize, pageNum * pageSize)
             return successResponseWrap({records:newDataList,total:bgImgData.list.length});
+        });
+
+        Mock.mock(new RegExp('/api/element/category'), (params:MockParams) => {
+            return successResponseWrap({records:elementData.cate,total:elementData.cate.length});
+        });
+        Mock.mock(new RegExp('/api/element/list'), (params:MockParams) => {
+            const { pageNum, pageSize, query } = JSON.parse(params.body);
+            const list = elementData.list.filter(v=>{
+                return v.category == query.categoryId
+            })
+            var newDataList = list.slice((pageNum - 1) * pageSize, pageNum * pageSize)
+            return successResponseWrap({records:newDataList,total:list.length});
         });
     },
 });
