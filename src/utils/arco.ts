@@ -4,10 +4,10 @@ import Dialog from '@/components/dialog'
 import type { App } from 'vue'
 
 /**
- * 修改下拉列表最大高度到屏幕最下面
+ * 修改下拉列表最大高度到屏幕最下面 - X
  * @popup-visible-change="popupMaxHeight"
  */
-export const popupMaxHeight = () => {
+export const popupMaxHeight = (bottom?:number) => {
   const randomClass = `a${uuid()}`
 
   const onPopupVisibleChange = (visible: boolean) => {
@@ -17,7 +17,7 @@ export const popupMaxHeight = () => {
         `.${randomClass} .arco-select-dropdown-list-wrapper`,
       )
       if (!wrapper) return
-      wrapper.style.maxHeight = `${window.innerHeight - wrapper.getBoundingClientRect().top - 8}px`
+      wrapper.style.maxHeight = `${window.innerHeight - wrapper.getBoundingClientRect().top - 8 - bottom}px`
     })
   }
 

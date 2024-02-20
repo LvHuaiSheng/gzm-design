@@ -1,6 +1,6 @@
 <template>
     <div class="wrap">
-<!--        <search-header :cateList="cateList" v-model="keyword" @changeCate="changeCate" @search="onSearch"/>-->
+        <!--        <search-header :cateList="cateList" v-model="keyword" @changeCate="changeCate" @search="onSearch"/>-->
         <comp-cate-list-wrap :data="page.dataList" :cate-list="cateList" :current-cate="currentCate" :no-more="page.noMore"
                              @fetch-data="loadList"
                              @back-cate="backCate"
@@ -13,12 +13,14 @@
 <script lang="ts" setup>
 
 import {useEditor} from "@/views/Editor/app";
-import {Image} from "leafer-ui";
+import {Group, Image, Line, UI} from "leafer-ui";
 import {getDefaultName} from "@/views/Editor/utils/utils";
 import CompCateListWrap from "@/views/Editor/layouts/panel/leftPanel/wrap/CompCateListWrap.vue";
 import usePageMixin from "@/views/Editor/layouts/panel/leftPanel/wrap/mixins/pageMixin";
-import {queryGraphCategory,queryGraphList} from "@/api/editor/materials";
+import {queryElementList, queryElementCategory} from "@/api/editor/materials";
 import SearchHeader from "@/components/editorModules/searchHeader.vue";
+import {Ellipse, Star} from "@leafer-ui/core";
+import {Arrow} from "@leafer-in/arrow";
 const {editor} = useEditor()
 
 const keyword = ref();
@@ -33,7 +35,7 @@ const onSearch = (value,ev) => {
 const { page } = usePageMixin()
 page.pageSize = 30
 const fetchData = () => {
-    queryGraphCategory().then(res =>{
+    queryElementCategory().then(res =>{
         if (res.success) {
             const list = res.data.records
             cateList.value = list
@@ -41,14 +43,15 @@ const fetchData = () => {
     })
 }
 const handleClick = (item) => {
-    const image = new Image({
-        name:getDefaultName(editor.contentFrame),
-        editable: true,
-        x:0,
-        y:0,
-        ...item,
-    })
-    editor.add(image)
+
+    item.json.name = getDefaultName(editor.contentFrame)
+    let group
+    if (item.json.tag === 'Arrow'){
+        group = new Arrow(item.json)
+    }else {
+        group = UI.one(item.json)
+    }
+    editor.add(group)
 }
 const backCate = () => {
     currentCate.value = null
@@ -62,8 +65,9 @@ const selectCate = (cate) => {
     // loadList()
 }
 const loadList = () => {
+    console.log('1=currentCate',currentCate.value)
     page.query.categoryId = currentCate.value.id
-    queryGraphList(page).then(res =>{
+    queryElementList(page).then(res =>{
         if (res.success) {
             const newDataList = res.data.records
             if (newDataList.length > 0) {

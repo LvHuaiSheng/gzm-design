@@ -6,7 +6,8 @@ import {Ruler} from 'leafer-x-ruler'
 import {IWorkspacesService, WorkspacesService} from "@/views/Editor/core/workspaces/workspacesService";
 import {EventbusService, IEventbusService} from "@/views/Editor/core/eventbus/eventbusService";
 import {typeUtil} from "@/views/Editor/utils/utils";
-import {useAppStore} from "@/store";
+import {addCustomFonts} from "@/utils/fonts/utils";
+import {useAppStore, useFontStore} from "@/store";
 import {EditTool} from "app";
 import {toFixed} from "@/utils/math";
 
@@ -23,7 +24,7 @@ type ExtendedOption = {
 }
 
 type ObjectType =
-    // 官方元素tag
+// 官方元素tag
     'UI'
     | 'App'
     | 'Leafer'
@@ -105,7 +106,7 @@ export class MLeaferCanvas {
         zoom: ref(toFixed(this.getZoom(), 2)),
         _children: computed(() => this.contentFrame.children),
         // 是否启用辅助线
-        enabledRuler: computed(() => this.ruler.enabled),
+        enabledRuler: ref(true),
     }
 
     public backgroundColor?: string
@@ -120,7 +121,11 @@ export class MLeaferCanvas {
             editor: {},
         })
         this.wrapperEl = app.canvas.view
-        this.ruler = new Ruler(app)
+        this.ruler = new Ruler(app,{
+            enabled: this.ref.enabledRuler.value,
+            theme:'light',
+        })
+
         const contentLayer = app.tree
         contentLayer.fill = 'transparent'
         // TODO 2023-11-10 等待修复Leafer的fill的功能后放开下面注释启用背景填充
@@ -134,6 +139,9 @@ export class MLeaferCanvas {
         this.initWorkspace()
         this.initPageEditor()
         this.initWatch()
+        useFontStore().initFonts().then(value => {
+            addCustomFonts(value)
+        })
     }
 
     private initWatch() {
@@ -171,7 +179,7 @@ export class MLeaferCanvas {
             // 切换前保存当前工作区
             this.setPageJSON(oldId, this.contentFrame.toJSON())
             // page.scale = this.contentLayer.scale
-            this.contentFrame.removeAll(false)
+            this.contentFrame.clear()
         })
         this.eventbus.on('workspaceChangeAfter', ({newId}) => {
             // 切换后恢复当前工作区
@@ -218,7 +226,7 @@ export class MLeaferCanvas {
 
         this.app.editor.on(EditorEvent.SELECT, (arg: EditorEvent) => {
             this.setActiveObjectValue(arg.editor.element)
-
+            // this.ruler.forceRender()
         })
         // 子元素添加事件
         this.contentLayer.on(ChildEvent.ADD, (arg: ChildEvent) => {
@@ -243,10 +251,10 @@ export class MLeaferCanvas {
         let initFrameWH = true
         // resize事件
         this.contentLayer.on(ResizeEvent.RESIZE, (e2: ResizeEvent) => {
-            if (initFrameWH){
+            if (initFrameWH) {
                 // 第一次初始化画布时设置画布宽高为可视区域大小
-                this.contentFrame.width  = e2.width
-                this.contentFrame.height  = e2.height
+                this.contentFrame.width = e2.width
+                this.contentFrame.height = e2.height
             }
             this.eventbus.emit('layoutResizeEvent', e2)
             initFrameWH = false
@@ -299,9 +307,9 @@ export class MLeaferCanvas {
         if (!object) {
             object = this.contentFrame
         }
-        if (this.objectIsTypes(object,'QrCode')){
+        if (this.objectIsTypes(object, 'QrCode')) {
             this.app.editor.config.lockRatio = true
-        }else {
+        } else {
             this.app.editor.config.lockRatio = false
         }
         // setTimeout(()=>{
@@ -390,6 +398,7 @@ export class MLeaferCanvas {
         this.selectObject(_child)
         this.childrenEffect()
     }
+
     /**
      * 添加元素
      */
@@ -414,7 +423,7 @@ export class MLeaferCanvas {
      */
     public importJsonToCurrentPage(json: any, clearHistory?: boolean) {
         if (clearHistory) {
-            this.contentFrame.removeAll()
+            this.contentFrame.clear()
         }
         console.log('json', json)
         if (json) {
@@ -432,7 +441,7 @@ export class MLeaferCanvas {
      */
     public importPages(pages: any, clearHistory?: boolean) {
         if (clearHistory) {
-            this.contentFrame.removeAll()
+            this.contentFrame.clear()
         }
         console.log('pages', pages)
         // TODO 多页面数据导入

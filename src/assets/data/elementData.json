@@ -1,0 +1,694 @@
+{
+  "cate": [
+    {
+      "name": "箭头",
+      "id": 1,
+      "list":[
+        {
+          "id": 1,
+          "title": "标准",
+          "category": 1,
+          "json": {
+            "tag": "Arrow",
+            "x": 100,
+            "y": 100,
+            "stroke": "rgb(50,205,121)",
+            "endArrow": "arrow",
+            "strokeWidth": 5,
+            "draggable": true,
+            "editable": true
+          },
+          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/biaozhun.png"
+        },
+        {
+          "id": 1,
+          "title": "角度箭头",
+          "category": 1,
+          "json": {
+            "tag": "Arrow",
+            "x": 100,
+            "y": 100,
+            "stroke": "rgb(50,205,121)",
+            "strokeWidth": 5,
+            "draggable": true,
+            "editable": true
+          },
+          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/jdjt.png"
+        },
+        {
+          "id": 1,
+          "title": "单边角度箭头（左）",
+          "category": 1,
+          "json": {
+            "tag": "Arrow",
+            "x": 200,
+            "y": 100,
+            "stroke": "rgb(50,205,121)",
+            "endArrow": "angle-side",
+            "rotation": 180,
+            "strokeWidth": 5,
+            "draggable": true,
+            "editable": true
+          },
+          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/jdjt-left.png"
+        }
+      ]
+    },
+    {
+      "name": "圆环",
+      "id": 2,
+      "list": [
+        {
+          "id": 1,
+          "title": "实心圆",
+          "category": 1,
+          "json": {
+            "tag": "Ellipse",
+            "name": "图层1",
+            "x": 100,
+            "y": 100,
+            "width": 100,
+            "height": 100,
+            "rotation": 0,
+            "fill": "rgb(50,205,121)",
+            "draggable": true,
+            "editable": true
+          },
+          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/sxy.png"
+        },
+        {
+          "id": 2,
+          "title": "圆环",
+          "category": 2,
+          "json": {
+            "tag": "Ellipse",
+            "name": "图层1",
+            "x": 100,
+            "y": 100,
+            "width": 100,
+            "height": 100,
+            "rotation": 0,
+            "innerRadius": 0.5,
+            "fill": "rgb(50,205,121)",
+            "draggable": true,
+            "editable": true
+          },
+          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/yh.png"
+        },
+        {
+          "id": 3,
+          "title": "扇形圆环",
+          "category": 2,
+          "json": {
+            "tag": "Ellipse",
+            "name": "图层1",
+            "x": 100,
+            "y": 100,
+            "width": 100,
+            "height": 100,
+            "startAngle": -60,
+            "endAngle": 180,
+            "innerRadius": 0.5,
+            "fill": "rgb(50,205,121)",
+            "draggable": true,
+            "editable": true
+          },
+          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/sxyh.png"
+        }
+      ]
+    },
+    {
+      "name": "线条",
+      "id": 3,
+      "list": [
+        {
+          "id": 1,
+          "title": "横向",
+          "category": 3,
+          "json": {
+            "tag": "Line",
+            "name": "图层2",
+            "x": 100,
+            "y": 100,
+            "width": 100,
+            "draggable": true,
+            "editable": true,
+            "stroke": [
+              {
+                "type": "solid",
+                "color": "rgb(50,205,121)"
+              }
+            ],
+            "strokeWidth": 5
+          },
+          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/hengxian.png"
+        },
+        {
+          "id": 2,
+          "title": "竖向",
+          "category": 3,
+          "json": {
+            "tag": "Line",
+            "name": "图层2",
+            "x": 100,
+            "y": 100,
+            "width": 100,
+            "draggable": true,
+            "editable": true,
+            "stroke": [
+              {
+                "type": "solid",
+                "color": "rgb(50,205,121)"
+              }
+            ],
+            "strokeWidth": 5,
+            "rotation": 90
+          },
+          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/shuxian.png"
+        },
+        {
+          "id": 2,
+          "title": "倾斜",
+          "category": 3,
+          "json": {
+            "tag": "Line",
+            "name": "图层2",
+            "x": 100,
+            "y": 100,
+            "width": 100,
+            "draggable": true,
+            "editable": true,
+            "stroke": [
+              {
+                "type": "solid",
+                "color": "rgb(50,205,121)"
+              }
+            ],
+            "strokeWidth": 5,
+            "rotation": 45
+          },
+          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/xiexian.png"
+        }
+      ]
+    },
+    {
+      "name": "星标",
+      "id": 4,
+      "list": [
+        {
+          "id": 2,
+          "title": "车标",
+          "category": 4,
+          "json": {
+            "tag": "Star",
+            "corners": 3,
+            "innerRadius": 0.15,
+            "width": 100,
+            "height": 100,
+            "fill": "rgb(50,205,121)",
+            "draggable": true,
+            "editable": true
+          },
+          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/chebiao.png"
+        },
+        {
+          "id": 3,
+          "title": "星光",
+          "category": 4,
+          "json": {
+            "tag": "Star",
+            "corners": 4,
+            "innerRadius": 0.1,
+            "fill": "rgb(50,205,121)",
+            "draggable": true,
+            "editable": true
+          },
+          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/xingguang.png"
+        },
+        {
+          "id": 4,
+          "title": "五角星 ",
+          "category": 4,
+          "json": {
+            "tag": "Star",
+            "corners": 5,
+            "fill": "rgb(50,205,121)",
+            "draggable": true,
+            "editable": true
+          },
+          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/wujiaoxing.png"
+        }
+      ]
+    }
+  ],
+  "list": [
+    {
+      "id": 1,
+      "title": "标准",
+      "category": 1,
+      "json": {
+        "tag": "Arrow",
+        "x": 100,
+        "y": 100,
+        "stroke": "rgb(50,205,121)",
+        "endArrow": "arrow",
+        "strokeWidth": 5,
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/biaozhun.png"
+    },
+    {
+      "id": 1,
+      "title": "角度箭头",
+      "category": 1,
+      "json": {
+        "tag": "Arrow",
+        "x": 100,
+        "y": 100,
+        "stroke": "rgb(50,205,121)",
+        "strokeWidth": 5,
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/jdjt.png"
+    },
+    {
+      "id": 1,
+      "title": "单边角度箭头（左）",
+      "category": 1,
+      "json": {
+        "tag": "Arrow",
+        "x": 200,
+        "y": 100,
+        "stroke": "rgb(50,205,121)",
+        "endArrow": "angle-side",
+        "rotation": 180,
+        "strokeWidth": 5,
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/jdjt-left.png"
+    },
+    {
+      "id": 1,
+      "title": "单边角度箭头（右）",
+      "category": 1,
+      "json": {
+        "tag": "Arrow",
+        "x": 100,
+        "y": 100,
+        "stroke": "rgb(50,205,121)",
+        "endArrow": "angle-side",
+        "strokeWidth": 5,
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/jdjt-right.png"
+    },
+    {
+      "id": 1,
+      "title": "三角形箭头",
+      "category": 1,
+      "json": {
+        "tag": "Arrow",
+        "x": 100,
+        "y": 100,
+        "stroke": "rgb(50,205,121)",
+        "endArrow": "triangle",
+        "strokeWidth": 5,
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/sjxjt.png"
+    },
+    {
+      "id": 1,
+      "title": "反向三角形箭头",
+      "category": 1,
+      "json": {
+        "tag": "Arrow",
+        "x": 100,
+        "y": 100,
+        "stroke": "rgb(50,205,121)",
+        "endArrow": "triangle-flip",
+        "strokeWidth": 5,
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/fxsjxjt.png"
+    },
+    {
+      "id": 1,
+      "title": "圆形箭头",
+      "category": 1,
+      "json": {
+        "tag": "Arrow",
+        "x": 100,
+        "y": 100,
+        "stroke": "rgb(50,205,121)",
+        "endArrow": "circle",
+        "strokeWidth": 5,
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/yxjt.png"
+    },
+    {
+      "id": 1,
+      "title": "圆形箭头（线性）",
+      "category": 1,
+      "json": {
+        "tag": "Arrow",
+        "x": 100,
+        "y": 100,
+        "stroke": "rgb(50,205,121)",
+        "endArrow": "circle-line",
+        "strokeWidth": 5,
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/yxjt-line.png"
+    },
+    {
+      "id": 1,
+      "title": "方形箭头",
+      "category": 1,
+      "json": {
+        "tag": "Arrow",
+        "x": 100,
+        "y": 100,
+        "stroke": "rgb(50,205,121)",
+        "endArrow": "square",
+        "strokeWidth": 5,
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/fxjt.png"
+    },
+    {
+      "id": 1,
+      "title": "方形箭头（线性）",
+      "category": 1,
+      "json": {
+        "tag": "Arrow",
+        "x": 100,
+        "y": 100,
+        "stroke": "rgb(50,205,121)",
+        "endArrow": "square-line",
+        "strokeWidth": 5,
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/fxjt-line.png"
+    },
+    {
+      "id": 1,
+      "title": "菱形箭头",
+      "category": 1,
+      "json": {
+        "tag": "Arrow",
+        "x": 100,
+        "y": 100,
+        "stroke": "rgb(50,205,121)",
+        "endArrow": "diamond",
+        "strokeWidth": 5,
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/lxjt.png"
+    },
+    {
+      "id": 1,
+      "title": "菱形箭头（线性）",
+      "category": 1,
+      "json": {
+        "tag": "Arrow",
+        "x": 100,
+        "y": 100,
+        "stroke": "rgb(50,205,121)",
+        "endArrow": "diamond-line",
+        "strokeWidth": 5,
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/lxjt-line.png"
+    },
+    {
+      "id": 1,
+      "title": "标注箭头",
+      "category": 1,
+      "json": {
+        "tag": "Arrow",
+        "x": 100,
+        "y": 100,
+        "stroke": "rgb(50,205,121)",
+        "startArrow": "mark",
+        "endArrow": "mark",
+        "strokeWidth": 5,
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/bzjt.png"
+    },
+    {
+      "id": 1,
+      "title": "实心圆",
+      "category": 1,
+      "json": {
+        "tag": "Ellipse",
+        "name": "图层1",
+        "x": 100,
+        "y": 100,
+        "width": 100,
+        "height": 100,
+        "rotation": 0,
+        "fill": "rgb(50,205,121)",
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/sxy.png"
+    },
+    {
+      "id": 2,
+      "title": "圆环",
+      "category": 2,
+      "json": {
+        "tag": "Ellipse",
+        "name": "图层1",
+        "x": 100,
+        "y": 100,
+        "width": 100,
+        "height": 100,
+        "rotation": 0,
+        "innerRadius": 0.5,
+        "fill": "rgb(50,205,121)",
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/yh.png"
+    },
+    {
+      "id": 3,
+      "title": "扇形圆环",
+      "category": 2,
+      "json": {
+        "tag": "Ellipse",
+        "name": "图层1",
+        "x": 100,
+        "y": 100,
+        "width": 100,
+        "height": 100,
+        "startAngle": -60,
+        "endAngle": 180,
+        "innerRadius": 0.5,
+        "fill": "rgb(50,205,121)",
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/sxyh.png"
+    },
+    {
+      "id": 3,
+      "title": "扇形",
+      "category": 2,
+      "json": {
+        "tag": "Ellipse",
+        "name": "图层1",
+        "x": 100,
+        "y": 100,
+        "width": 100,
+        "height": 100,
+        "startAngle": -60,
+        "endAngle": 180,
+        "fill": "rgb(50,205,121)",
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/sx.png"
+    },
+    {
+      "id": 4,
+      "title": "弧线",
+      "category": 2,
+      "json": {
+        "tag": "Ellipse",
+        "name": "图层1",
+        "x": 100,
+        "y": 100,
+        "width": 100,
+        "height": 100,
+        "startAngle": -60,
+        "endAngle": 180,
+        "innerRadius": 1,
+        "stroke": "rgb(50,205,121)",
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/hx.png"
+    },
+    {
+      "id": 5,
+      "title": "椭圆",
+      "category": 2,
+      "json": {
+        "tag": "Ellipse",
+        "name": "图层1",
+        "x": 100,
+        "y": 100,
+        "width": 50,
+        "height": 100,
+        "fill": "rgb(50,205,121)",
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/ty.png"
+    },
+    {
+      "id": 1,
+      "title": "横向",
+      "category": 3,
+      "json": {
+        "tag": "Line",
+        "name": "图层2",
+        "x": 100,
+        "y": 100,
+        "width": 100,
+        "draggable": true,
+        "editable": true,
+        "stroke": [
+          {
+            "type": "solid",
+            "color": "rgb(50,205,121)"
+          }
+        ],
+        "strokeWidth": 5
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/hengxian.png"
+    },
+    {
+      "id": 2,
+      "title": "竖向",
+      "category": 3,
+      "json": {
+        "tag": "Line",
+        "name": "图层2",
+        "x": 100,
+        "y": 100,
+        "width": 100,
+        "draggable": true,
+        "editable": true,
+        "stroke": [
+          {
+            "type": "solid",
+            "color": "rgb(50,205,121)"
+          }
+        ],
+        "strokeWidth": 5,
+        "rotation": 90
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/shuxian.png"
+    },
+    {
+      "id": 2,
+      "title": "倾斜",
+      "category": 3,
+      "json": {
+        "tag": "Line",
+        "name": "图层2",
+        "x": 100,
+        "y": 100,
+        "width": 100,
+        "draggable": true,
+        "editable": true,
+        "stroke": [
+          {
+            "type": "solid",
+            "color": "rgb(50,205,121)"
+          }
+        ],
+        "strokeWidth": 5,
+        "rotation": 45
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/xiexian.png"
+    },
+    {
+      "id": 2,
+      "title": "车标",
+      "category": 4,
+      "json": {
+        "tag": "Star",
+        "corners": 3,
+        "innerRadius": 0.15,
+        "width": 100,
+        "height": 100,
+        "fill": "rgb(50,205,121)",
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/chebiao.png"
+    },
+    {
+      "id": 3,
+      "title": "星光",
+      "category": 4,
+      "json": {
+        "tag": "Star",
+        "corners": 4,
+        "innerRadius": 0.1,
+        "fill": "rgb(50,205,121)",
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/xingguang.png"
+    },
+    {
+      "id": 4,
+      "title": "五角星 ",
+      "category": 4,
+      "json": {
+        "tag": "Star",
+        "corners": 5,
+        "fill": "rgb(50,205,121)",
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/wujiaoxing.png"
+    },
+    {
+      "id": 5,
+      "title": "圆角星形",
+      "category": 4,
+      "json": {
+        "tag": "Star",
+        "innerRadius": 0.5,
+        "corners": 8,
+        "cornerRadius": 5,
+        "fill": "rgb(50,205,121)",
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/yuanjiaoxingxing.png"
+    }
+  ]
+}

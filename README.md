@@ -42,7 +42,7 @@ Tips: 🕙筹划中 🔲筹备中 🚧进行中 ✅已完成
         - ✅ 普通文本
         - ✅ 富文本
         - 🚧 效果/特效处理
-    - 🚧 字体加载
+    - ✅ 字体加载
     - 🕙 智能对象
 - ✅ JSON导入
 - ✅ 多页面支持
@@ -57,7 +57,7 @@ Tips: 🕙筹划中 🔲筹备中 🚧进行中 ✅已完成
 - ✅ 预览
 - ✅ 文件下载（JSON / PNG / JPG / WEBP）
     - ✅ 整个画布导出
-    - 🔲 指定元素导出
+    - ✅ 指定元素导出
 - ✅ 画布缩放、拖动模式
 - ✅ 边框描边（纯色、线性渐变、径向渐变、图片）
 - ✅ 填充（纯色、线性渐变、径向渐变、图片）
@@ -165,10 +165,17 @@ Request。
 
 ## 致谢
 
+特别感谢以下项目和贡献者：
+
 - <a href="https://github.com/liumingye/fabric" target="_blank">liumingye/fabric</a> 一款基于fabirc的高性能编辑器。
 - <a href="https://github.com/palxiao/poster-design" target="_blank">poster-design</a> 一款基于dom的在线海报图片设计器。
 - <a href="https://github.com/nihaojob/vue-fabric-editor" target="_blank">vue-fabric-editor</a> 一款基于fabric.js和Vue的图片编辑器。
 - <a href="https://github.com/wordshub/free-font" target="_blank">free-font</a> 可商用免费字体收录汇总
+
+
+<a href="https://github.com/LvHuaiSheng/gzm-design/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=LvHuaiSheng/gzm-design" />
+</a>
 
 ## 开源协议
 

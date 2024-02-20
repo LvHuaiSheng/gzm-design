@@ -70,7 +70,7 @@ export const MEditorHelper = {
         if (eleIndex > -1) {
             group.children.splice(eleIndex, 1);
         }
-        element.isMask = true
+        element.mask = true
         group.addAt(element, eleIndex)
         // group.children.unshift(element);
 
@@ -87,6 +87,6 @@ export const MEditorHelper = {
      * @param group
      */
     removeMask(element:IUI){
-        element.isMask = false
+        element.mask = false
     },
 }

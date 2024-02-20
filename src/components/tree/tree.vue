@@ -8,7 +8,7 @@
           :data="visibleTreeNodeList"
         >
           <template #item="{ item: node }">
-            <TreeNode :key="node.key" v-bind="node.treeNodeProps" />
+            <TreeNode :key="'k_'+node.key" v-bind="node.treeNodeProps" />
           </template>
         </VirtualList>
         <template v-else>
