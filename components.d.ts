@@ -83,7 +83,6 @@ declare module 'vue' {
     IconAlignCenter: typeof import('@arco-design/web-vue/es/icon')['IconAlignCenter']
     IconAlignLeft: typeof import('@arco-design/web-vue/es/icon')['IconAlignLeft']
     IconAlignRight: typeof import('@arco-design/web-vue/es/icon')['IconAlignRight']
-    IconArrowLeft: typeof import('@arco-design/web-vue/es/icon')['IconArrowLeft']
     IconClose: typeof import('@arco-design/web-vue/es/icon')['IconClose']
     IconCommand: typeof import('@arco-design/web-vue/es/icon')['IconCommand']
     IconCopy: typeof import('@arco-design/web-vue/es/icon')['IconCopy']
