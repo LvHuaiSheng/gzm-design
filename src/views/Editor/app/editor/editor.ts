@@ -19,7 +19,8 @@ import {ToolBar} from "@/views/Editor/app/editor/toolBar";
 import {IUndoRedoService, UndoRedoService} from '@/views/Editor/app/editor/undoRedo/undoRedoService'
 import { Clipboard } from '@/views/Editor/app/editor/clipboard'
 // import {GuideLines} from "@/views/Editor/app/editor/guideLines";
-import {GuideLines} from "@/views/Editor/app/editor/guideLines2";
+// import {GuideLines} from "@/views/Editor/app/editor/guideLines2";
+import {GuideLines} from "@/views/Editor/app/editor/guideLines3";
 
 export class EditorMain extends BaseApp {
     public service!: IInstantiationService

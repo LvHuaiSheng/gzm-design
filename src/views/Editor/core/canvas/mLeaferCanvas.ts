@@ -1,6 +1,6 @@
 import {createDecorator} from '@/views/Editor/core/instantiation/instantiation'
 import {ICanvasContext2D, ILeafer, IPointData, IUI, IUIInputData} from "@leafer-ui/interface";
-import {App, ChildEvent, Frame, Leafer, PropertyEvent, ResizeEvent, surfaceType} from "leafer-ui";
+import {App, ChildEvent, Frame, Leafer, PropertyEvent, RenderEvent, ResizeEvent, surfaceType} from "leafer-ui";
 import '@leafer-in/editor'
 import {Ruler} from 'leafer-x-ruler'
 import {IWorkspacesService, WorkspacesService} from "@/views/Editor/core/workspaces/workspacesService";
@@ -119,6 +119,9 @@ export class MLeaferCanvas {
             width: 800,
             height: 800,
             editor: {},
+        })
+        app.tree.on(RenderEvent.AFTER,arg => {
+            console.log('1111111111')
         })
         this.wrapperEl = app.canvas.view
         this.ruler = new Ruler(app,{
@@ -382,7 +385,7 @@ export class MLeaferCanvas {
      * 取消选中元素
      */
     public discardActiveObject() {
-        this.app.editor.target = null
+        this.app.editor.target = []
         this.setActiveObjectValue(this.contentFrame)
     }
 

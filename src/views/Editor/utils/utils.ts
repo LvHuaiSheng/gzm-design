@@ -1,5 +1,5 @@
 import {Frame, Group, Leafer} from "leafer-ui";
-import {IUI} from "@leafer-ui/interface";
+import {ILeaf, IUI} from "@leafer-ui/interface";
 import {BOTTOM_CANVAS_NAME} from "@/views/Editor/utils/constants";
 
 /**
@@ -36,14 +36,14 @@ export const typeUtil = {
      * 是否是最底层画布层
      * @param layer
      */
-    isBottomCanvas:(layer:IUI)=>{
+    isBottomCanvas:(layer:IUI|ILeaf)=>{
         return layer.name === BOTTOM_CANVAS_NAME
     },
     /**
      * 是否是虚拟元素
      * @param layer
      */
-    isVirtualElement:(layer:IUI)=>{
+    isVirtualElement:(layer:IUI|ILeaf)=>{
         return !isDefined(layer.app)
     },
 
