@@ -23,7 +23,7 @@
     "fontfaceobserver": "^2.3.0",
     "jsbarcode": "^3.11.6",
     "leafer-ui": "1.0.0-rc.17",
-    "leafer-x-ruler": "^1.0.3",
+    "leafer-x-ruler": "^1.0.6",
     "lodash": "^4.17.21",
     "mousetrap": "^1.6.5",
     "number-precision": "^1.6.0",

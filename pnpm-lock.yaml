@@ -48,8 +48,8 @@ dependencies:
     specifier: 1.0.0-rc.17
     version: 1.0.0-rc.17
   leafer-x-ruler:
-    specifier: ^1.0.3
-    version: 1.0.3
+    specifier: ^1.0.6
+    version: 1.0.6
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
@@ -2396,8 +2396,8 @@ packages:
       '@leafer-ui/web': 1.0.0-rc.17
     dev: false
 
-  /leafer-x-ruler@1.0.3:
-    resolution: {integrity: sha512-h9COCKclF+tHqEe6NYjP920gtszODp7g9vVB5eex8QkZsu6Qv5cVWi6M/97c3uSi/y8EvK9qpG62hrTT1yI1eg==}
+  /leafer-x-ruler@1.0.6:
+    resolution: {integrity: sha512-0SzT6RiLHmaCgS9Rg2v8fd/dUT10kgnIbMe2NpeUm+mgmkoELTq7CuXkv24BCQpo/u9YNEjSL6dyDv/Oxs84LA==}
     dependencies:
       '@leafer-in/editor': 1.0.0-rc.17
       '@leafer-ui/core': 1.0.0-rc.17
