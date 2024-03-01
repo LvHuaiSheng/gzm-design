@@ -120,9 +120,6 @@ export class MLeaferCanvas {
             height: 800,
             editor: {},
         })
-        app.tree.on(RenderEvent.AFTER,arg => {
-            console.log('1111111111')
-        })
         this.wrapperEl = app.canvas.view
         this.ruler = new Ruler(app,{
             enabled: this.ref.enabledRuler.value,

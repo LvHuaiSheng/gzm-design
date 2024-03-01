@@ -66,8 +66,10 @@ export class GuideLines extends Disposable {
     private ignoreObjTypes: IgnoreObjTypes = []
     private pickObjTypes: IgnoreObjTypes = []
     private dirty = false
-    private isSnap = false
     private canvasLeafer: ILeafer
+    private moveX: number = 0
+    private moveY: number = 0
+    private moveing: boolean = false
 
     constructor(@IMLeaferCanvas private readonly canvas: MLeaferCanvas) {
         super()
@@ -77,24 +79,44 @@ export class GuideLines extends Disposable {
 
 
         this.canvas.app.tree.on(RenderEvent.BEFORE, this.clearGuideline.bind(this))
-        this.canvas.app.tree.on(RenderEvent.AFTER, this.drawGuideLines.bind(this))
+        this.canvas.app.tree.on(RenderEvent.END, arg => {
+            this.drawGuideLines(arg)
+        })
 
         // this.canvas.app.editor.on(DragEvent.DRAG, this.objectMoving.bind(this))
         this.canvas.app.editor.on(DragEvent.DRAG, (arg: DragEvent) => {
-            if (this.canvas.app.editor.single){
-                this.objectMoving(this.canvas.app.editor.element)
+            if (arg.moveX <= this.aligningLineMargin + 1){
+                this.moveX += arg.moveX
             }else {
-                this.objectMoving( this.canvas.activeObject.value)
+                this.moveX = 0
             }
-        })
+            if (arg.moveY <= this.aligningLineMargin + 1){
+                this.moveY += arg.moveY
+            }else {
+                this.moveY = 0
+            }
+            // if (!this.moveing){
+                if (this.canvas.app.editor.list.length>1){
+                    this.objectMoving(this.canvas.app.editor.element)
+                }else {
+                    this.objectMoving( this.canvas.activeObject.value)
+                }
+            //     this.moveing = true
+            // }else {
+            //     setTimeout(()=>{
+            //         this.moveing = false
+            //     },1000)
+            // }
 
-        this.canvas.app.editor.on(DragEvent.START, (arg: DragEvent) => {
-            // 脱离吸附，将坐标增加或减少10
-
         })
+        // this.canvas.app.editor.on(DragEvent.START, (arg: DragEvent) => {
+        //     // 脱离吸附，将坐标增加或减少10
+        // })
         this.canvas.app.editor.on(DragEvent.END, (arg: DragEvent) => {
             // 手动触发RenderEvent.END事件，来清除吸附线
             this.canvas.app.tree.emit(RenderEvent.END, { renderBounds: this.canvas.app.tree.canvas.bounds })
+            this.moveX = 0
+            this.moveY = 0
             mouseUp()
         })
 
@@ -107,22 +129,16 @@ export class GuideLines extends Disposable {
     }
 
     private objectMoving(target: IUI) {
+        console.log('objectMoving',new Date().getTime())
         this.clearLinesMeta()
-        // const transform = this.canvas.app.tree.transform // 获取当前变换对象
-        const { worldTransform: transform } = this.canvas.app.tree
-        if (!transform) return // 如果没有变换对象，则返回
 
         this.activeObj = target
-        // const movingCoords = this.getObjDraggingObjCoords(this.activeObj)
-
         const activeObjects = this.canvas.getActiveObjects()
 
         const canvasObjects: ILeaf[] = []
         const add = (group: IUI|ILeaf) => {
-            // console.log('group.children=',group.children)
             const objects = group.children.filter((obj) => {
                 if (this.ignoreObjTypes.length) {
-                    console.log('obj=',obj)
                     return !this.ignoreObjTypes.some((item) => obj.innerId === item.innerId)
                 }
                 if (this.pickObjTypes.length) {
@@ -130,37 +146,33 @@ export class GuideLines extends Disposable {
                 }
                 if (
                     // 排除 自己 和 激活选区内的元素
-                    activeObjects.includes(obj)
+                    // activeObjects.includes(obj)
+                    this.activeObj.innerId == obj.innerId
                 ) {
                     return false
                 }
 
                 // 元素为组，把组内元素加入，同时排除组本身
-                // if (util.isActiveSelection(obj)) {
-                //     add(obj)
-                //     return false
-                // }
-                // 元素为组，把组内元素加入，同时排除组本身
-                // if (util.isCollection(obj) && target.group && obj === target.group) {
-                //     add(obj)
-                //     return false
-                // }
-                // 元素为组，把组内元素加入，同时排除组本身
                 if (typeUtil.isActiveSelection(obj)) {
                     add(obj)
                     return false
                 }
+                // 元素为组，把组内元素加入，同时排除组本身
+                // if (typeUtil.) {
+                //     add(obj)
+                //     return false
+                // }
                 return true
             })
             canvasObjects.push(...objects)
         }
         if (typeUtil.isActiveSelection(target)) { // 如果目标对象是激活选区
-            console.log('target=',target)
             const needAddParent = new Set<ILeaf>() // 创建一个存储需要添加的父级对象的 Set
             target.children.forEach(obj => { // 遍历激活选区内的每个对象
                 const parent = obj.parent // 获取对象的父级对象
                 needAddParent.add(parent) // 将父级对象添加到 needAddParent Set 中
             })
+
             needAddParent.forEach((parent:ILeaf) => {
                 if (!typeUtil.isBottomCanvas(parent)) { // 如果父级对象是原生 Group 类型
                     canvasObjects.push(parent) // 将父级对象添加到 canvasObjects 数组中
@@ -204,10 +216,9 @@ export class GuideLines extends Disposable {
     }
 
     private getObjDraggingObjCoords(activeObject: IUI|ILeaf): ACoordsAppendCenter {
-        const coords = this.getCoords(activeObject)
-        console.log('this.getCenterPoint(activeObject)=',this.getCenterPoint(activeObject))
+        const coords = this.getCoords(activeObject,true)
         const centerPoint = this.calcCenterPointByACoords(coords).subtract(
-            this.getCenterPoint(activeObject),
+            this.getCenterPoint(activeObject,true),
         )
         const newCoords = Keys(coords).map((key) => coords[key].subtract(centerPoint))
         return {
@@ -215,7 +226,7 @@ export class GuideLines extends Disposable {
             tr: newCoords[1],
             br: newCoords[2],
             bl: newCoords[3],
-            c: this.getCenterPoint(activeObject),
+            c: this.getCenterPoint(activeObject,true),
         }
     }
 
@@ -251,8 +262,19 @@ export class GuideLines extends Disposable {
         )
     }
 
-    private getCoords(obj: IUI|ILeaf) {
+    private getCoords(obj: IUI|ILeaf,moveObj:boolean = false) {
         const [tl, tr, br, bl] = obj.getLayoutPoints('box',obj.leafer)
+        if (moveObj){
+            tl.x += this.moveX
+            tl.y += this.moveY
+            tr.x += this.moveX
+            tr.y += this.moveY
+            br.x += this.moveX
+            br.y += this.moveY
+            bl.x += this.moveX
+            bl.y += this.moveY
+        }
+        // obj.getLayoutBounds("box",obj.parent)
         const tlW = this.canvasLeafer.getWorldPoint( new Point(tl.x,tl.y))
         const trW = this.canvasLeafer.getWorldPoint( new Point(tr.x,tr.y))
         const brW = this.canvasLeafer.getWorldPoint( new Point(br.x,br.y))
@@ -276,7 +298,6 @@ export class GuideLines extends Disposable {
 
     private traversAllObjects(activeObject: IUI|ILeaf, canvasObjects: ILeaf[]) {
         const objCoordsByMovingDistance = this.getObjDraggingObjCoords(activeObject)
-        console.log('objCoordsByMovingDistance=',objCoordsByMovingDistance)
         const snapXPoints: Set<number> = new Set()
         const snapYPoints: Set<number> = new Set()
 
@@ -309,10 +330,9 @@ export class GuideLines extends Disposable {
                     if (this.isInRange(objCoordsByMovingDistance[activeObjPoint].y, objCoords[objPoint].y)) {
                         const y = objCoords[objPoint].y
                         const offset = objCoordsByMovingDistance[activeObjPoint].y - y
-                        console.log('objCoords=',objCoords)
-                        console.log('objCoordsByMovingDistance[activeObjPoint].y=',objCoordsByMovingDistance[activeObjPoint])
-                        console.log('offsetX=',offset)
+
                         snapYPoints.add(objCoordsByMovingDistance.tl.y - offset)
+
 
                         const aCoords = this.getCoords(activeObject)
                         const { x1, x2 } = calcHorizontalLineCoords(objPoint, {
@@ -344,10 +364,11 @@ export class GuideLines extends Disposable {
                 }
 
                 Keys(newCoords).forEach((objPoint) => {
+                    console.log('objCoordsByMovingDistance=',objCoordsByMovingDistance)
+                    console.log('objCoords=',objCoords)
                     if (this.isInRange(objCoordsByMovingDistance[activeObjPoint].x, objCoords[objPoint].x)) {
                         const x = objCoords[objPoint].x
-
-                        const offset = objCoordsByMovingDistance[activeObjPoint].x - x
+                        const offset = objCoordsByMovingDistance[activeObjPoint].x- x
                         // TODO 这里有个问题，x一直会被恢复到移动前的问题
                         snapXPoints.add(objCoordsByMovingDistance.tl.x - offset)
 
@@ -374,8 +395,8 @@ export class GuideLines extends Disposable {
      * @param obj
      * @private
      */
-    private getCenterPoint(obj:IUI|ILeaf):XY{
-        const coords = this.getCoords(obj)
+    private getCenterPoint(obj:IUI|ILeaf,moveObj:boolean = false):XY{
+        const coords = this.getCoords(obj,moveObj)
         var width = coords.br.x - coords.tl.x;
         var height = coords.br.y - coords.tl.y;
         var centerX = coords.tl.x + width / 2;
@@ -402,7 +423,6 @@ export class GuideLines extends Disposable {
         snapYPoints: Set<number>
     }) {
         if (snapXPoints.size === 0 && snapYPoints.size === 0){
-            this.isSnap = false
             return
         }
 
@@ -418,14 +438,28 @@ export class GuideLines extends Disposable {
 
             return sortedList[0]
         }
-        console.log('snapXPoints=',snapXPoints)
-        console.log('snapYPoints=',snapYPoints)
         // auto snap nearest object, record all the snap points, and then find the nearest one
-        const point = this.canvasLeafer.getWorldPoint(new Point(activeObject.x,activeObject.y))
+        const point = this.canvasLeafer.getWorldPoint(new Point(activeObject.x,activeObject.y),activeObject.parent)
         const x = sortPoints(snapXPoints, draggingObjCoords.tl.x) - point.x
         const y = sortPoints(snapYPoints, draggingObjCoords.tl.y) - point.y
+
+        // const point2 = activeObject.getBounds('box',activeObject.parent)
         this.canvas.app.editor.move(x, y)
-        this.isSnap = true
+        this.moveX = 0
+        this.moveY = 0
+
+
+        // const point = this.canvasLeafer.getWorldPoint(new Point(activeObject.x,activeObject.y))
+        // const coords = this.getCenterPoint(activeObject)
+        // let x = sortPoints(snapXPoints, draggingObjCoords.c.x)
+        // let y = sortPoints(snapYPoints, draggingObjCoords.c.y)
+        // x = x - (activeObject.width / 2)
+        // y = y - (activeObject.height / 2)
+        // activeObject.x = x
+        // activeObject.y = y
+
+        // x = x - (activeObject.width / 2) - point.x
+        // y = y - (activeObject.height / 2) - point.y
     }
 
     private drawSign(x: number, y: number) {
