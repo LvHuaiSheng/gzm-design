@@ -16,7 +16,7 @@ import {runWhenIdle} from '@/views/Editor/utils/async'
 import {IMLeaferCanvas, MLeaferCanvas} from "@/views/Editor/core/canvas/mLeaferCanvas";
 import {Zoom} from "@/views/Editor/app/editor/zoom";
 import {ToolBar} from "@/views/Editor/app/editor/toolBar";
-import {IUndoRedoService, UndoRedoService} from '@/views/Editor/app/editor/undoRedo/undoRedoService'
+import { IEditorUndoRedoService, EditorUndoRedoService } from '@/views/Editor/app/editor/undoRedo/undoRedoService'
 import { Clipboard } from '@/views/Editor/app/editor/clipboard'
 export class EditorMain extends BaseApp {
     public service!: IInstantiationService
@@ -91,7 +91,7 @@ export class EditorMain extends BaseApp {
         define(IEventbusService, EventbusService)
         define(IWorkspacesService, WorkspacesService)
         define(IMLeaferCanvas, MLeaferCanvas)
-        define(IUndoRedoService, UndoRedoService)
+        define(IEditorUndoRedoService, EditorUndoRedoService)
         define(IKeybindingService, KeybindingService)
 
         return this.instantiationService.createChild(services)
@@ -103,7 +103,7 @@ export class EditorMain extends BaseApp {
             super.dispose()
             this.service.invokeFunction((accessor) => {
                 accessor.get(IKeybindingService).reset()
-                accessor.get(IUndoRedoService).reset()
+                accessor.get(IEditorUndoRedoService).reset()
                 accessor.get(IWorkspacesService).dispose()
                 accessor.get(IEventbusService).all.clear()
             })

@@ -2,7 +2,7 @@ import {MLeaferCanvas, IMLeaferCanvas} from '@/views/Editor/core/canvas/mLeaferC
 import {Disposable} from '@/views/Editor/utils/lifecycle'
 import {IKeybindingService, KeybindingService} from '@/views/Editor/core/keybinding/keybindingService'
 import {ClipboardService, IClipboardService} from '@/views/Editor/core/clipboard/clipboardService'
-import {IUndoRedoService, UndoRedoService} from '@/views/Editor/app/editor/undoRedo/undoRedoService'
+import { IEditorUndoRedoService, EditorUndoRedoService } from '@/views/Editor/app/editor/undoRedo/undoRedoService'
 import {clamp, clone} from 'lodash'
 import {appInstance} from '@/views/Editor/app'
 import {PointerEvent, Point, Group, LeafList} from 'leafer-ui'
@@ -22,7 +22,7 @@ export class Clipboard extends Disposable {
         @IMLeaferCanvas private readonly canvas: MLeaferCanvas,
         @IKeybindingService readonly keybinding: KeybindingService,
         @IClipboardService private readonly clipboard: ClipboardService,
-        @IUndoRedoService private readonly undoRedo: UndoRedoService,
+        @IEditorUndoRedoService private readonly undoRedo: EditorUndoRedoService,
     ) {
         super()
 

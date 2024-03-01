@@ -22,7 +22,7 @@ export const useActiveObjectModel = <K extends keyof ILeaf, T = ILeaf[K] | undef
     onSwipe: (value: T) => void
     onChange: (value: T) => void
 }> => {
-    const {editor} = useEditor()
+    const {editor,undoRedo} = useEditor()
     const modelValue = ref()
 
     // 这里暂时重新定义选择元素来解决在编辑完上一个组件后在输入框不失焦的情况下立即点击下一个组件会导致新组件的被修改的问题
@@ -38,6 +38,7 @@ export const useActiveObjectModel = <K extends keyof ILeaf, T = ILeaf[K] | undef
         activeObject = editor.activeObject.value
         // 锁定修改
         lockChange = true
+        undoRedo.disabledPropertyChangeWatch()
         let value
         let orgValue = activeObject.proxyData[key]
         if ((!isDefined(orgValue) || orgValue === 0) && defaultValue) {
@@ -102,6 +103,7 @@ export const useActiveObjectModel = <K extends keyof ILeaf, T = ILeaf[K] | undef
             value = orgValue
         }
         modelValue.value = isNumber(value) ? toFixed(value) : value
+        undoRedo.enablePropertyChangeWatch()
         requestAnimationFrame(() => (
             lockChange = false
         ))

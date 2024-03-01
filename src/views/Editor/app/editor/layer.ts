@@ -7,14 +7,14 @@ import {keybindMap} from "@/views/Editor/utils/constants";
 import {flipHorizontally, flipVertically, getParentLayer} from "@/views/Editor/utils/utils";
 import {IUI} from "@leafer-ui/interface";
 // import { EventbusService, IEventbusService } from '@/views/Editor/core/eventbus/eventbusService'
-import { IUndoRedoService, UndoRedoService } from '@/views/Editor/app/editor/undoRedo/undoRedoService'
+import { IEditorUndoRedoService, EditorUndoRedoService } from '@/views/Editor/app/editor/undoRedo/undoRedoService'
 
 export class Layer extends Disposable {
     constructor(
         @IMLeaferCanvas private readonly canvas: MLeaferCanvas,
         @IKeybindingService private readonly keybinding: KeybindingService,
         @IEventbusService readonly eventbus: EventbusService,
-        @IUndoRedoService private readonly undoRedo: UndoRedoService,
+        @IEditorUndoRedoService private readonly undoRedo: EditorUndoRedoService,
     ) {
         super()
         console.log('canvas.contentLayer=', canvas)

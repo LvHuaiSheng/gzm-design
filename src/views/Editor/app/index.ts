@@ -1,5 +1,5 @@
 // import { IFabricCanvas } from '@/views/Editor/core/canvas/fabricCanvas'
-import { IUndoRedoService } from '@/views/Editor/app/editor/undoRedo/undoRedoService'
+import { IEditorUndoRedoService } from '@/views/Editor/app/editor/undoRedo/undoRedoService'
 import { IKeybindingService } from '@/views/Editor/core/keybinding/keybindingService'
 // import { IEventbusService } from '@/views/Editor/core/eventbus/eventbusService'
 // import { IWorkspacesService } from '@/views/Editor/core/workspaces/workspacesService'
@@ -26,7 +26,7 @@ export const useEditor = () => {
       editor: accessor.get(IMLeaferCanvas),
       canvas: accessor.get(IMLeaferCanvas),
       keybinding: accessor.get(IKeybindingService),
-      undoRedo: accessor.get(IUndoRedoService),
+      undoRedo: accessor.get(IEditorUndoRedoService),
       event: accessor.get(IEventbusService),
       workspaces: accessor.get(IWorkspacesService),
     }

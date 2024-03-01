@@ -1,85 +1,61 @@
-import { createDecorator } from '@/views/Editor/core/instantiation/instantiation'
-import { LinkedList } from '@/utils/linkedList'
+import {createDecorator} from '@/views/Editor/core/instantiation/instantiation'
+import {InstantiationType, registerSingleton} from '@/views/Editor/core/instantiation/extensions'
+import {UndoRedoCommand} from '@/views/Editor/core/undoRedo/commands'
 
 export const IUndoRedoService = createDecorator<UndoRedoService>('undoRedoService')
 
-class UndoQueue {
-  private inner_ = new LinkedList<any>()
-  private size_ = 50
-
-  pop() {
-    return this.inner_.pop()
-  }
-
-  push(e: any) {
-    this.inner_.push(e)
-    while (this.length > this.size_) {
-      this.inner_.shift()
-    }
-  }
-
-  get length(): number {
-    return this.inner_.size
-  }
-}
-
 export class UndoRedoService {
-  declare readonly _serviceBrand: undefined
+    declare readonly _serviceBrand: undefined
+    private _stack: UndoRedoCommand[] = []
+    private _stackIndex = -1
+    public readonly canUndo = ref(false)
+    public readonly canRedo = ref(false)
 
-  private undoStates: UndoQueue = new UndoQueue()
-  private redoStates: UndoQueue = new UndoQueue()
-  private isUndoing = false
-  public isTracking = true
+    constructor() {
+        this.updateCanUndoRedo()
+        // 使用Proxy对象来创建一个代理，在设置_stackIndex属性时手动触发更新canUndo和canRedo状态。这样就可以确保在_stackIndex改变时，能够更新对应的状态
+        return new Proxy(this, {
+            set: (target, prop, value) => {
+                Reflect.set(target, prop, value)
+                if (prop === '_stackIndex') {
+                    this.updateCanUndoRedo()
+                }
+                return true
+            }
+        })
+    }
 
-  constructor() {
-    this.push = this.push.bind(this)
-  }
+    private updateCanUndoRedo(): void {
+        this.canUndo.value = this._stackIndex > 0
+        this.canRedo.value = this._stackIndex < this._stack.length && this._stack.length > 0
+    }
 
-  pause() {
-    this.isTracking = false
-  }
+    public clear(): void {
+        this._stack = []
+        this._stackIndex = -1
+    }
 
-  resume() {
-    this.isTracking = true
-  }
+    public add(cmd: UndoRedoCommand): void {
+        if (this.canRedo.value) {
+            this._stack.splice(this._stackIndex, this._stack.length)
+        }
+        this._stack.push(cmd)
+        this._stackIndex = this._stack.length
+    }
 
-  push(state: any) {
-    if (!this.isTracking) return
-    this.undoStates.push(state)
-    this.redoStates = new UndoQueue()
-  }
+    public undo(): void {
+        if (this.canUndo.value) {
+            this._stackIndex--
+            this._stack[this._stackIndex].undo()
+        }
+    }
 
-  undo(redoState: any) {
-    if (this.isUndoing) return
-    if (!this.canUndo) throw new Error('Nothing to undo')
-    this.isUndoing = true
-    const state = this.undoStates.pop()
-    this.redoStates.push(redoState)
-    this.isUndoing = false
-    return state
-  }
-
-  redo(undoState: any) {
-    if (this.isUndoing) return
-    if (!this.canRedo) throw new Error('Nothing to redo')
-    this.isUndoing = true
-    const state = this.redoStates.pop()
-    this.undoStates.push(undoState)
-    this.isUndoing = false
-    return state
-  }
-
-  reset() {
-    this.undoStates = new UndoQueue()
-    this.redoStates = new UndoQueue()
-    this.isUndoing = false
-  }
-
-  get canUndo(): boolean {
-    return !!this.undoStates.length
-  }
-
-  get canRedo(): boolean {
-    return !!this.redoStates.length
-  }
+    public redo(): void {
+        if (this.canRedo.value) {
+            this._stack[this._stackIndex].redo()
+            this._stackIndex++
+        }
+    }
 }
+
+registerSingleton(IUndoRedoService, UndoRedoService, InstantiationType.Eager)
