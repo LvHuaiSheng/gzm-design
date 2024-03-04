@@ -411,53 +411,53 @@ const onInputChange = (value: string, e: Event) => {
 
 <template>
     <div
-        ref="splitRef"
-        class="h-[calc(100vh-90px)]">
+            ref="splitRef"
+            class="h-[calc(100vh-90px)]">
         <div style="padding:0 10px">
             <a-input-search
-                placeholder="Search..."
-                style="margin-bottom: 8px;"
-                v-model="searchKey"
+                    placeholder="Search..."
+                    style="margin-bottom: 8px;"
+                    v-model="searchKey"
             />
         </div>
         <Tree
-            ref="treeRef"
-            size="small"
-            blockNode
-            draggable
-            :selected-keys="selectedkeys"
-            v-model:expanded-keys="expandedKeys"
-            :animation="false"
-            :multiple="multiple"
-            :data="treeData"
-            :allowDrop="allowDrop"
-            :virtualListProps="{
+                ref="treeRef"
+                size="small"
+                blockNode
+                draggable
+                :selected-keys="selectedkeys"
+                v-model:expanded-keys="expandedKeys"
+                :animation="false"
+                :multiple="multiple"
+                :data="treeData"
+                :allowDrop="allowDrop"
+                :virtualListProps="{
           height: treeHeight,
           fixedSize: true,
           buffer: 30
         }"
-            @drop="onDrop"
-            @select="onSelect"
-            @node-contextmenu="showContextMenu"
-            @node-dbclick="onNodeDbclick"
+                @drop="onDrop"
+                @select="onSelect"
+                @node-contextmenu="showContextMenu"
+                @node-dbclick="onNodeDbclick"
         >
             <template #title="nodeData">
                 <div class="flex items-center">
                     <div v-html="nodeData.getSvg()" class="mr2 mt3px"></div>
                     <a-input
-                        v-if="isDefined(nodeData.key) && renameNodeKey === nodeData.key"
-                        class="bg-transparent! border-none! px0!"
-                        size="mini"
-                        v-model="nodeData.name"
-                        :default-value="nodeData.name"
-                        @blur="renameNodeKey = undefined"
-                        @vue:mounted="onInputMounted"
-                        @press-enter="renameNodeKey = undefined"
+                            v-if="isDefined(nodeData.key) && renameNodeKey === nodeData.key"
+                            class="bg-transparent! border-none! px0!"
+                            size="mini"
+                            v-model="nodeData.name"
+                            :default-value="nodeData.name"
+                            @blur="renameNodeKey = undefined"
+                            @vue:mounted="onInputMounted"
+                            @press-enter="renameNodeKey = undefined"
                     />
                     <span
-                        v-else
-                        class="text-truncate"
-                        :class="{
+                            v-else
+                            class="text-truncate"
+                            :class="{
                 'op-50': !nodeData.visible,
               }"
                     >
@@ -467,19 +467,19 @@ const onInputChange = (value: string, e: Event) => {
             </template>
             <template #extra="nodeData">
                 <div
-                    v-if="renameNodeKey !== nodeData.key"
-                    class="extra pr4px"
-                    :class="{
+                        v-if="renameNodeKey !== nodeData.key"
+                        class="extra pr4px"
+                        :class="{
               show:  !nodeData.visible || nodeData.locked
             }"
                 >
                     <a-button
-                        :class="{
+                            :class="{
                 show: !nodeData.locked,
               }"
-                        size="mini"
-                        class="icon-btn"
-                        @click="lockClick($event, nodeData)"
+                            size="mini"
+                            class="icon-btn"
+                            @click="lockClick($event, nodeData)"
                     >
                         <template #icon>
                             <icon-unlock v-if="!nodeData.locked"/>
@@ -487,12 +487,12 @@ const onInputChange = (value: string, e: Event) => {
                         </template>
                     </a-button>
                     <a-button
-                        :class="{
+                            :class="{
                 show: nodeData.visible,
               }"
-                        size="mini"
-                        class="icon-btn"
-                        @click="visibleClick($event, nodeData)"
+                            size="mini"
+                            class="icon-btn"
+                            @click="visibleClick($event, nodeData)"
                     >
                         <template #icon>
                             <icon-eye v-if="nodeData.visible"/>

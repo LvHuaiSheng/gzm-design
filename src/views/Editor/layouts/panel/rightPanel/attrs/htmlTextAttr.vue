@@ -18,7 +18,6 @@ const showEdit = () => {
 };
 const handleOk = () => {
     visible.value = false;
-    // TODO 2023-12-11 已反馈给官方富文本不能双向绑定数据的问题，等待修复
     textValue.value.onChange(newTextVal.value)
 };
 const handleCancel = () => {

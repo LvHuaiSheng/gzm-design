@@ -140,6 +140,7 @@ const importPsdFile = () => {
                     canvas.contentFrame.clear()
                     canvas.contentFrame.width = psd.width
                     canvas.contentFrame.height = psd.height
+                    canvas.zoomToFit()
                     console.log('layers=', layers)
                     await parseLayers(layers)
                     processTitle.value = '导入完成'

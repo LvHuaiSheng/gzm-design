@@ -1,7 +1,9 @@
 import {createDecorator} from '@/views/Editor/core/instantiation/instantiation'
-import {ICanvasContext2D, ILeafer, IPointData, IUI, IUIInputData} from "@leafer-ui/interface";
+import {ICanvasContext2D, ILeafer, IPointData, IUI, IUIInputData, IZoomType} from "@leafer-ui/interface";
 import {App, ChildEvent, Frame, Leafer, PropertyEvent, ResizeEvent, surfaceType} from "leafer-ui";
 import '@leafer-in/editor'
+import '@leafer-in/view'
+import { ScrollBar } from '@leafer-in/scroll'
 import {Ruler} from 'leafer-x-ruler'
 import {IWorkspacesService, WorkspacesService} from "@/views/Editor/core/workspaces/workspacesService";
 import {EventbusService, IEventbusService} from "@/views/Editor/core/eventbus/eventbusService";
@@ -120,12 +122,13 @@ export class MLeaferCanvas {
             height: 800,
             editor: {},
         })
+        // 启用滚动条
+        // new ScrollBar(app)
         this.wrapperEl = app.canvas.view
         this.ruler = new Ruler(app,{
             enabled: this.ref.enabledRuler.value,
             theme:'light',
         })
-
         const contentLayer = app.tree
         contentLayer.fill = 'transparent'
         // TODO 2023-11-10 等待修复Leafer的fill的功能后放开下面注释启用背景填充
@@ -255,6 +258,7 @@ export class MLeaferCanvas {
                 // 第一次初始化画布时设置画布宽高为可视区域大小
                 this.contentFrame.width = e2.width
                 this.contentFrame.height = e2.height
+                this.app.tree.zoom('fit')
             }
             this.eventbus.emit('layoutResizeEvent', e2)
             initFrameWH = false
@@ -318,13 +322,6 @@ export class MLeaferCanvas {
     }
 
     public setActiveObjects(objects: IUI[] | undefined) {
-        // if (objects){
-        //     this.selectObject(objects[0])
-        //     // TODO 处理元素多选（等待官方支持）
-        //     // for (let i = 0; i < objects.length; i++) {
-        //     //     this.selectObject(objects[i])
-        //     // }
-        // }
         this.app.editor.target = objects
     }
 
@@ -432,6 +429,7 @@ export class MLeaferCanvas {
             useAppStore().activeTool = 'select'
             this.childrenEffect()
         }
+        this.zoomToFit()
     }
 
     /**
@@ -455,14 +453,13 @@ export class MLeaferCanvas {
         return this.activeObject.value
     }
 
-    public zoomToInnerPoint(zoom: number) {
+    public zoomToInnerPoint(zoom?: number) {
         this.ref.zoom.value = zoom
-
-        this.contentLayer?.interaction?.zoom({
-            x: this.contentLayer.x,
-            y: this.contentLayer.y,
-            scale: zoom / this.contentLayer.scaleX
-        })
+        this.app.tree.zoom(zoom)
+    }
+    public zoomToFit() {
+        this.ref.zoom.value = 1
+        this.app.tree.zoom('fit')
     }
 
     public get children() {

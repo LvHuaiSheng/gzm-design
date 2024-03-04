@@ -82,6 +82,9 @@ const openMenu = (e: MouseEvent) => {
         ],
     })
 }
+const handleFitZoom = () => {
+    canvas.zoomToFit()
+}
 // 计算属性，根据 number 的值动态生成格式化后的字符串
 const formattedNumber = (val) => {
     if (Number.isInteger(val)) {
@@ -93,6 +96,11 @@ const formattedNumber = (val) => {
 </script>
 
 <template>
+    <a-tooltip effect="dark" content="自适应画布" mini>
+      <a-button ref="button" class="icon-btn px2!" @click="handleFitZoom">
+          <icon-fullscreen/>
+      </a-button>
+    </a-tooltip>
     <a-button ref="button" class="icon-btn px2!" @click="openMenu">
         {{ formattedNumber(NP.times(zoom, 100)) }}%
         <icon-down class="ml1" />
