@@ -8,6 +8,7 @@ import {flipHorizontally, flipVertically, getParentLayer} from "@/views/Editor/u
 import {IUI} from "@leafer-ui/interface";
 // import { EventbusService, IEventbusService } from '@/views/Editor/core/eventbus/eventbusService'
 import { IEditorUndoRedoService, EditorUndoRedoService } from '@/views/Editor/app/editor/undoRedo/undoRedoService'
+import {Box, DragEvent, DropEvent} from "leafer-ui";
 
 export class Layer extends Disposable {
     constructor(
@@ -116,7 +117,11 @@ export class Layer extends Disposable {
              * 问：为什么打组使用Box而不是Group？
              * 答：因为Group本身是不支持任何样式的，比如想给某个组添加边框时使用Group就实现不了，所以这里采用功能更多的Box来实现打组
              */
-            canvas.app.editor.group()
+            // const box = new Box()
+            // canvas.app.editor.group(box)
+            // box不支持蒙版/擦除效果，所以这里暂时先继续使用Group 有需要的可以自行实现一个Box的自定义组
+            const group = canvas.app.editor.group()
+            canvas.bindDragDrop(group)
             canvas.childrenEffect()
             return false
         })

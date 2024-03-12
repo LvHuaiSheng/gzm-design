@@ -68,11 +68,11 @@ Tips: 🕙筹划中 🔲筹备中 🚧进行中 ✅已完成
 - ✅ 画布尺寸修改、多背景填充
 - ✅ 元素超出组裁剪/显示
 - ✅ 富文本支持
-- 🔲 跨组拖拽（拖入、拖出）
-- 🔲 遮罩功能
-- 🔲 组内蒙版
-- 🔲 组内擦除功能
-- 🔲 外阴影、内阴影
+- ✅ 组内放置（拖入）
+- ✅ 遮罩功能
+- ✅ 组内蒙版
+- ✅ 组内擦除功能
+- ✅ 外阴影、内阴影
 - ✅ 撤销、恢复功能
 - 🔲 图片裁剪
 - 🔲 图片滤镜
@@ -129,7 +129,7 @@ pnpm build
 
 ## 微信交流群
 
-<img src="https://n-oss.sourcenet.cc/gzm-design/wx-group2.png" width="150px">
+<img src="https://n-oss.sourcenet.cc/gzm-design/wx-group3.png" width="150px">
 <img src="https://n-oss.sourcenet.cc/wxhy.png" width="150px">
 
 ## 如何贡献

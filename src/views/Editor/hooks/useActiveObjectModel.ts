@@ -2,7 +2,7 @@ import {useEditor} from "@/views/Editor/app";
 import {isDefined} from '@vueuse/core'
 import type {WritableComputedRef} from 'vue'
 import {toFixed} from '@/utils/math'
-import {isArray, isNumber, isObject, isString} from 'lodash'
+import {isArray, isNumber, isObject, isString, isNull} from 'lodash'
 import {ILeaf, IUI, IUIInputData, IUnitData} from "@leafer-ui/interface";
 import {typeUtil} from "@/views/Editor/utils/utils";
 
@@ -56,21 +56,38 @@ export const useActiveObjectModel = <K extends keyof ILeaf, T = ILeaf[K] | undef
                         break
                     case 'fill':
                     case 'stroke':
-                        if (isString(orgValue)) {
-                            value = [
-                                {
-                                    type: 'solid',
-                                    color: orgValue
-                                }
-                            ]
-                        } else if (orgValue && orgValue.type) {
-                            value = [
-                                {...orgValue}
-                            ]
-                        } else {
-                            value = orgValue
+                        if(orgValue){
+                            if (isString(orgValue)) {
+                                value = [
+                                    {
+                                        type: 'solid',
+                                        color: orgValue
+                                    }
+                                ]
+                            } else if (orgValue && orgValue.type) {
+                                value = [
+                                    {...orgValue}
+                                ]
+                            } else {
+                                value = orgValue
+                            }
+                            activeObject[key] = value
                         }
-                        activeObject[key] = value
+                        break
+                    case 'shadow':
+                    case 'innerShadow':
+                        if (orgValue) {
+                            if (isArray(orgValue)) {
+                                value = orgValue
+                            }else {
+                                console.log('orgValue=',orgValue)
+                                console.log('isObject(orgValue)=',isObject(orgValue))
+                                value = [
+                                    {...orgValue}
+                                ]
+                            }
+                            activeObject[key] = value
+                        }
                         break
                     case 'lineHeight':
                     case 'letterSpacing':

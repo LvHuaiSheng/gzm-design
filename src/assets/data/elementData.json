@@ -454,7 +454,7 @@
     {
       "id": 1,
       "title": "实心圆",
-      "category": 1,
+      "category": 2,
       "json": {
         "tag": "Ellipse",
         "name": "图层1",

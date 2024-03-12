@@ -32,7 +32,7 @@ const trueMode = computed(() => {
 
 const isDark = computed(() => {
   // return trueMode.value === 'dark'
-  return 'light' === 'dark'
+  return false
 })
 
 export function useThemes() {

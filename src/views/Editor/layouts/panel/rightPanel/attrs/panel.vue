@@ -1,7 +1,7 @@
 <script setup lang="ts">
   const props = withDefaults(
     defineProps<{
-      title: string
+      title?: string
       hiddenAdd?: boolean
       disableAdd?: boolean
     }>(),
@@ -28,7 +28,9 @@
       :class="[!disableAdd && !hiddenAdd ? 'hover-add' : '',disableAdd ?'disable-add':'mb2px']"
       @click.self="clickAdd"
     >
-      <span>{{ title }}</span>
+      <slot name="title">
+          <span>{{ title }}</span>
+      </slot>
       <div>
         <slot name="actions"></slot>
         <a-button

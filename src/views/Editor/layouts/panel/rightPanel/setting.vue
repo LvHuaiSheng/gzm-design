@@ -9,9 +9,11 @@ import CanvasAttr from './attrs/canvasAttr.vue'
 import BoxAttr from './attrs/boxAttr.vue'
 import FillAttr from "./attrs/fillAttr.vue";
 import StrokeAttr from "./attrs/strokeAttr.vue";
+import ShadowAttr from "./attrs/shadowAttr.vue";
 import VirtualElementAttr from "./attrs/virtualElementAttr.vue";
 import QrcodeAttr from "./attrs/qrcodeAttr.vue";
 import BarcodeAttr from "./attrs/barcodeAttr.vue";
+import GroupAttr from "./attrs/groupAttr.vue";
 import {appInstance, useEditor} from "@/views/Editor/app";
 import {typeUtil} from "@/views/Editor/utils/utils";
 
@@ -88,7 +90,7 @@ const componentList = computed(() => {
             visual:
                 isDefined(activeObject)
                 &&!typeUtil.isVirtualOrBottom(activeObject)
-                && !editor.activeObjectIsType('Image','Pen','HTMLText','QrCode','BarCode')
+                && !editor.activeObjectIsType('Image','Pen','HTMLText','QrCode','BarCode','Group')
                 ,
         },
         {
@@ -97,6 +99,23 @@ const componentList = computed(() => {
             visual:
                 isDefined(activeObject)
                 &&!typeUtil.isVirtualOrBottom(activeObject)
+                && !editor.activeObjectIsType('Pen','Group')
+        },
+        {
+            name: 'ShadowAttr',
+            component: ShadowAttr,
+            visual:
+                isDefined(activeObject)
+                &&!typeUtil.isVirtualOrBottom(activeObject)
+                && !editor.activeObjectIsType('Pen','Group')
+        },
+        {
+            name: 'GroupAttr',
+            component: GroupAttr,
+            visual:
+                isDefined(activeObject)
+                &&!typeUtil.isVirtualOrBottom(activeObject)
+                &&typeUtil.isCollection(activeObject)
                 && !editor.activeObjectIsType('Pen')
         },
         // {

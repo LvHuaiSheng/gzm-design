@@ -262,6 +262,7 @@ const addObj = (layer, parent: IUI = canvas.contentFrame) => {
 }
 const addGroup = (layer, parent: IUI = canvas.contentFrame) => {
     let group = parseGroup(layer);
+    canvas.bindDragDrop(group)
     parent.add(group)
     return group
 }

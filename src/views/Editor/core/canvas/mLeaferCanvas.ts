@@ -1,6 +1,16 @@
 import {createDecorator} from '@/views/Editor/core/instantiation/instantiation'
-import {ICanvasContext2D, ILeafer, IPointData, IUI, IUIInputData, IZoomType} from "@leafer-ui/interface";
-import {App, ChildEvent, Frame, Leafer, PropertyEvent, ResizeEvent, surfaceType} from "leafer-ui";
+import {ICanvasContext2D, IGroup, ILeafer, IPointData, IUI, IUIInputData, IZoomType} from "@leafer-ui/interface";
+import {
+    App,
+    ChildEvent,
+    DropEvent,
+    Frame,
+    Leafer,
+    PropertyEvent,
+    ResizeEvent,
+    surfaceType,
+    DragEvent, Box,
+} from "leafer-ui";
 import '@leafer-in/editor'
 import '@leafer-in/view'
 import { ScrollBar } from '@leafer-in/scroll'
@@ -389,6 +399,9 @@ export class MLeaferCanvas {
      * @param _index 层级
      */
     public add(_child: IUI, _index?: number) {
+        if (this.objectIsTypes(_child,'Group','Box')){
+            this.bindDragDrop(_child)
+        }
         this.contentFrame.add(_child, _index)
 
         // 选中提添加的元素
@@ -458,8 +471,8 @@ export class MLeaferCanvas {
         this.app.tree.zoom(zoom)
     }
     public zoomToFit() {
-        this.ref.zoom.value = 1
         this.app.tree.zoom('fit')
+        this.ref.zoom.value = <number>this.contentLayer.scale
     }
 
     public get children() {
@@ -520,5 +533,22 @@ export class MLeaferCanvas {
             return idsToFind.includes(item.innerId) ? 1 : 0
         })
         return objects
+    }
+
+    /**
+     * 绑定组的元素拖动放置事件
+     * @param group
+     */
+    public bindDragDrop(group: IUI){
+        // TODO 2024年3月12日: 这个事件在结合editor插件使用时会不生效，已进行反馈 等待修复
+        console.log('绑定放置事件')
+        group.on(DragEvent.ENTER, function () {
+            DragEvent.setData({ data: 'drop data' })
+        })
+        group.on(DropEvent.DROP, function (e: DropEvent) {
+            e.list.forEach((leaf) => {
+                leaf.dropTo(group) // 放置元素到group中
+            })
+        })
     }
 }
