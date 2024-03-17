@@ -17,6 +17,7 @@ import { ScrollBar } from '@leafer-in/scroll'
 import {Ruler} from 'leafer-x-ruler'
 import {IWorkspacesService, WorkspacesService} from "@/views/Editor/core/workspaces/workspacesService";
 import {EventbusService, IEventbusService} from "@/views/Editor/core/eventbus/eventbusService";
+import {HierarchyService, IHierarchyService} from "@/views/Editor/core/layer/hierarchyService";
 import {typeUtil} from "@/views/Editor/utils/utils";
 import {addCustomFonts} from "@/utils/fonts/utils";
 import {useAppStore, useFontStore} from "@/store";
@@ -126,6 +127,7 @@ export class MLeaferCanvas {
     constructor(
         @IWorkspacesService private readonly workspacesService: WorkspacesService,
         @IEventbusService private readonly eventbus: EventbusService,
+        @IHierarchyService private readonly hierarchyService: HierarchyService,
     ) {
         const app = new App({
             width: 800,
@@ -401,6 +403,10 @@ export class MLeaferCanvas {
     public add(_child: IUI, _index?: number) {
         if (this.objectIsTypes(_child,'Group','Box')){
             this.bindDragDrop(_child)
+        }
+        if (!_child.zIndex){
+            const topLevel = this.hierarchyService.getTopLevel().zIndex;
+            _child.zIndex = topLevel + 1;
         }
         this.contentFrame.add(_child, _index)
 

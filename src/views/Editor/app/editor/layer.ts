@@ -8,7 +8,8 @@ import {flipHorizontally, flipVertically, getParentLayer} from "@/views/Editor/u
 import {IUI} from "@leafer-ui/interface";
 // import { EventbusService, IEventbusService } from '@/views/Editor/core/eventbus/eventbusService'
 import { IEditorUndoRedoService, EditorUndoRedoService } from '@/views/Editor/app/editor/undoRedo/undoRedoService'
-import {Box, DragEvent, DropEvent} from "leafer-ui";
+import { IHierarchyService, HierarchyService } from '@/views/Editor/core/layer/hierarchyService'
+import {Box, DragEvent, DropEvent, PropertyEvent, ChildEvent} from "leafer-ui";
 
 export class Layer extends Disposable {
     constructor(
@@ -16,9 +17,17 @@ export class Layer extends Disposable {
         @IKeybindingService private readonly keybinding: KeybindingService,
         @IEventbusService readonly eventbus: EventbusService,
         @IEditorUndoRedoService private readonly undoRedo: EditorUndoRedoService,
+        @IHierarchyService private readonly hierarchyService: HierarchyService,
     ) {
         super()
-        console.log('canvas.contentLayer=', canvas)
+        canvas.contentLayer.on(ChildEvent.ADD, (e) => {
+            hierarchyService.addItem({key:e.target.innerId,zIndex: e.target.zIndex})
+        })
+        canvas.contentLayer.on(PropertyEvent.CHANGE, (e:PropertyEvent) => {
+            if (e.attrName === 'zIndex'){
+                hierarchyService.updateOrAddItem({key:e.target.innerId,zIndex: <number>e.newValue})
+            }
+        })
         this.keybinding.bind(['del', 'backspace'], () => {
             const objects = canvas.getActiveObjects()
             if (objects.length === 0) return
@@ -57,6 +66,19 @@ export class Layer extends Disposable {
         // 移至底层
         this.keybinding.bind('[', () => {
             canvas.app.editor.toBottom()
+            // this.hierarchyService.moveToBottom(keys)
+            const activeObject = canvas.getActiveObject()
+            if (!activeObject) return
+            this.objForEach((obj) => {
+                const group = obj.parent
+                // 排除已经在最底层的元素
+                if (
+                    group.children?.indexOf(obj) === activeObject.children?.indexOf(obj)
+                ) {
+                    return
+                }
+                obj.zIndex =this.hierarchyService.getBottomLevel().zIndex - 1
+            })
             canvas.childrenEffect()
             // this.undoRedo.saveState()
             return false
@@ -65,6 +87,18 @@ export class Layer extends Disposable {
         // 移至顶层
         this.keybinding.bind(']', () => {
             canvas.app.editor.toTop()
+            const activeObject = canvas.getActiveObject()
+            if (!activeObject) return
+            this.objForEach((obj) => {
+                const group = obj.parent
+                // 排除已经在最底层的元素
+                if (
+                    group.children?.indexOf(obj) === activeObject.children?.indexOf(obj)
+                ) {
+                    return
+                }
+                obj.zIndex =this.hierarchyService.getTopLevel().zIndex + 1
+            })
             canvas.childrenEffect()
             // this.undoRedo.saveState()
             return false
@@ -74,7 +108,11 @@ export class Layer extends Disposable {
         this.keybinding.bind('mod+[', () => {
             const activeObject = canvas.getActiveObject()
             if (!activeObject) return
-            // const isActiveSelection = typeUtil.isActiveSelection(activeObject)
+
+            const keys = this.canvas.getActiveObjects().map(value => {
+                return value.innerId
+            })
+            let nextLevel = this.hierarchyService.getNextLevel(keys);
             this.objForEach((obj) => {
                 const group = obj.parent
                 // 排除已经在最底层的元素
@@ -83,7 +121,7 @@ export class Layer extends Disposable {
                 ) {
                     return
                 }
-                obj.zIndex -= 1
+                obj.zIndex = nextLevel.zIndex - 1
             })
             // canvas.childrenEffect()
             // this.undoRedo.saveState()
@@ -94,6 +132,11 @@ export class Layer extends Disposable {
         this.keybinding.bind('mod+]', () => {
             const activeObject = canvas.getActiveObject()
             if (!activeObject) return
+            const keys = this.canvas.getActiveObjects().map(value => {
+                return value.innerId
+            })
+            let previousLevel = this.hierarchyService.getPreviousLevel(keys);
+
             this.objForEach((obj) => {
                 const group = obj.parent
                 // 排除已经在最顶层的元素
@@ -102,7 +145,7 @@ export class Layer extends Disposable {
                 ) {
                     return
                 }
-                obj.zIndex += 1
+                obj.zIndex = previousLevel.zIndex + 1
             }, true)
             // canvas.requestRenderAll()
             // this.undoRedo.saveState()
@@ -114,8 +157,7 @@ export class Layer extends Disposable {
 
             // 创建组
             /**
-             * 问：为什么打组使用Box而不是Group？
-             * 答：因为Group本身是不支持任何样式的，比如想给某个组添加边框时使用Group就实现不了，所以这里采用功能更多的Box来实现打组
+             * 为什么打组使用Box而不是Group？因为Group本身是不支持任何样式的，比如想给某个组添加边框时使用Group就实现不了，所以这里采用功能更多的Box来实现打组
              */
             // const box = new Box()
             // canvas.app.editor.group(box)
