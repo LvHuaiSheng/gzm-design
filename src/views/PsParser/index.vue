@@ -44,7 +44,7 @@ const json = {
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 3776,
                     "height": 2442,
                     "name": "背景 拷贝",
@@ -58,12 +58,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 1301,
                     "height": 4182,
                     "name": "图层 3",
@@ -77,12 +77,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 1570,
                     "height": 1532,
                     "name": "图层 2",
@@ -96,12 +96,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 2161,
                     "height": 569,
                     "name": "图层 5 拷贝",
@@ -115,12 +115,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 3232,
                     "height": 762,
                     "name": "图层 5 拷贝 2 副本 2",
@@ -134,12 +134,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 2053,
                     "height": 1814,
                     "name": "山 拷贝",
@@ -153,12 +153,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 1097,
                     "height": 277,
                     "name": "图层 5",
@@ -172,12 +172,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 190,
                     "height": 180,
                     "name": "图层 6",
@@ -191,12 +191,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 1597,
                     "height": 761,
                     "name": "水面",
@@ -210,12 +210,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 789,
                     "height": 343,
                     "name": "图层 10",
@@ -229,12 +229,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 789,
                     "height": 343,
                     "name": "图层 10 拷贝",
@@ -248,12 +248,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 789,
                     "height": 343,
                     "name": "图层 10 拷贝 2",
@@ -267,12 +267,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 2048,
                     "height": 355,
                     "name": "水面 拷贝 2",
@@ -286,12 +286,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 581,
                     "height": 253,
                     "name": "图层 10 副本 2",
@@ -305,12 +305,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 447,
                     "height": 409,
                     "name": "组 6 副本 3",
@@ -324,12 +324,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 118,
                     "height": 108,
                     "name": "组 6 副本 4",
@@ -343,12 +343,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 581,
                     "height": 253,
                     "name": "图层 10 副本 3",
@@ -362,12 +362,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 1920,
                     "height": 2797,
                     "name": "组 1",
@@ -381,12 +381,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 182,
                     "height": 562,
                     "name": "端午",
@@ -400,12 +400,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 47,
                     "height": 66,
                     "name": "图层 29",
@@ -419,12 +419,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 74,
                     "height": 177,
                     "name": "清明插柳 端午插艾",
@@ -438,12 +438,12 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 },
                 {
                     "tag": "Image",
-                    "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png",
+                    "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png",
                     "width": 16,
                     "height": 36,
                     "name": "节气",
@@ -457,7 +457,7 @@ const json = {
                     "fill": {
                         "type": "image",
                         "mode": "strench",
-                        "url": "https://n-oss.sourcenet.cc/gzm-design/dw/.png"
+                        "url": "http://n-oss.sourcenet.cc/gzm-design/dw/.png"
                     }
                 }
             ]
@@ -472,8 +472,8 @@ const setChildUrl = (child) => {
     for (let i = 0; i < child.length; i++) {
         let item = child[i]
         if (item.tag==='Image'){
-            item.url = 'https://n-oss.sourcenet.cc/gzm-design/dw/'  + item.name + '.png'
-            item.fill.url = 'https://n-oss.sourcenet.cc/gzm-design/dw/'  + item.name + '.png'
+            item.url = 'http://n-oss.sourcenet.cc/gzm-design/dw/'  + item.name + '.png'
+            item.fill.url = 'http://n-oss.sourcenet.cc/gzm-design/dw/'  + item.name + '.png'
         }else{
             if (item.children && item.children.length>0){
                 setChildUrl(item.children)

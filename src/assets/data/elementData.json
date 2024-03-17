@@ -18,7 +18,7 @@
             "draggable": true,
             "editable": true
           },
-          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/biaozhun.png"
+          "url": "http://n-oss.sourcenet.cc/gzm-design/elements/biaozhun.png"
         },
         {
           "id": 1,
@@ -33,7 +33,7 @@
             "draggable": true,
             "editable": true
           },
-          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/jdjt.png"
+          "url": "http://n-oss.sourcenet.cc/gzm-design/elements/jdjt.png"
         },
         {
           "id": 1,
@@ -50,7 +50,7 @@
             "draggable": true,
             "editable": true
           },
-          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/jdjt-left.png"
+          "url": "http://n-oss.sourcenet.cc/gzm-design/elements/jdjt-left.png"
         }
       ]
     },
@@ -74,7 +74,7 @@
             "draggable": true,
             "editable": true
           },
-          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/sxy.png"
+          "url": "http://n-oss.sourcenet.cc/gzm-design/elements/sxy.png"
         },
         {
           "id": 2,
@@ -93,7 +93,7 @@
             "draggable": true,
             "editable": true
           },
-          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/yh.png"
+          "url": "http://n-oss.sourcenet.cc/gzm-design/elements/yh.png"
         },
         {
           "id": 3,
@@ -113,7 +113,7 @@
             "draggable": true,
             "editable": true
           },
-          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/sxyh.png"
+          "url": "http://n-oss.sourcenet.cc/gzm-design/elements/sxyh.png"
         }
       ]
     },
@@ -141,7 +141,7 @@
             ],
             "strokeWidth": 5
           },
-          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/hengxian.png"
+          "url": "http://n-oss.sourcenet.cc/gzm-design/elements/hengxian.png"
         },
         {
           "id": 2,
@@ -164,7 +164,7 @@
             "strokeWidth": 5,
             "rotation": 90
           },
-          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/shuxian.png"
+          "url": "http://n-oss.sourcenet.cc/gzm-design/elements/shuxian.png"
         },
         {
           "id": 2,
@@ -187,7 +187,7 @@
             "strokeWidth": 5,
             "rotation": 45
           },
-          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/xiexian.png"
+          "url": "http://n-oss.sourcenet.cc/gzm-design/elements/xiexian.png"
         }
       ]
     },
@@ -209,7 +209,7 @@
             "draggable": true,
             "editable": true
           },
-          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/chebiao.png"
+          "url": "http://n-oss.sourcenet.cc/gzm-design/elements/chebiao.png"
         },
         {
           "id": 3,
@@ -223,7 +223,7 @@
             "draggable": true,
             "editable": true
           },
-          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/xingguang.png"
+          "url": "http://n-oss.sourcenet.cc/gzm-design/elements/xingguang.png"
         },
         {
           "id": 4,
@@ -236,7 +236,7 @@
             "draggable": true,
             "editable": true
           },
-          "url": "https://n-oss.sourcenet.cc/gzm-design/elements/wujiaoxing.png"
+          "url": "http://n-oss.sourcenet.cc/gzm-design/elements/wujiaoxing.png"
         }
       ]
     }
@@ -256,7 +256,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/biaozhun.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/biaozhun.png"
     },
     {
       "id": 1,
@@ -271,7 +271,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/jdjt.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/jdjt.png"
     },
     {
       "id": 1,
@@ -288,7 +288,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/jdjt-left.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/jdjt-left.png"
     },
     {
       "id": 1,
@@ -304,7 +304,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/jdjt-right.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/jdjt-right.png"
     },
     {
       "id": 1,
@@ -320,7 +320,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/sjxjt.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/sjxjt.png"
     },
     {
       "id": 1,
@@ -336,7 +336,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/fxsjxjt.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/fxsjxjt.png"
     },
     {
       "id": 1,
@@ -352,7 +352,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/yxjt.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/yxjt.png"
     },
     {
       "id": 1,
@@ -368,7 +368,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/yxjt-line.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/yxjt-line.png"
     },
     {
       "id": 1,
@@ -384,7 +384,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/fxjt.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/fxjt.png"
     },
     {
       "id": 1,
@@ -400,7 +400,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/fxjt-line.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/fxjt-line.png"
     },
     {
       "id": 1,
@@ -416,7 +416,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/lxjt.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/lxjt.png"
     },
     {
       "id": 1,
@@ -432,7 +432,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/lxjt-line.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/lxjt-line.png"
     },
     {
       "id": 1,
@@ -449,7 +449,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/bzjt.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/bzjt.png"
     },
     {
       "id": 1,
@@ -467,7 +467,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/sxy.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/sxy.png"
     },
     {
       "id": 2,
@@ -486,7 +486,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/yh.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/yh.png"
     },
     {
       "id": 3,
@@ -506,7 +506,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/sxyh.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/sxyh.png"
     },
     {
       "id": 3,
@@ -525,7 +525,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/sx.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/sx.png"
     },
     {
       "id": 4,
@@ -545,7 +545,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/hx.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/hx.png"
     },
     {
       "id": 5,
@@ -562,7 +562,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/ty.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/ty.png"
     },
     {
       "id": 1,
@@ -584,7 +584,7 @@
         ],
         "strokeWidth": 5
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/hengxian.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/hengxian.png"
     },
     {
       "id": 2,
@@ -607,7 +607,7 @@
         "strokeWidth": 5,
         "rotation": 90
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/shuxian.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/shuxian.png"
     },
     {
       "id": 2,
@@ -630,7 +630,7 @@
         "strokeWidth": 5,
         "rotation": 45
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/xiexian.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/xiexian.png"
     },
     {
       "id": 2,
@@ -646,7 +646,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/chebiao.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/chebiao.png"
     },
     {
       "id": 3,
@@ -660,7 +660,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/xingguang.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/xingguang.png"
     },
     {
       "id": 4,
@@ -673,7 +673,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/wujiaoxing.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/wujiaoxing.png"
     },
     {
       "id": 5,
@@ -688,7 +688,7 @@
         "draggable": true,
         "editable": true
       },
-      "url": "https://n-oss.sourcenet.cc/gzm-design/elements/yuanjiaoxingxing.png"
+      "url": "http://n-oss.sourcenet.cc/gzm-design/elements/yuanjiaoxingxing.png"
     }
   ]
 }
