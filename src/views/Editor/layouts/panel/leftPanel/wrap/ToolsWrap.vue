@@ -30,7 +30,7 @@ const addQrcode = async () => {
         editable: true,
         x:0,
         y:0,
-        text: 'http://guozimi.cn',
+        text: 'https://rgmboss.com',
         size:100,
     })
     editor.add(code)
