@@ -81,16 +81,7 @@ const widgetClassifyList =  [
         show: false,
         component: ToolsWrap,
     },
-    {
-        name: 'AI',
-        icon: 'icon-robot',
-        show: false,
-    },
-    {
-        name: '我的',
-        icon: 'icon-user',
-        show: false,
-    },
+
 ]
 const activeWidgetClassify =  ref(0)
 const active =  ref(true)
