@@ -3,7 +3,7 @@
     {
       "name": "箭头",
       "id": 1,
-      "list":[
+      "list": [
         {
           "id": 1,
           "title": "标准",
@@ -21,7 +21,7 @@
           "url": "https://ossc.guozimi.cn/gzm-design/elements/biaozhun.png"
         },
         {
-          "id": 1,
+          "id": 2,
           "title": "角度箭头",
           "category": 1,
           "json": {
@@ -36,7 +36,7 @@
           "url": "https://ossc.guozimi.cn/gzm-design/elements/jdjt.png"
         },
         {
-          "id": 1,
+          "id": 3,
           "title": "单边角度箭头（左）",
           "category": 1,
           "json": {
@@ -167,7 +167,7 @@
           "url": "https://ossc.guozimi.cn/gzm-design/elements/shuxian.png"
         },
         {
-          "id": 2,
+          "id": 3,
           "title": "倾斜",
           "category": 3,
           "json": {
@@ -196,7 +196,7 @@
       "id": 4,
       "list": [
         {
-          "id": 2,
+          "id": 1,
           "title": "车标",
           "category": 4,
           "json": {
@@ -212,7 +212,7 @@
           "url": "https://ossc.guozimi.cn/gzm-design/elements/chebiao.png"
         },
         {
-          "id": 3,
+          "id": 2,
           "title": "星光",
           "category": 4,
           "json": {
@@ -226,7 +226,7 @@
           "url": "https://ossc.guozimi.cn/gzm-design/elements/xingguang.png"
         },
         {
-          "id": 4,
+          "id": 3,
           "title": "五角星 ",
           "category": 4,
           "json": {
@@ -237,6 +237,47 @@
             "editable": true
           },
           "url": "https://ossc.guozimi.cn/gzm-design/elements/wujiaoxing.png"
+        }
+      ]
+    },
+    {
+      "name": "矩形",
+      "id": 5,
+      "list": [
+        {
+          "id": 1,
+          "title": "直角矩形",
+          "category": 5,
+          "json": {
+            "tag": "Rect",
+            "name": "图层1",
+            "x": 100,
+            "y": 100,
+            "width": 150,
+            "height": 100,
+            "fill": "rgb(50,205,121)",
+            "draggable": true,
+            "editable": true
+          },
+          "url": "https://ossc.guozimi.cn/gzm-design/elements/zhijiaojuxing.png"
+        },
+        {
+          "id": 2,
+          "title": "圆角矩形",
+          "category": 5,
+          "json": {
+            "tag": "Rect",
+            "name": "图层1",
+            "x": 100,
+            "y": 100,
+            "width": 150,
+            "height": 100,
+            "cornerRadius": 10,
+            "fill": "rgb(50,205,121)",
+            "draggable": true,
+            "editable": true
+          },
+          "url": "https://ossc.guozimi.cn/gzm-design/elements/yuanjiaojuxing.png"
         }
       ]
     }
@@ -259,7 +300,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/biaozhun.png"
     },
     {
-      "id": 1,
+      "id": 2,
       "title": "角度箭头",
       "category": 1,
       "json": {
@@ -274,7 +315,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/jdjt.png"
     },
     {
-      "id": 1,
+      "id": 3,
       "title": "单边角度箭头（左）",
       "category": 1,
       "json": {
@@ -291,7 +332,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/jdjt-left.png"
     },
     {
-      "id": 1,
+      "id": 4,
       "title": "单边角度箭头（右）",
       "category": 1,
       "json": {
@@ -307,7 +348,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/jdjt-right.png"
     },
     {
-      "id": 1,
+      "id": 5,
       "title": "三角形箭头",
       "category": 1,
       "json": {
@@ -323,7 +364,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/sjxjt.png"
     },
     {
-      "id": 1,
+      "id": 6,
       "title": "反向三角形箭头",
       "category": 1,
       "json": {
@@ -339,7 +380,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/fxsjxjt.png"
     },
     {
-      "id": 1,
+      "id": 7,
       "title": "圆形箭头",
       "category": 1,
       "json": {
@@ -355,7 +396,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/yxjt.png"
     },
     {
-      "id": 1,
+      "id": 8,
       "title": "圆形箭头（线性）",
       "category": 1,
       "json": {
@@ -371,7 +412,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/yxjt-line.png"
     },
     {
-      "id": 1,
+      "id": 9,
       "title": "方形箭头",
       "category": 1,
       "json": {
@@ -387,7 +428,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/fxjt.png"
     },
     {
-      "id": 1,
+      "id": 10,
       "title": "方形箭头（线性）",
       "category": 1,
       "json": {
@@ -403,7 +444,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/fxjt-line.png"
     },
     {
-      "id": 1,
+      "id": 11,
       "title": "菱形箭头",
       "category": 1,
       "json": {
@@ -419,7 +460,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/lxjt.png"
     },
     {
-      "id": 1,
+      "id": 12,
       "title": "菱形箭头（线性）",
       "category": 1,
       "json": {
@@ -435,7 +476,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/lxjt-line.png"
     },
     {
-      "id": 1,
+      "id": 13,
       "title": "标注箭头",
       "category": 1,
       "json": {
@@ -452,7 +493,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/bzjt.png"
     },
     {
-      "id": 1,
+      "id": 14,
       "title": "实心圆",
       "category": 2,
       "json": {
@@ -470,7 +511,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/sxy.png"
     },
     {
-      "id": 2,
+      "id": 15,
       "title": "圆环",
       "category": 2,
       "json": {
@@ -489,7 +530,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/yh.png"
     },
     {
-      "id": 3,
+      "id": 16,
       "title": "扇形圆环",
       "category": 2,
       "json": {
@@ -509,7 +550,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/sxyh.png"
     },
     {
-      "id": 3,
+      "id": 17,
       "title": "扇形",
       "category": 2,
       "json": {
@@ -528,7 +569,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/sx.png"
     },
     {
-      "id": 4,
+      "id": 18,
       "title": "弧线",
       "category": 2,
       "json": {
@@ -548,7 +589,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/hx.png"
     },
     {
-      "id": 5,
+      "id": 19,
       "title": "椭圆",
       "category": 2,
       "json": {
@@ -565,7 +606,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/ty.png"
     },
     {
-      "id": 1,
+      "id": 20,
       "title": "横向",
       "category": 3,
       "json": {
@@ -587,7 +628,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/hengxian.png"
     },
     {
-      "id": 2,
+      "id": 21,
       "title": "竖向",
       "category": 3,
       "json": {
@@ -610,7 +651,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/shuxian.png"
     },
     {
-      "id": 2,
+      "id": 22,
       "title": "倾斜",
       "category": 3,
       "json": {
@@ -633,7 +674,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/xiexian.png"
     },
     {
-      "id": 2,
+      "id": 23,
       "title": "车标",
       "category": 4,
       "json": {
@@ -649,7 +690,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/chebiao.png"
     },
     {
-      "id": 3,
+      "id": 24,
       "title": "星光",
       "category": 4,
       "json": {
@@ -663,7 +704,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/xingguang.png"
     },
     {
-      "id": 4,
+      "id": 25,
       "title": "五角星 ",
       "category": 4,
       "json": {
@@ -676,7 +717,7 @@
       "url": "https://ossc.guozimi.cn/gzm-design/elements/wujiaoxing.png"
     },
     {
-      "id": 5,
+      "id": 26,
       "title": "圆角星形",
       "category": 4,
       "json": {
@@ -689,6 +730,41 @@
         "editable": true
       },
       "url": "https://ossc.guozimi.cn/gzm-design/elements/yuanjiaoxingxing.png"
+    },
+    {
+      "id": 27,
+      "title": "直角矩形",
+      "category": 5,
+      "json": {
+        "tag": "Rect",
+        "name": "图层1",
+        "x": 100,
+        "y": 100,
+        "width": 150,
+        "height": 100,
+        "fill": "rgb(50,205,121)",
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://ossc.guozimi.cn/gzm-design/elements/zhijiaojuxing.png"
+    },
+    {
+      "id": 28,
+      "title": "圆角矩形",
+      "category": 5,
+      "json": {
+        "tag": "Rect",
+        "name": "图层1",
+        "x": 100,
+        "y": 100,
+        "width": 150,
+        "height": 100,
+        "cornerRadius": 10,
+        "fill": "rgb(50,205,121)",
+        "draggable": true,
+        "editable": true
+      },
+      "url": "https://ossc.guozimi.cn/gzm-design/elements/yuanjiaojuxing.png"
     }
   ]
 }
