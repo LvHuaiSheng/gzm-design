@@ -94,7 +94,7 @@
                 "color": "rgb(29.00115,19.99965,10.0011)"
               }
             ],
-            "text": "#Gzm Design#",
+            "text": "#M-Design#",
             "fontFamily": "SourceHanSansCN-Regular",
             "fontSize": 57,
             "letterSpacing": {
@@ -108,7 +108,7 @@
             "paraIndent": 0,
             "textAlign": "left",
             "verticalAlign": "middle",
-            "name": "gzm-design",
+            "name": "design",
             "opacity": 1,
             "visible": true,
             "zIndex": 4,
@@ -134,7 +134,7 @@
                 "color": "rgb(29.00115,19.99965,10.0011)"
               }
             ],
-            "text": "果米设计器",
+            "text": "麦麦海报",
             "fontFamily": "AlibabaPuHuiTi-Bold",
             "fontSize": 100,
             "italic": false,
@@ -149,7 +149,7 @@
             "paraIndent": 0,
             "textAlign": "left",
             "verticalAlign": "middle",
-            "name": "果米设计器",
+            "name": "麦麦海报",
             "opacity": 1,
             "visible": true,
             "zIndex": 5,
@@ -308,7 +308,7 @@
                 "color": "rgba(46, 42, 42, 1)"
               }
             ],
-            "text": "欢迎使用开源在线海报设计工具！让创意与技术完美融合，助您的设计脱颖而出！",
+            "text": "欢迎使用麦麦海报编辑器！让创意与技术完美融合，助您的设计脱颖而出！",
             "fontSize": 45,
             "fontWeight": "normal",
             "italic": false,
