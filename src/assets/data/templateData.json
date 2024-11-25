@@ -1,237 +1,225 @@
 {
     "list": [
-
         {
             "id": 1,
             "cover": "https://rgmboss.com/image/nabit/nabit01.png",
             "title": "Nabit",
             "state": 1,
             "json": {
-                
-                    "tag": "Frame",
-                    "fill": [
-                        {
-                            "type": "image",
-                            "url": "https://rgmboss.com/image/nabit/bg01.png",
-                            "mode": "cover"
-                        }
-                    ],
-                    "solid": [],
-                    "shadow": [],
-                    "innerShadow": [],
-                    "id": "8d4475ef-9828-4d6e-a07b-4dc9a69f49a6",
-                    "name": "workspace",
-                    "width": 1200,
-                    "height": 675,
-                    "data": {},
-                    "states": {},
-                    "children": [
-                        {
-                            "tag": "Text",
-                            "fill": [
-                                {
-                                    "type": "solid",
-                                    "color": "rgba(255, 191, 0, 1)"
-                                }
-                            ],
-                            "text": "12",
-                            "fontFamily": "微软雅黑",
-                            "fontSize": 60,
-                            "fontWeight": "medium",
-                            "italic": false,
-                            "lineHeight": {
-                                "type": "percent",
-                                "value": 1.5
-                            },
-                            "name": "图层2",
-                            "visible": true,
-                            "zIndex": 3,
-                            "x": 70.58120143994512,
-                            "y": 457.4319463752789,
-                            "editable": true,
-                            "data": {},
-                            "states": {}
+                "tag": "Frame",
+                "fill": [
+                    {
+                        "type": "image",
+                        "url": "https://rgmboss.com/image/nabit/bg01.png",
+                        "mode": "cover"
+                    }
+                ],
+                "solid": [],
+                "shadow": [],
+                "innerShadow": [],
+                "id": "8d4475ef-9828-4d6e-a07b-4dc9a69f49a6",
+                "name": "workspace",
+                "width": 1200,
+                "height": 675,
+                "data": {},
+                "states": {},
+                "children": [
+                    {
+                        "tag": "Text",
+                        "fill": [
+                            {
+                                "type": "solid",
+                                "color": "rgba(255, 191, 0, 1)"
+                            }
+                        ],
+                        "text": "12",
+                        "fontFamily": "微软雅黑",
+                        "fontSize": 60,
+                        "fontWeight": "medium",
+                        "italic": false,
+                        "lineHeight": {
+                            "type": "percent",
+                            "value": 1.5
                         },
-                        {
-                            "tag": "Text",
-                            "width": 490.2032838333616,
-                            "height": 75,
-                            "fill": [
-                                {
-                                    "type": "solid",
-                                    "color": "rgba(255, 191, 0, 1)"
-                                }
-                            ],
-                            "text": "Weekly News",
-                            "fontFamily": "微软雅黑",
-                            "fontSize": 36,
-                            "fontWeight": "light",
-                            "italic": false,
-                            "lineHeight": {
-                                "type": "percent",
-                                "value": 1.5
-                            },
-                            "textAlign": "center",
-                            "name": "图层2",
-                            "visible": true,
-                            "zIndex": 3,
-                            "x": 526.0722444043572,
-                            "y": 592.1103362013208,
-                            "scaleX": 1,
-                            "scaleY": 1,
-                            "rotation": -6.3,
-                            "skewX": 0,
-                            "skewY": 0,
-                            "editable": true,
-                            "data": {},
-                            "states": {}
+                        "name": "图层2",
+                        "visible": true,
+                        "zIndex": 3,
+                        "x": 70.58120143994512,
+                        "y": 457.4319463752789,
+                        "editable": true,
+                        "data": {},
+                        "states": {}
+                    },
+                    {
+                        "tag": "Text",
+                        "width": 490.2032838333616,
+                        "height": 75,
+                        "fill": [
+                            {
+                                "type": "solid",
+                                "color": "rgba(255, 191, 0, 1)"
+                            }
+                        ],
+                        "text": "Weekly News",
+                        "fontFamily": "微软雅黑",
+                        "fontSize": 36,
+                        "fontWeight": "light",
+                        "italic": false,
+                        "lineHeight": {
+                            "type": "percent",
+                            "value": 1.5
                         },
-                        {
-                            "tag": "Text",
-                            "fill": [
-                                {
-                                    "type": "solid",
-                                    "color": "rgba(255, 255, 255, 1)"
-                                }
-                            ],
-                            "text": "每周要闻\n系统更新",
-                            "fontFamily": "方正正中黑",
-                            "fontSize": 106,
-                            "fontWeight": "normal",
-                            "lineHeight": {
-                                "type": "percent",
-                                "value": 1.2
-                            },
-                            "name": "图层4",
-                            "visible": true,
-                            "zIndex": 5,
-                            "x": 71.03200418824527,
-                            "y": 222.72438337315862,
-                            "editable": true,
-                            "data": {},
-                            "states": {}
-                        }
-                    ]
-                
-    
-    
+                        "textAlign": "center",
+                        "name": "图层2",
+                        "visible": true,
+                        "zIndex": 3,
+                        "x": 526.0722444043572,
+                        "y": 592.1103362013208,
+                        "scaleX": 1,
+                        "scaleY": 1,
+                        "rotation": -6.3,
+                        "skewX": 0,
+                        "skewY": 0,
+                        "editable": true,
+                        "data": {},
+                        "states": {}
+                    },
+                    {
+                        "tag": "Text",
+                        "fill": [
+                            {
+                                "type": "solid",
+                                "color": "rgba(255, 255, 255, 1)"
+                            }
+                        ],
+                        "text": "每周要闻\n系统更新",
+                        "fontFamily": "方正正中黑",
+                        "fontSize": 106,
+                        "fontWeight": "normal",
+                        "lineHeight": {
+                            "type": "percent",
+                            "value": 1.2
+                        },
+                        "name": "图层4",
+                        "visible": true,
+                        "zIndex": 5,
+                        "x": 71.03200418824527,
+                        "y": 222.72438337315862,
+                        "editable": true,
+                        "data": {},
+                        "states": {}
+                    }
+                ]
             }
-          }
-        
-
-
-
-      {
-        "id": 2,
-        "cover": "https://rgmboss.com/image/nabit/nabit02.jpg",
-        "title": "Nabit",
-        "state": 1,
-        "json": {
-            "tag": "Frame",
-            "fill": [
-                {
-                    "type": "image",
-                    "url": "https://rgmboss.com/image/nabit/bg02.jpg",
-                    "mode": "cover"
-                }
-            ],
-            "solid": [],
-            "shadow": [],
-            "innerShadow": [],
-            "id": "8a5bb5e7-2a01-4a12-a2af-35ab9490fbeb",
-            "name": "workspace",
-            "width": 1200,
-            "height": 675,
-            "data": {},
-            "states": {},
-            "children": [
-                {
-                    "tag": "Text",
-                    "width": 448.72888513513533,
-                    "height": 222.64358108108104,
-                    "fill": [
-                        {
-                            "type": "solid",
-                            "color": "rgba(255, 255, 255, 1)"
-                        }
-                    ],
-                    "text": "足量美味\n大饱口福",
-                    "fontFamily": "方正正中黑",
-                    "fontSize": 105,
-                    "fontWeight": "normal",
-                    "lineHeight": {
-                        "type": "percent",
-                        "value": 1
+        },
+        {
+            "id": 2,
+            "cover": "https://rgmboss.com/image/nabit/nabit02.jpg",
+            "title": "Nabit",
+            "state": 1,
+            "json": {
+                "tag": "Frame",
+                "fill": [
+                    {
+                        "type": "image",
+                        "url": "https://rgmboss.com/image/nabit/bg02.jpg",
+                        "mode": "cover"
+                    }
+                ],
+                "solid": [],
+                "shadow": [],
+                "innerShadow": [],
+                "id": "8a5bb5e7-2a01-4a12-a2af-35ab9490fbeb",
+                "name": "workspace",
+                "width": 1200,
+                "height": 675,
+                "data": {},
+                "states": {},
+                "children": [
+                    {
+                        "tag": "Text",
+                        "width": 448.72888513513533,
+                        "height": 222.64358108108104,
+                        "fill": [
+                            {
+                                "type": "solid",
+                                "color": "rgba(255, 255, 255, 1)"
+                            }
+                        ],
+                        "text": "足量美味\n大饱口福",
+                        "fontFamily": "方正正中黑",
+                        "fontSize": 105,
+                        "fontWeight": "normal",
+                        "lineHeight": {
+                            "type": "percent",
+                            "value": 1
+                        },
+                        "name": "图层1",
+                        "visible": true,
+                        "zIndex": 1,
+                        "x": 145.63682432432432,
+                        "y": 203.7352195945946,
+                        "editable": true,
+                        "data": {},
+                        "states": {}
                     },
-                    "name": "图层1",
-                    "visible": true,
-                    "zIndex": 1,
-                    "x": 145.63682432432432,
-                    "y": 203.7352195945946,
-                    "editable": true,
-                    "data": {},
-                    "states": {}
-                },
-                {
-                    "tag": "Text",
-                    "fill": [
-                        {
-                            "type": "solid",
-                            "color": "rgba(255, 208, 0, 1)"
-                        }
-                    ],
-                    "text": "每周要闻 业务驱动",
-                    "fontSize": 40,
-                    "fontWeight": "light",
-                    "lineHeight": {
-                        "type": "percent",
-                        "value": 1.5
+                    {
+                        "tag": "Text",
+                        "fill": [
+                            {
+                                "type": "solid",
+                                "color": "rgba(255, 208, 0, 1)"
+                            }
+                        ],
+                        "text": "每周要闻 业务驱动",
+                        "fontSize": 40,
+                        "fontWeight": "light",
+                        "lineHeight": {
+                            "type": "percent",
+                            "value": 1.5
+                        },
+                        "name": "图层2",
+                        "visible": true,
+                        "zIndex": 2,
+                        "x": 150.03378378378378,
+                        "y": 137.03547297297297,
+                        "editable": true,
+                        "data": {},
+                        "states": {}
                     },
-                    "name": "图层2",
-                    "visible": true,
-                    "zIndex": 2,
-                    "x": 150.03378378378378,
-                    "y": 137.03547297297297,
-                    "editable": true,
-                    "data": {},
-                    "states": {}
-                },
-                {
-                    "tag": "Text",
-                    "fill": [
-                        {
-                            "type": "solid",
-                            "color": "rgba(255, 200, 0, 1)"
-                        }
-                    ],
-                    "text": "Weekly News",
-                    "fontFamily": "方正正中黑",
-                    "fontSize": 37,
-                    "fontWeight": "normal",
-                    "lineHeight": {
-                        "type": "percent",
-                        "value": 1.5
-                    },
-                    "name": "图层3",
-                    "visible": true,
-                    "zIndex": 3,
-                    "x": 151.9045608108108,
-                    "y": 417.5422297297298,
-                    "editable": true,
-                    "data": {},
-                    "states": {}
-                }
-            ]
+                    {
+                        "tag": "Text",
+                        "fill": [
+                            {
+                                "type": "solid",
+                                "color": "rgba(255, 200, 0, 1)"
+                            }
+                        ],
+                        "text": "Weekly News",
+                        "fontFamily": "方正正中黑",
+                        "fontSize": 37,
+                        "fontWeight": "normal",
+                        "lineHeight": {
+                            "type": "percent",
+                            "value": 1.5
+                        },
+                        "name": "图层3",
+                        "visible": true,
+                        "zIndex": 3,
+                        "x": 151.9045608108108,
+                        "y": 417.5422297297298,
+                        "editable": true,
+                        "data": {},
+                        "states": {}
+                    }
+                ]
+            }
         }
-      }
     ]
+}
 
 
 
 
 
 
-
-
-  }
-  
