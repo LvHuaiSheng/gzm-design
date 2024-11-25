@@ -576,6 +576,149 @@
                     }
                 ]
             }
+        },
+
+
+
+
+        
+        {
+            "id": 6,
+            "cover": "https://rgmboss.com/image/nabit/nabit06.png",
+            "title": "Nabit",
+            "state": 1,
+            "json": {
+                "tag": "Frame",
+                "fill": [
+                    {
+                        "type": "image",
+                        "url": "https://rgmboss.com/image/nabit/bg06.png",
+                        "mode": "cover"
+                    }
+                ],
+                "solid": [],
+                "shadow": [],
+                "innerShadow": [],
+                "id": "c01c0b3a-5b3b-4b33-9774-bce9473b0e39",
+                "name": "workspace",
+                "width": 1200,
+                "height": 675,
+                "data": {},
+                "states": {},
+                "children": [
+                    {
+                        "tag": "Text",
+                        "width": 449.80996621621625,
+                        "height": 165.17736486486487,
+                        "fill": [
+                            {
+                                "type": "solid",
+                                "color": "rgba(47, 47, 47, 1)"
+                            }
+                        ],
+                        "text": "足量美味",
+                        "fontFamily": "方正正中黑",
+                        "fontSize": 107,
+                        "fontWeight": "normal",
+                        "lineHeight": {
+                            "type": "percent",
+                            "value": 1.5
+                        },
+                        "name": "图层2",
+                        "visible": true,
+                        "zIndex": 2,
+                        "x": 510,
+                        "y": 123.9189189189189,
+                        "rotation": -4,
+                        "editable": true,
+                        "data": {},
+                        "states": {}
+                    },
+                    {
+                        "tag": "Text",
+                        "width": 449.80996621621625,
+                        "height": 165.17736486486487,
+                        "fill": [
+                            {
+                                "type": "solid",
+                                "color": "rgba(47, 47, 47, 1)"
+                            }
+                        ],
+                        "text": "大堡口福",
+                        "fontFamily": "方正正中黑",
+                        "fontSize": 107,
+                        "fontWeight": "normal",
+                        "lineHeight": {
+                            "type": "percent",
+                            "value": 1.5
+                        },
+                        "name": "图层2",
+                        "visible": true,
+                        "zIndex": 2,
+                        "x": 574.4172297297297,
+                        "y": 227.37753378378392,
+                        "scaleX": 1,
+                        "scaleY": 1,
+                        "rotation": 0,
+                        "skewX": 0,
+                        "skewY": 0,
+                        "editable": true,
+                        "data": {},
+                        "states": {}
+                    },
+                    {
+                        "tag": "Text",
+                        "fill": [
+                            {
+                                "type": "solid",
+                                "color": "rgba(240, 0, 0, 1)"
+                            }
+                        ],
+                        "text": "Weekly News",
+                        "fontFamily": "微软雅黑",
+                        "fontSize": 55,
+                        "fontWeight": "semi-bold",
+                        "lineHeight": {
+                            "type": "percent",
+                            "value": 1.5
+                        },
+                        "name": "图层4",
+                        "visible": true,
+                        "zIndex": 4,
+                        "x": 504.4544248453986,
+                        "y": 422.71632427936186,
+                        "rotation": -2.6,
+                        "editable": true,
+                        "data": {},
+                        "states": {}
+                    },
+                    {
+                        "tag": "Text",
+                        "fill": [
+                            {
+                                "type": "solid",
+                                "color": "rgba(255, 255, 255, 1)"
+                            }
+                        ],
+                        "text": "每周要闻 业务驱动",
+                        "fontFamily": "微软雅黑",
+                        "fontSize": 45,
+                        "fontWeight": "normal",
+                        "lineHeight": {
+                            "type": "percent",
+                            "value": 1.5
+                        },
+                        "name": "图层5",
+                        "visible": true,
+                        "zIndex": 5,
+                        "x": 536.0920608108108,
+                        "y": 509.1756756756756,
+                        "editable": true,
+                        "data": {},
+                        "states": {}
+                    }
+                ]
+            }
         }
 
 
