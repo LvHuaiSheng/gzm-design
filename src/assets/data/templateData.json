@@ -112,6 +112,11 @@
                 ]
             }
         },
+
+
+
+
+
         {
             "id": 2,
             "cover": "https://rgmboss.com/image/nabit/nabit02.jpg",
@@ -214,7 +219,129 @@
                     }
                 ]
             }
+        },
+
+
+
+
+        
+        {
+            "id": 3,
+            "cover": "https://rgmboss.com/image/nabit/nabit03.png",
+            "title": "Nabit",
+            "state": 1,
+            "json": {
+                "tag": "Frame",
+                "fill": [
+                    {
+                        "type": "image",
+                        "url": "https://rgmboss.com/image/nabit/bg03.png",
+                        "mode": "cover"
+                    }
+                ],
+                "solid": [],
+                "shadow": [],
+                "innerShadow": [],
+                "id": "fc730614-14f9-4dd3-8c60-71c724450b8e",
+                "name": "workspace",
+                "width": 1200,
+                "height": 675,
+                "data": {},
+                "states": {},
+                "children": [
+                    {
+                        "tag": "Text",
+                        "fill": [
+                            {
+                                "type": "solid",
+                                "color": "rgba(255, 204, 0, 1)"
+                            }
+                        ],
+                        "text": "12",
+                        "fontFamily": "微软雅黑",
+                        "fontSize": 70,
+                        "fontWeight": "medium",
+                        "lineHeight": {
+                            "type": "percent",
+                            "value": 1.5
+                        },
+                        "name": "图层1",
+                        "zIndex": 1,
+                        "x": 131.06455593738136,
+                        "y": 492.4249985230432,
+                        "editable": true,
+                        "data": {},
+                        "states": {}
+                    },
+                    {
+                        "tag": "Text",
+                        "fill": [
+                            {
+                                "type": "solid",
+                                "color": "rgba(255, 255, 255, 1)"
+                            }
+                        ],
+                        "text": "每周要闻 系统更新",
+                        "fontFamily": "方正正中黑",
+                        "fontSize": 98,
+                        "fontWeight": "normal",
+                        "lineHeight": {
+                            "type": "percent",
+                            "value": 1.5
+                        },
+                        "name": "图层2",
+                        "visible": true,
+                        "zIndex": 2,
+                        "x": 126.63944370788568,
+                        "y": 173.53423208519808,
+                        "editable": true,
+                        "data": {},
+                        "states": {}
+                    },
+                    {
+                        "tag": "Text",
+                        "fill": [
+                            {
+                                "type": "solid",
+                                "color": "rgba(255, 255, 255, 1)"
+                            }
+                        ],
+                        "text": "Weekly News",
+                        "fontFamily": "方正正中黑",
+                        "fontSize": 54,
+                        "fontWeight": "normal",
+                        "lineHeight": {
+                            "type": "percent",
+                            "value": 1.5
+                        },
+                        "name": "图层2",
+                        "visible": true,
+                        "zIndex": 2,
+                        "x": 139.50883411590624,
+                        "y": 355.15645311949305,
+                        "scaleX": 0.9999999999999998,
+                        "scaleY": 0.9999999999999998,
+                        "rotation": 0,
+                        "skewX": 0,
+                        "skewY": 0,
+                        "editable": true,
+                        "data": {},
+                        "states": {}
+                    }
+                ]
+            }
         }
+
+
+
+
+
+
+
+
+
+
+
     ]
 }
 
