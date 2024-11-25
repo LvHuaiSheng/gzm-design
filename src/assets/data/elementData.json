@@ -279,24 +279,24 @@
           },
           "url": "https://rgmboss.com/image/jichu/yuanjiaojuxing.png"
         },
-        {
-          "id": 3,
-          "title": "等腰梯形",
-          "category": 5,
-          "json": {
-            "tag": "Shape",
-            "name": "图层1",
-            "x": 100,
-            "y": 100,
-            "width": 150,
-            "height": 100,
-            "sceneFunc": "function(context, shape) { const w = shape.width(); const h = shape.height(); context.beginPath(); context.moveTo(w * 0.2, h); context.lineTo(w * 0.8, h); context.lineTo(w, 0); context.lineTo(0, 0); context.closePath(); context.fillStrokeShape(shape); }",
-            "fill": "rgb(50,205,121)",
-            "draggable": true,
-            "editable": true
-          },
-          "url": "https://rgmboss.com/image/jichu/dengyaotixing.png"
-        }
+{
+  "id": 3,
+  "title": "等边三角形",
+  "category": 5,
+  "json": {
+    "tag": "Shape",
+    "name": "图层1",
+    "x": 100,
+    "y": 100,
+    "width": 150,
+    "height": 100,
+    "sceneFunc": "function(context, shape) { const w = shape.width(); const h = shape.height(); context.beginPath(); const side = w; const height = side * Math.sqrt(3) / 2; context.moveTo(w / 2, h); context.lineTo(w / 2 + side / 2, h - height); context.lineTo(w / 2 - side / 2, h - height); context.closePath(); context.fillStrokeShape(shape); }",
+    "fill": "rgb(50,205,121)",
+    "draggable": true,
+    "editable": true
+  },
+  "url": "https://rgmboss.com/image/jichu/dengyaotixing.png"
+}
       ]
     }
   ],
@@ -784,23 +784,23 @@
       },
       "url": "https://rgmboss.com/image/jichu/yuanjiaojuxing.png"
     },
-    {
-      "id": 29,
-      "title": "等腰梯形",
-      "category": 5,
-      "json": {
-        "tag": "Shape",
-        "name": "图层1",
-        "x": 100,
-        "y": 100,
-        "width": 150,
-        "height": 100,
-        "sceneFunc": "function(context, shape) { const w = shape.width(); const h = shape.height(); context.beginPath(); context.moveTo(w * 0.2, h); context.lineTo(w * 0.8, h); context.lineTo(w, 0); context.lineTo(0, 0); context.closePath(); context.fillStrokeShape(shape); }",
-        "fill": "rgb(50,205,121)",
-        "draggable": true,
-        "editable": true
-      },
-      "url": "https://rgmboss.com/image/jichu/dengyaotixing.png"
-    }
+{
+  "id": 3,
+  "title": "等边三角形",
+  "category": 5,
+  "json": {
+    "tag": "Shape",
+    "name": "图层1",
+    "x": 100,
+    "y": 100,
+    "width": 150,
+    "height": 100,
+    "sceneFunc": "function(context, shape) { const w = shape.width(); const h = shape.height(); context.beginPath(); const side = w; const height = side * Math.sqrt(3) / 2; context.moveTo(w / 2, h); context.lineTo(w / 2 + side / 2, h - height); context.lineTo(w / 2 - side / 2, h - height); context.closePath(); context.fillStrokeShape(shape); }",
+    "fill": "rgb(50,205,121)",
+    "draggable": true,
+    "editable": true
+  },
+  "url": "https://rgmboss.com/image/jichu/dengyaotixing.png"
+}
   ]
 }
