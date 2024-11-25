@@ -6,7 +6,7 @@
         "title": "Nabit",
         "state": 1,
         "json": {
-            {
+            
                 "tag": "Frame",
                 "fill": [
                     {
@@ -111,7 +111,7 @@
                         "states": {}
                     }
                 ]
-            }
+            
 
 
         }
