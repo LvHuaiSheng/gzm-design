@@ -750,6 +750,16 @@
       "download": "https://wordshub.github.io/free-font/assets/font/%E4%B8%AD%E6%96%87/%E5%85%A8%E5%AD%97%E5%BA%93%E7%B3%BB%E5%88%97/%E5%85%A8%E5%AD%97%E5%BA%AB%E8%AA%AA%E6%96%87%E8%A7%A3%E5%AD%97.ttf",
       "desc": "「全字库字体」是台湾地区为了解决电脑中文字数不足而做的一款开源字体，供全社会免费商用。",
       "license": "商免"
+    },
+    {
+      "id": 76,
+      "code": "fangzhengzhengzhonghei",
+      "name": "方正正中黑",
+      "preview": "https://rgmboss.com/font/fzzzh.svg",
+      "source": "https://www.cns11643.gov.tw/pageView.jsp?ID=60",
+      "download": "https://rgmboss.com/font/fzzzh.ttf",
+      "desc": "方正正中黑简体，方正正黑的设计源于“北大方正集团”的标志字体，是一套为企业VI系统设计的专用字体。",
+      "license": "商免"
     }
   ]
 }
