@@ -28,6 +28,7 @@ import '@leafer-in/view'
 import '@leafer-in/state'
 import { ScrollBar } from '@leafer-in/scroll'
 import {Ruler} from 'leafer-x-ruler'
+import {GuideLines} from 'leafer-x-guide-line'
 import {IWorkspace, IWorkspacesService, WorkspacesService} from "@/views/Editor/core/workspaces/workspacesService";
 import {EventbusService, IEventbusService} from "@/views/Editor/core/eventbus/eventbusService";
 import {HierarchyService, IHierarchyService} from "@/views/Editor/core/layer/hierarchyService";
@@ -120,6 +121,9 @@ export class MLeaferCanvas {
     // 标尺
     public ruler: Ruler
 
+    //吸附线
+    public guideLines: GuideLines
+
     // 内容画板
     private _contentFrame: Frame
     // 操作选项
@@ -171,6 +175,7 @@ export class MLeaferCanvas {
             enabled: this.ref.enabledRuler.value,
             theme:'light',
         })
+        this.guideLines = new GuideLines(app)
         const contentLayer = app.tree
         contentLayer.fill = 'transparent'
         // TODO 2023-11-10 等待修复Leafer的fill的功能后放开下面注释启用背景填充
