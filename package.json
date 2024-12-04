@@ -29,6 +29,7 @@
     "jsbarcode": "^3.11.6",
     "leafer-ui": "^1.0.5",
     "leafer-x-ruler": "^1.0.12",
+    "leafer-x-guide-line": "https://github.com/onlinedear/gzm-design/blob/develop/leafer-x-guide-line-1.0.0.tgz", // 新增依赖 [ty-reference](1)
     "lodash": "^4.17.21",
     "mousetrap": "^1.6.5",
     "number-precision": "^1.6.0",
