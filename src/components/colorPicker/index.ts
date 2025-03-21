@@ -95,7 +95,7 @@ const openDialog = (
       h(_ColorPicker, {
         onChange(data:any) {
           if (!isDefined(object) || !isDefined(attr)) return
-          const colorArr = object.proxyData[attr]
+          const colorArr = object[attr]
           const colorValue = colorArr[index]
           if (data.type === 'color') {
             if (data.points.length < 1) return
@@ -103,7 +103,7 @@ const openDialog = (
             // object.set(attr, `rgba(${red}, ${green}, ${blue}, ${alpha})`)
             colorValue.color = `rgba(${red}, ${green}, ${blue}, ${alpha})`
             // 这里使用新数组，因为leafer是浅监听的 修改数组值无法监听到并重新渲染
-            object.proxyData[attr] = replaceElementToNewArr(colorArr,index,{
+            object[attr] = replaceElementToNewArr(colorArr,index,{
               type: 'solid',
               color:colorValue.color,
             })
@@ -112,20 +112,8 @@ const openDialog = (
             const angle = data.degree // 渐变角度
             const [to, from] = calculatePoints(angle) // 角度转换成坐标
 
-            // // if (colorValue.type ==='linear' || colorValue.type ==='radial') {
-            //   let coords = colorValue.stops
-            //   // angle = getAngle(coords)
-            //   if (!coords) {
-            //     const angleCoords = gradAngleToCoords(angle)
-            //     coords = {
-            //       x1: angleCoords.x1 * object.width,
-            //       y1: angleCoords.y1 * object.height,
-            //       x2: angleCoords.x2 * object.width,
-            //       y2: angleCoords.y2 * object.height,
-            //     }
-            //   }
             // 这里使用新数组，因为leafer是浅监听的 修改数组值无法监听到并重新渲染
-            object.proxyData[attr] = replaceElementToNewArr(colorArr,index,{
+            object[attr] = replaceElementToNewArr(colorArr,index,{
               type: data.type,
               stops:colorStops,
               from: {x: from.x, y: from.y, type: 'percent'},
@@ -134,9 +122,8 @@ const openDialog = (
             })
           }else if (data.type === 'pattern'){
             // 这里使用新数组，因为leafer是浅监听的 修改数组值无法监听到并重新渲染
-            object.proxyData[attr] = replaceElementToNewArr(colorArr,index,{
+            object[attr] = replaceElementToNewArr(colorArr,index,{
               type: 'image',
-              // TODO 处理图案填充的图片地址
               url:''
             })
           }

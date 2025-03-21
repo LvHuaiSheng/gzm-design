@@ -2,7 +2,95 @@
   "list": [
     {
       "id": 714,
-      "cover": "https://ossc.guozimi.cn/gzm-design/txt-1.png",
+      "cover": "http://ossc.guozimi.cn/gzm-design/text-s-1.png",
+      "title": "潮酷春节文字2",
+      "width": 719,
+      "height": 526,
+      "state": 1,
+      "json": {
+        "tag": "Text",
+        "fill": [
+          {
+            "type": "solid",
+            "color": "rgba(253, 255, 255, 1)"
+          }
+        ],
+        "text": "输入文本",
+        "fontSize": 40,
+        "fontWeight": "normal",
+        "italic": false,
+        "textDecoration": "none",
+        "lineHeight": {
+          "type": "percent",
+          "value": 1.5
+        },
+        "name": "图层1",
+        "zIndex": 4,
+        "x": 19.45945945945946,
+        "y": 9.729729729729703,
+        "editable": true,
+        "stroke": [
+          {
+            "type": "solid",
+            "color": "rgba(67, 101, 203, 1)"
+          }
+        ],
+        "strokeWidth": 4,
+        "shadow": [
+          {
+            "x": 10,
+            "y": 8,
+            "blur": 5,
+            "spread": 1,
+            "color": "rgba(151,151,151,1)",
+            "box": false,
+            "visible": true
+          }
+        ],
+        "innerShadow": [],
+        "data": {},
+        "states": {}
+      }
+    },
+    {
+      "id": 714,
+      "cover": "http://ossc.guozimi.cn/gzm-design/text-s-2.png",
+      "title": "潮酷春节文字2",
+      "width": 719,
+      "height": 526,
+      "state": 1,
+      "json": {
+        "tag": "Text",
+        "fill": [
+          {
+            "type": "solid",
+            "color": "rgba(255, 255, 255, 1)"
+          }
+        ],
+        "text": "输入文本",
+        "fontSize": 40,
+        "fontWeight": "normal",
+        "italic": false,
+        "textDecoration": "delete",
+        "name": "图层1",
+        "zIndex": 4,
+        "x": 19.45945945945946,
+        "y": 9.729729729729703,
+        "editable": true,
+        "stroke": [
+          {
+            "type": "solid",
+            "color": "rgba(2, 48, 255, 1)"
+          }
+        ],
+        "strokeWidth": 2,
+        "strokeJoin": "bevel",
+        "shadow": []
+      }
+    },
+    {
+      "id": 714,
+      "cover": "https://ossc.guozimi.cn/gzm-design/text-s-3.png",
       "title": "潮酷春节文字2",
       "width": 719,
       "height": 526,
@@ -14,8 +102,18 @@
         "y": 0,
         "width": 400,
         "height": 80,
-        "fill": "rgba(246,207,0,1)",
-        "stroke": "rgba(0,0,0,1)",
+        "fill": [
+          {
+            "type": "solid",
+            "color": "rgba(246,207,0,1)"
+          }
+        ],
+        "stroke": [
+          {
+            "type": "solid",
+            "color": "rgba(0,0,0,1)"
+          }
+        ],
         "strokeWidth": 3,
         "strokeJoin": "miter",
         "opacity": 1,
@@ -34,103 +132,49 @@
     },
     {
       "id": 707,
-      "cover": "https://ossc.guozimi.cn/gzm-design/txt-2.png",
+      "cover": "https://ossc.guozimi.cn/gzm-design/text-s-4.png",
       "title": "圣诞节标题文字",
       "width": 642,
       "height": 692,
       "state": 1,
       "json": {
-        "tag": "Text",
-        "padding": [
-          0,
-          0,
-          0,
-          0
-        ],
-        "fill": [
-          {
-            "type": "solid",
-            "color": "rgba(0,0,0,1)"
-          },
-          {
-            "type": "solid",
-            "color": "rgba(254, 210, 210, 1)"
-          }
-        ],
-        "text": "输入文本",
-        "fontSize": 60,
-        "fontWeight": "normal",
-        "letterSpacing": {
-          "type": "px",
-          "value": 0
-        },
-        "lineHeight": {
-          "type": "percent",
-          "value": 1.5
-        },
-        "name": "图层1",
-        "x": 0,
-        "y": 0,
-        "draggable": true,
-        "editable": true,
-        "stroke": [
-          {
-            "type": "solid",
-            "color": "rgba(110, 141, 196, 1)"
-          }
-        ]
-      }
-    },
-    {
-      "id": 707,
-      "cover": "https://ossc.guozimi.cn/gzm-design/txt-3.png",
-      "title": "圣诞节标题文字",
-      "width": 642,
-      "height": 692,
-      "state": 1,
-      "json": {
-        "tag": "Group",
-        "x": 0,
-        "y": 0,
+        "tag": "Box",
+        "textBox": true,
+        "zIndex": 5,
+        "x": 4.324324324324337,
+        "y": 5.405405405405418,
         "scaleX": 1,
         "scaleY": 1,
         "rotation": 0,
         "skewX": 0,
         "skewY": 0,
-        "draggable": true,
         "editable": true,
         "hitChildren": false,
+        "data": {},
+        "states": {},
         "children": [
           {
             "tag": "Image",
-            "url": "https://res.palxp.cn/static/material/gd-48175277/9be422829dd3748c2d5999955ce48f25.png",
-            "width": 259,
-            "height": 216,
-            "id": 865,
-            "name": "图层1",
+            "url": "https://ossc.guozimi.cn/gzm-design/text-s-4-bg.png",
+            "name": "图层2",
+            "zIndex": 3,
             "x": 0,
-            "y": 0,
+            "y": -1.0658141036401503e-14,
+            "width": 338.92054507657156,
+            "height": 246.7765218838787,
             "scaleX": 1,
             "scaleY": 1,
             "rotation": 0,
             "skewX": 0,
             "skewY": 0,
-            "draggable": true,
             "editable": true,
-            "fill": {
-              "type": "image",
-              "mode": "strench",
-              "url": "https://res.palxp.cn/static/material/gd-48175277/9be422829dd3748c2d5999955ce48f25.png"
-            }
+            "data": {},
+            "states": {}
           },
           {
             "tag": "Text",
-            "padding": [
-              0,
-              0,
-              0,
-              0
-            ],
+            "width": 182.70270270270277,
+            "height": 61.08108108108107,
             "fill": [
               {
                 "type": "solid",
@@ -140,24 +184,99 @@
             "text": "输入文本",
             "fontSize": 40,
             "fontWeight": "normal",
-            "letterSpacing": {
-              "type": "px",
-              "value": 0
-            },
             "lineHeight": {
               "type": "percent",
               "value": 1.5
             },
-            "name": "图层2",
-            "x": 51,
-            "y": 85,
+            "name": "图层1",
+            "visible": true,
+            "zIndex": 4,
+            "x": 81.08108108108115,
+            "y": 86.48648648648648,
             "scaleX": 1,
             "scaleY": 1,
             "rotation": 0,
             "skewX": 0,
             "skewY": 0,
-            "draggable": true,
-            "editable": true
+            "editable": true,
+            "data": {},
+            "states": {}
+          }
+        ]
+      }
+    },
+    {
+      "id": 707,
+      "cover": "https://ossc.guozimi.cn/gzm-design/text-s-5.png",
+      "title": "圣诞节标题文字",
+      "width": 642,
+      "height": 692,
+      "state": 1,
+      "json": {
+        "tag": "Box",
+        "textBox": true,
+        "zIndex": 6,
+        "x": 3.2432432432432563,
+        "y": 6.486486486486498,
+        "scaleX": 1,
+        "scaleY": 1,
+        "rotation": 0,
+        "skewX": 0,
+        "skewY": 0,
+        "editable": true,
+        "hitChildren": false,
+        "data": {},
+        "states": {},
+        "children": [
+          {
+            "tag": "Image",
+            "url": "https://ossc.guozimi.cn/gzm-design/text-s-5-bg.png",
+            "id": 566,
+            "name": "图层1",
+            "zIndex": 1,
+            "x": -1.4210854715202004e-14,
+            "y": -7.105427357601002e-15,
+            "width": 500.64,
+            "height": 219,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotation": 0,
+            "skewX": 0,
+            "skewY": 0,
+            "editable": true,
+            "data": {},
+            "states": {},
+            "state": 1
+          },
+          {
+            "tag": "Text",
+            "width": 361.08108108108104,
+            "fill": [
+              {
+                "type": "solid",
+                "color": "rgba(250, 250, 250, 1)"
+              }
+            ],
+            "text": "输入文本",
+            "fontSize": 40,
+            "fontWeight": "normal",
+            "lineHeight": {
+              "type": "percent",
+              "value": 1.5
+            },
+            "textAlign": "center",
+            "name": "图层2",
+            "zIndex": 2,
+            "x": 116.75675675675676,
+            "y": 76.75675675675674,
+            "scaleX": 1,
+            "scaleY": 1,
+            "rotation": 0,
+            "skewX": 0,
+            "skewY": 0,
+            "editable": true,
+            "data": {},
+            "states": {}
           }
         ]
       }

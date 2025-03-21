@@ -49,7 +49,7 @@ import CompList2Wrap from "@/views/Editor/layouts/panel/leftPanel/wrap/CompList2
 import {LazyImg} from "@/components/vue-waterfall-plugin-next";
 import {queryTextMaterialList} from "@/api/editor/materials";
 import usePageMixin from "@/views/Editor/layouts/panel/leftPanel/wrap/mixins/pageMixin";
-import {HTMLText} from "@leafer-in/html";
+import HTMLText from "@/views/Editor/core/shapes/HTMLText2";
 import CompCateListWrap from "@/views/Editor/layouts/panel/leftPanel/wrap/CompCateListWrap.vue";
 import {TextListType} from "@/views/Editor/layouts/panel/leftPanel/wrap/wrapType";
 
@@ -88,7 +88,7 @@ const basicTextList = ref<TextListType[]>([
         json: {
             tag: 'HTMLText',
             name: '富文本',
-            text: `<i style="font-size: 40px">输入文本</i>`,
+            text: `<span style="font-size: 40px">输入文本</span>`,
             fontWeight: 'normal',
         }
     },

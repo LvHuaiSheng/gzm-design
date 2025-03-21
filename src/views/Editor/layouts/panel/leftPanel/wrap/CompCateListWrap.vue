@@ -11,7 +11,7 @@
 <!--                        <div v-else class="loading">暂无更多</div>-->
                         <div class="list-wrap" v-if="cate.list.length > 0">
                             <div v-for="(item, i) in cate.list" :key="i + 'sl'" draggable="false" @click="handleClick(item)" >
-                                <a-image v-if="i<3"
+                                <a-image v-if="i<6"
                                          class="list__img-thumb"
                                          height="95"
                                          width="95"
@@ -200,8 +200,10 @@ const fetchData = () => {
 }
 .list-wrap {
   display: flex;
-  justify-content: space-between;
+  justify-content: left;
   margin-bottom: 1.8rem;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
 .content {

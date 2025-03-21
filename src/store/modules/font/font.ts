@@ -15,6 +15,8 @@ const defaultFonts = [
         name: '微软雅黑',
     },
 ]
+const FONT_KEY = 'OPEN_FONTS'
+const FONT_VERSION_KEY = 'OPEN_FONTS_VERSION'
 export const useFontStore = defineStore('font', () => {
     const fontList = ref<any>([])
 
@@ -27,8 +29,8 @@ export const useFontStore = defineStore('font', () => {
      */
     async function initFonts() {
         let list = []
-        localStorage.getItem('FONTS_VERSION') !== '1' && localStorage.removeItem('FONTS')
-        const localFonts: any = localStorage.getItem('FONTS') ? JSON.parse(localStorage.getItem('FONTS') || '') : []
+        localStorage.getItem(FONT_VERSION_KEY) !== '1' && localStorage.removeItem(FONT_KEY)
+        const localFonts: any = localStorage.getItem(FONT_KEY) ? JSON.parse(localStorage.getItem(FONT_KEY) || '') : []
         if (localFonts.length > 0) {
             list.push(...localFonts)
         }
@@ -36,8 +38,8 @@ export const useFontStore = defineStore('font', () => {
         if (list.length === 0) {
             const res = await getFonts({pageNum: 1, pageSize: 1000})
             list = res.data.records
-            localStorage.setItem('FONTS', JSON.stringify(list))
-            localStorage.setItem('FONTS_VERSION', '1')
+            localStorage.setItem(FONT_KEY, JSON.stringify(list))
+            localStorage.setItem(FONT_VERSION_KEY, '1')
         }
         fontList.value = defaultFonts.concat(list)
         return list

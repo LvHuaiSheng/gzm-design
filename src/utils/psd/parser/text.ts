@@ -5,7 +5,7 @@ import { Justification, Layer } from "ag-psd";
 import { toRGBColorStr } from "@/utils/color/g-color";
 import { Group, Matrix, Text } from "leafer-ui";
 import { getCommonOptions, LayerInfo } from "./common";
-import { HTMLText } from "@leafer-in/html";
+import HTMLText from "@/views/Editor/core/shapes/HTMLText2";
 import { LayerEffectsInfo, ParagraphStyle, TextStyle } from "ag-psd/src/psd";
 import { ITextAlign } from "@leafer-ui/interface";
 

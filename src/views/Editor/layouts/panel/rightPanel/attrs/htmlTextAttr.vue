@@ -6,7 +6,7 @@ import TinyEditor from "@/components/tinymce/tinyEditor.vue";
 import {useFontStore} from "@/store";
 import {Message} from "@arco-design/web-vue";
 import FontFaceObserver from "fontfaceobserver";
-import {getCustomFontsStyle} from "@/utils/fonts/utils";
+import {addCustomFontBase64, getCustomFontsStyle} from "@/utils/fonts/utils";
 const {fontList,skipLoadFonts,} = storeToRefs(useFontStore())
 const textValue = useActiveObjectModel('text')
 
@@ -32,21 +32,23 @@ const handleCancel = () => {
  * TODO 这里切换的的字体在富文本中可以正常，但是添加到canvas中后就没有了，听leafer说是目前富文本只能加载系统字体的原因，临时可以把字体文件放到部署服务器系统字体中，然后可以直接加载系统字体就可以正常使用
  * @param record
  */
-const changeFontFamily = (record) => {
+const changeFontFamily = async (record) => {
     const fontFamilyName = record
-    if (skipLoadFonts.value.includes(fontFamilyName)){
+    if (skipLoadFonts.value.includes(fontFamilyName)) {
         return;
-    }else {
+    } else {
         // 字体加载
-        const loading =  Message.loading({
-            content:`正在加载字体 【${fontFamilyName}】`,
-            duration:0
+        const loading = Message.loading({
+            content: `正在加载字体 【${fontFamilyName}】`,
+            duration: 0
         })
+        await addCustomFontBase64(record)
         const font = new FontFaceObserver(fontFamilyName);
         font
             .load(null, 150000)
             .then(() => {
                 loading.close()
+                canvas.getActiveObject()?.refreshFontStyle()
                 canvas.activeObject.value?.forceUpdate()
             })
             .catch((err) => {
