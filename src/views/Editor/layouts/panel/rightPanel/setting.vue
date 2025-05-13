@@ -15,6 +15,7 @@ import QrcodeAttr from "./attrs/qrcodeAttr.vue";
 import BarcodeAttr from "./attrs/barcodeAttr.vue";
 import GroupAttr from "./attrs/groupAttr.vue";
 import PenAttr from "./attrs/penAttr.vue";
+import changeImage from "./attrs/changeImage.vue";
 import {appInstance, useEditor} from "@/views/Editor/app";
 import {typeUtil} from "@/views/Editor/utils/utils";
 import {useAppStore} from "@/store";
@@ -70,6 +71,14 @@ const componentList = computed(() => {
             name: 'HtmlTextAttr',
             component: HtmlTextAttr,
             visual: isDefined(activeObject) && editor.activeObjectIsType('HTMLText'),
+        },
+        {
+          name: 'changeImage',
+          component: changeImage,
+          visual:
+              isDefined(activeObject)
+              &&!typeUtil.isVirtualOrBottom(activeObject)
+              && editor.activeObjectIsType('Image','Image2')
         },
         {
             name: 'QrcodeAttr',
