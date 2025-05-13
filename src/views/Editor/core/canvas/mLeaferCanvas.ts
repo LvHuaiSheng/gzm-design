@@ -462,7 +462,7 @@ export class MLeaferCanvas {
      * @param json json
      * @param clearHistory 是否清除历史画布数据
      */
-    public importJsonToCurrentPage(json: any, clearHistory?: boolean) {
+    public async importJsonToCurrentPage(json: any, clearHistory?: boolean) {
         if (clearHistory) {
             this.contentFrame.clear()
         }
@@ -474,6 +474,17 @@ export class MLeaferCanvas {
             this.childrenEffect()
         }
         this.zoomToFit()
+        useFontStore().extractTemplateFonts(json, true).then(value => {
+            const texts = this.contentFrame.findTag('Text')
+            for (let i = 0; i < texts.length; i++) {
+                texts[i].forceRender()
+            }
+            const htmls = this.contentFrame.findTag('HTMLText')
+            for (let i = 0; i < htmls.length; i++) {
+                htmls[i].forceRender()
+            }
+        })
+
     }
 
     // /**
