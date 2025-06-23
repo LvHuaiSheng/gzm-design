@@ -6,7 +6,7 @@ import { toRGBColorStr } from "@/utils/color/g-color";
 import { Group, Matrix, Text } from "leafer-ui";
 import { getCommonOptions, LayerInfo } from "./common";
 import HTMLText from "@/views/Editor/core/shapes/HTMLText2";
-import { LayerEffectsInfo, ParagraphStyle, TextStyle } from "ag-psd/src/psd";
+import { LayerEffectsInfo, ParagraphStyle, TextStyle, TextStyleRun } from "ag-psd/src/psd";
 import { ITextAlign } from "@leafer-ui/interface";
 
 /**
@@ -37,22 +37,45 @@ function parseStyledText(layer: LayerInfo, options = {}) {
         ...options
     });
 
-    let textStr = layer.text.text.replace(/([^\S\n]*)\n/g, '<br/>');
+    //let textStr = layer.text.text.replace(/([^\S\n]*)\n/g, '<br/>');
+    let textStr = layer.text.text;
+    const fontFamily = textUtil.getFontFamily(layer)
     let startLen = 0
     const svgContent = layer.text.styleRuns.reduce((acc, item, index) => {
         const endLen = startLen + item.length;
         const fontSize = (item.style.fontSize || layer.text.style.fontSize) * scale;
-        const text = textStr.substring(startLen, endLen);
+        let text = textStr.substring(startLen, endLen);
         startLen = endLen;
-        return acc + `<span style="font-size:${fontSize}px;color: ${textUtil.getFill(layer)};">${text}</span>`;
+
+        let style = `font-size:${fontSize}px;color: ${textUtil.getTextRunFill(item, layer)};font-family:${fontFamily};`
+        if (textUtil.isUnderLine(layer) || textUtil.isStrikeThrough(layer)) {
+            style += 'text-decoration:';
+            if (textUtil.isUnderLine(layer)) {
+                style += ' underline';
+            }
+            if (textUtil.isStrikeThrough(layer)) {
+                style += ' line-through';
+            }
+            style += ';';
+        }
+        
+        // 统计换行符数量
+        //let count = (text.match(/([^\S\n]*)\n/g) || []).length;
+        
+        // 移除所有换行符
+        text = text.replace(/([^\S\n]*)\n/g, `</span><span style="${style} display: block;">`);
+
+        return acc + `<span style="${style}">${text}</span>`;
     }, '');
 
-    const htmlText = new HTMLText({
+    let htmlText = new HTMLText({
         ...getCommonOptions(layer),
         text: svgContent,
         width: textUtil.getWidth(layer),
         height: textUtil.getHeight(layer)
     });
+
+    htmlText.y -= 10;
 
     return htmlText;
 }
@@ -82,7 +105,7 @@ export const textUtil = {
         return layer.canvas ? layer.canvas.width + 25 : 0;
     },
     getHeight(layer: Layer) {
-        return layer.canvas ? layer.canvas.height : 0;
+        return layer.canvas ? layer.canvas.height + 25 : 0;
     },
 
     /**
@@ -117,6 +140,36 @@ export const textUtil = {
         } else {
             // 默认黑色
             return 'rgb(0,0,0)'
+        }
+    },
+
+    /**
+     * 文字是否有删除线
+     * @param layer
+     */
+    isStrikeThrough(layer: Layer) {
+        return layer.text?.style?.strikethrough || false;
+    },
+
+    /**
+     * 文字是否有下划线
+     * @param layer
+     */
+    isUnderLine(layer: Layer) {
+        return layer.text?.style?.underline || false;
+    },
+
+    /**
+     * 获取文字填充颜色
+     * @param textStyle
+     * @param layer
+     */
+    getTextRunFill(textStyle: TextStyleRun, layer: Layer) {
+        if (textStyle.style && textStyle.style.fillColor) {
+            return toRGBColorStr(textStyle.style.fillColor);
+        } else {
+            // 默认黑色
+            return this.getFill(layer);
         }
     },
 
