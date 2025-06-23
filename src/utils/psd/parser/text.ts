@@ -37,13 +37,14 @@ function parseStyledText(layer: LayerInfo, options = {}) {
         ...options
     });
 
-    let textStr = layer.text.text.replace(/([^\S\n]*)\n/g, '<br/>');
+    //let textStr = layer.text.text.replace(/([^\S\n]*)\n/g, '<br/>');
+    let textStr = layer.text.text;
     const fontFamily = textUtil.getFontFamily(layer)
     let startLen = 0
     const svgContent = layer.text.styleRuns.reduce((acc, item, index) => {
         const endLen = startLen + item.length;
         const fontSize = (item.style.fontSize || layer.text.style.fontSize) * scale;
-        const text = textStr.substring(startLen, endLen);
+        let text = textStr.substring(startLen, endLen);
         startLen = endLen;
 
         let style = `font-size:${fontSize}px;color: ${textUtil.getTextRunFill(item, layer)};font-family:${fontFamily};`
@@ -57,16 +58,24 @@ function parseStyledText(layer: LayerInfo, options = {}) {
             }
             style += ';';
         }
+        
+        // 统计换行符数量
+        //let count = (text.match(/([^\S\n]*)\n/g) || []).length;
+        
+        // 移除所有换行符
+        text = text.replace(/([^\S\n]*)\n/g, `</span><span style="${style} display: block;">`);
 
         return acc + `<span style="${style}">${text}</span>`;
     }, '');
 
-    const htmlText = new HTMLText({
+    let htmlText = new HTMLText({
         ...getCommonOptions(layer),
         text: svgContent,
         width: textUtil.getWidth(layer),
         height: textUtil.getHeight(layer)
     });
+
+    htmlText.y -= 10;
 
     return htmlText;
 }
@@ -96,7 +105,7 @@ export const textUtil = {
         return layer.canvas ? layer.canvas.width + 25 : 0;
     },
     getHeight(layer: Layer) {
-        return layer.canvas ? layer.canvas.height : 0;
+        return layer.canvas ? layer.canvas.height + 25 : 0;
     },
 
     /**
