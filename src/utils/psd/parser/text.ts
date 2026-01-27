@@ -1,13 +1,14 @@
 /**
  * PSD文字属性解析
  */
-import { Justification, Layer } from "ag-psd";
-import { toRGBColorStr } from "@/utils/color/g-color";
-import { Group, Matrix, Text } from "leafer-ui";
-import { getCommonOptions, LayerInfo } from "./common";
-import HTMLText from "@/views/Editor/core/shapes/HTMLText2";
-import { LayerEffectsInfo, ParagraphStyle, TextStyle } from "ag-psd/src/psd";
-import { ITextAlign } from "@leafer-ui/interface";
+import {Justification, Layer} from "ag-psd";
+import {toRGBColorStr} from "@/utils/color/g-color";
+import {Group, Matrix, Text} from "leafer-ui";
+import {getCommonOptions, LayerInfo} from "./common";
+import {HTMLText} from "@leafer-in/html";
+import {LayerEffectsInfo, ParagraphStyle, TextStyle} from "ag-psd/src/psd";
+import {IPaint, ITextAlign} from "@leafer-ui/interface";
+import isArray from "lodash/isArray";
 
 /**
  * 转换Text元素
@@ -29,6 +30,7 @@ export function parseText(layer: LayerInfo, options = {}) {
 
 function parseStyledText(layer: LayerInfo, options = {}) {
     const scale = textUtil.getAverageScale(layer.text.transform);
+    // const scale = layer.effects.scale?layer.effects.scale:100 / 10;
     const group = new Group({
         zIndex: layer.zIndex,
         draggable: true,
@@ -37,23 +39,22 @@ function parseStyledText(layer: LayerInfo, options = {}) {
         ...options
     });
 
-    let textStr = layer.text.text.replace(/([^\S\n]*)\n/g, '<br/>');
+    let textStr = layer.text.text;
     let startLen = 0
     const svgContent = layer.text.styleRuns.reduce((acc, item, index) => {
         const endLen = startLen + item.length;
         const fontSize = (item.style.fontSize || layer.text.style.fontSize) * scale;
-        const text = textStr.substring(startLen, endLen);
+        const text = textStr.substring(startLen, endLen).replace(/([^\S\n]*)\n/g, '<br/>').replace(/([^\S\n]*)\t/g, '&nbsp;');
         startLen = endLen;
-        return acc + `<span style="font-size:${fontSize}px;color: ${textUtil.getFill(layer)};">${text}</span>`;
+        return acc + `<span style="font-size:${fontSize}px;color: ${textUtil.getFillStr(layer)};">${text}</span>`;
     }, '');
-
     const htmlText = new HTMLText({
         ...getCommonOptions(layer),
         text: svgContent,
         width: textUtil.getWidth(layer),
         height: textUtil.getHeight(layer)
     });
-
+    setStyleTextEff(layer.effects, htmlText);
     return htmlText;
 }
 
@@ -79,7 +80,7 @@ function parseSimpleText(layer: LayerInfo, options = {}) {
 
 export const textUtil = {
     getWidth(layer: Layer) {
-        return layer.canvas ? layer.canvas.width + 25 : 0;
+        return layer.canvas ? layer.canvas.width + 35 : 0;
     },
     getHeight(layer: Layer) {
         return layer.canvas ? layer.canvas.height : 0;
@@ -93,7 +94,7 @@ export const textUtil = {
         if (layer.text) {
             const transform = layer.text.transform;
             const scale = textUtil.getAverageScale(transform);
-            return Number(layer.text.style?.fontSize)  * scale;
+            return Number(layer.text.style?.fontSize) * scale;
         }
         return 10;
     },
@@ -111,7 +112,19 @@ export const textUtil = {
      * 获取填充颜色
      * @param layer
      */
-    getFill(layer: Layer) {
+    getFill(layer: Layer):IPaint[] {
+        if ((layer.text?.style?.fillFlag || layer.text?.style?.fillFlag === undefined) && layer.text?.style?.fillColor) {
+            return [{type: 'solid', color: toRGBColorStr(layer.text?.style?.fillColor)}]
+        } else {
+            // 默认黑色
+            return [{type: 'solid', color: 'rgb(0,0,0)'}]
+        }
+    },
+    /**
+     * 获取填充颜色
+     * @param layer
+     */
+    getFillStr(layer: Layer) {
         if ((layer.text?.style?.fillFlag || layer.text?.style?.fillFlag === undefined) && layer.text?.style?.fillColor) {
             return toRGBColorStr(layer.text?.style?.fillColor)
         } else {
@@ -126,7 +139,7 @@ export const textUtil = {
      */
     getLetterSpacing(layer: Layer) {
         if (layer.text.style.tracking) {
-            const scale =textUtil.getAverageScale(layer.text.transform);
+            const scale = textUtil.getAverageScale(layer.text.transform);
             let px = layer.text.style.fontSize * scale
             return layer.text.style.tracking / px
         }
@@ -157,9 +170,9 @@ export const textUtil = {
             'justify-center': 'center',
             'justify-all': 'justify',
         };
-        if (mapping[justification]){
+        if (mapping[justification]) {
             return mapping[justification] as ITextAlign
-        }else {
+        } else {
             throw new Error(`Unsupported justification value：${justification}`)
         }
     }
@@ -246,6 +259,87 @@ const setTextEff = (effects: LayerEffectsInfo, text: Text) => {
                 }
             })
             text.stroke = strokeArr
+        }
+        // 填充
+        if (effects.solidFill && effects.solidFill.length > 0) {
+            let fillArr: any[] = []
+            effects.solidFill.map(fill => {
+                if (fill.enabled) {
+                    fillArr.push({
+                        type:'solid',
+                        color: toRGBColorStr(fill.color)
+                    })
+                }
+            })
+            if (text.fill) {
+                if (isArray(text.fill)) {
+                    fillArr = text.fill.concat(fillArr)
+                }else {
+                    fillArr.unshift({
+                        type:'solid',
+                        color: text.fill
+                    })
+                }
+            }
+            text.fill =  fillArr
+        }
+    }
+}
+/**
+ * 设置文本 effects(效果) 属性
+ * @param effects
+ * @param text
+ */
+const setStyleTextEff = (effects: LayerEffectsInfo, text: HTMLText) => {
+    // 下面开始设置文字效果
+    if (effects) {
+        // 描边
+        if (effects.stroke && effects.stroke.length > 0) {
+            let strokeArr: any[] = []
+            effects.stroke.map(stroke => {
+                if (stroke.enabled) {
+                    let type
+                    switch (stroke.fillType) {
+                        case 'color':
+                            type = 'solid'
+                            break
+                        default:
+                            type = 'solid'
+                            break
+                    }
+                    strokeArr.push({
+                        type: type,
+                        strokeAlign: stroke.position,
+                        opacity: stroke.opacity,
+                        color: toRGBColorStr(stroke.color)
+                    })
+                }
+            })
+            text.stroke = strokeArr
+        }
+        // 填充
+        if (effects.solidFill && effects.solidFill.length > 0) {
+            let fillArr: any[] = []
+            effects.solidFill.map(fill => {
+                console.log('fill=',fill)
+                if (fill.enabled) {
+                    fillArr.push({
+                        type:'solid',
+                        color: toRGBColorStr(fill.color)
+                    })
+                }
+            })
+            if (text.fill) {
+                if (isArray(text.fill)) {
+                    fillArr = text.fill.concat(fillArr)
+                }else {
+                    fillArr.unshift({
+                        type:'solid',
+                        color: text.fill
+                    })
+                }
+            }
+            text.fill =  fillArr
         }
     }
 }
